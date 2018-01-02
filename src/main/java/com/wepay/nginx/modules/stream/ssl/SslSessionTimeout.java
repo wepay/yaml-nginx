@@ -1,0 +1,23 @@
+/********************************************************** 
+* Syntax: ssl_session_timeout time;
+* Default: ssl_session_timeout 5m;
+* Context: stream, server    
+**********************************************************/
+package com.wepay.nginx.modules.stream.ssl;
+
+import static com.wepay.nginx.Constants.*;
+
+import java.util.*;
+
+import com.wepay.nginx.Directive;
+
+public class SslSessionTimeout extends Directive {
+	static final List<String> contexts;
+	static {
+		contexts = Arrays.asList(STREAM,SERVER);
+	}
+	public SslSessionTimeout() {
+		super(contexts, "5m", "ssl_session_timeout");
+	}
+
+}

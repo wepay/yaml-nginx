@@ -1,0 +1,6 @@
+events:
+  use: 
+    value: epoll
+    condition_start: "{% if do this %}"
+    condition_end: "{% else do this %}"
+    

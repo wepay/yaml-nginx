@@ -1,0 +1,35 @@
+nginx: 
+
+list of directives
+list of HTTP
+list of blocks:
+  -start:
+   end:
+   list of servers:
+     - server: 1
+     - server: 2
+     - server: 3
+       
+  
+ server:
+  -list of locations
+  -list of directives
+  -list of blocks
+    start:
+    end:
+    list of locations:
+     - block:..
+         .
+         .
+         
+       name:
+       list of directives:
+       list of blocks:
+       
+    list of directives:
+      - Directives: 1
+      - Directives: 2
+      
+    list of blocks:
+    list of servers:
+    

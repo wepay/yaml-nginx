@@ -1,0 +1,325 @@
+servers:
+  - name: server1
+    listen: 80
+    server_name: "{{ domain['host'] }} {{ domain['alternate_hosts'] | default([]) | join(' ') }}"
+    # Redirect all HTTP to HTTPS
+    location:
+      url: "/"
+      rewrite: "^(.*) https://{{ domain['host'] }}$1 permanent"
+  - name: server2
+    listen: "443 ssl"
+    server_name: "{{ domain['host'] }} {{ domain['alternate_hosts'] | default([]) | join(' ') }}"
+    
+    access_log: "{{ access_log_absolute_path }} main"
+    error_log: "{{ error_log_absolute_path }} info"
+    ssl:
+      value: on
+      comment: "SSL Configuration"
+    ssl_certificate: "{{ ssl_cert_directory }}/{{ domain['ssl'] }}.crt"
+    ssl_certificate_key: "{{ ssl_cert_directory }}/{{ domain['ssl'] }}.key"
+    ssl_protocols: "{{ ssl_protocols_list }}"
+    ssl_session_timeout: "{{ ssl_session_timeout_and_unit }}"
+    ssl_session_cache: "{{ ssl_session_cache_info }}"
+
+    # https://weakdh.org/sysadmin.html
+    ssl_ciphers: "{{ ssl_ciphers_list }}"
+    ssl_prefer_server_ciphers: "{{ ssl_prefer_server_ciphers_switch }}"
+    ssl_dhparam: "{{ ssl_cert_directory }}/dhparams.pem"
+    # OCSP Stapling
+    ssl_stapling: on
+    ssl_stapling_verify: on
+    resolver: "8.8.8.8 8.8.4.4 valid={{ ocsp_resolver_valid_time_and_unit }}"
+    resolver_timeout: "{{ ocsp_resolver_timeout_and_unit }}"
+    add_header:
+      value: "Strict-Transport-Security \"max-age={{ hsts }}; preload\""
+      condition_start: "{% if hsts %}"
+      condition_end: "{% endif %}"
+    keepalive_timeout: "{{ keepalive_timeout_seconds }}"
+    keepalive_requests: "{{ keepalive_requests_integer }}"
+    client_max_body_size: "{{ client_max_body_size_and_unit }}"
+    client_body_buffer_size: "{{ client_body_buffer_size_and_unit }}"
+    ssl_client_certificate: "{{ ssl_cert_directory }}/fb_ca.pem"
+    ssl_crl: "{{ ssl_cert_directory }}/fb_crl.pem"
+    ssl_verify_client: on
+    root:  "{{ root }}"
+    index: "{{ root_index }}"
+    locations:
+      - name: "location1"
+        url: "/"
+        deny: all
+      - name: location2
+        url: "/{{ fb_token_provider_location }}/"
+        if:
+          condition: "!-e $request_filename"
+          rewrite: "^/{{ fb_token_provider_location }}/(.+)$ /index.php?kohana_uri={{ fb_token_provider_location }}/$1 last"
+      - name: location3
+        url: "~* \\.php$"
+        limit_req:
+          value: "zone=one burst={{ limit_burst }}"
+          condition_start: "{% if is_rate_limited|default(False) %}"
+          condition_end: "{% endif %}"
+        fastcgi_pass:  "{{ fastcgi_pass }}"
+        fastcgi_params: 
+          - fastcgi_param: "HTTPS on"
+          - fastcgi_param: "SERVER_ADDR 127.0.0.1"
+          - fastcgi_param: "SCRIPT_FILENAME $realpath_root$fastcgi_script_name"
+          - fastcgi_param: "HTTP_PROXY \"\""
+        include: "/etc/nginx/fastcgi_params"
+      - name: location7
+        url: "~ /\\.svn"
+        deny: all
+      - name: location8
+        url: "~* \\.(eot|ttf|woff)$"
+        add_header: "Access-Control-Allow-Origin *"
+        comment: "Support CORS so font embedding works in modern browsers"
+      - name: location8
+        url: "/"
+        limit_req:
+          value: "zone=one burst={{ limit_burst }}"
+          comment: "Rate limiting"
+          condition_start: "{% if is_rate_limited|default(False) and not rpc_server|default(False) and not maas_server|default(False) %}"
+          condition_end: "{% endif %}"
+        ifs:
+          - name: if1
+            condition: "$request_uri ~* ^/internal"
+            set: $internal_request I
+          - name: if2
+            condition: "$internal_address = 0"
+            set: "$internal_request \"${internal_request}E\""
+          - name: if3
+            condition: "$internal_request = IE"
+            return: 405
+          - name: "if4"
+            condition: "$request_uri ~* ^/{{ fb_token_provider_location }}"
+            condition_start: "{% if environment_name_short != \"tst\" %}"
+            return: 404
+            condition_end: "{% endif %}"
+            comment: "Facebook token provider is always blocked on default https port"
+          - name: if6
+            condition: "-f $request_filename"
+            #expires: 6h
+            #add_header: "Cache-Control public"
+            break: ""
+            comment: "Set cache headers for straight files"
+          - name: if7
+            condition: "$request_filename ~* \\.(gif|ico|feed)$"
+            return: 404
+            comment: "Block static resources we never use"
+          - name: if8
+            condition: "!-e $request_filename"
+            rewrite: ^/(.+)$ /{{ root_index }}?kohana_uri=$1 last
+            comment: "FIXME the url beatification logic should not be tied to kohana!"
+      - name: location9
+        url: "/buildinfo"
+        comment: "buildinfo endpoint, based on buildinfo.json file"
+        index: "{{ buildinfo_index }}"
+        alias: "{{ root }}"
+      - name: location10
+        url: "/portal/"
+        comment: "POS portal callback, served by Possum service"
+        set: "$target_host \"{{ possum_host }}\""
+        proxy_pass: "http://$target_host$request_uri"
+      - name: location11
+        url: "= /error.html"
+        root: "/var/www/nginx-error"
+      - name: location12
+        url: "= /error-logo.html"
+        root: /var/www/nginx-error
+      - name: location13
+        url: "= /{{ healthcheck_index }}"
+        access_log: /var/log/nginx/hb_access.log
+        error_log:  /var/log/nginx/hb_error.log
+        fastcgi_pass:  "{{ fastcgi_pass }}"
+        fastcgi_params:
+          - fastcgi_param: "HTTPS on"
+          - fastcgi_param: "SERVER_ADDR 127.0.0.1"
+          - fastcgi_param: "SCRIPT_FILENAME $realpath_root$fastcgi_script_name"
+          - fastcgi_param: "HTTP_PROXY \"\""
+        include: /etc/nginx/fastcgi_params
+        comment: "FIXME this shouldn't really go here (fake an ssl cert in hb script?)"
+      - name: location14
+        url: "= /nginx_status"
+        stub_status: on
+        access_log: off
+        allow: "{{nginx_status_access_ip}}"
+        deny: all
+      - name: location15
+        url: "~* \\.php$"
+        comment: "Pass PHP requests to FPM"
+        limit_req:
+          condition_start: "{% if is_rate_limited|default(False) and not rpc_server|default(False) and not maas_server|default(False) %}"
+          condition_end: "{% endif %}"
+          value: "zone=one burst={{ limit_burst }}"
+        fastcgi_pass: "{{ fastcgi_pass }}"
+        fastcgi_params:
+          - fastcgi_param: "HTTPS on"
+          - fastcgi_param: "SERVER_ADDR 127.0.0.1"
+          - fastcgi_param: "SCRIPT_FILENAME $realpath_root$fastcgi_script_name"
+          - fastcgi_param: "HTTP_PROXY \"\""
+        include: "/etc/nginx/fastcgi_params"
+      - name: location16
+        url: "~ /(buildinfo|healthcheck|ping)"
+        deny: all
+        condition_start: "{% if domain['type'] == 'proxy' %}"
+        condition_end: "{% endif %}"
+        comment: "deny access to {{ domain['name'] }}'s monitoring endpoints"
+      - name: location17
+        url: "/"
+        condition_start: "{% if domain['type'] == 'proxy' %}"
+        condition_end: "{% endif %}"
+        proxy_set_header:
+          value: "X-Forwarded-For $remote_addr"
+          condition_start: "{% if domain['set_xff'] is defined and domain['set_xff'] == true %}"
+          condition_end: "{% endif %}"
+        proxy_pass: "{{ domain['proxy_dst'] }}"
+        proxy_set_header:
+          value: "Host $http_host"
+          condition_start: "{% if domain['set_host_header'] is defined and domain['set_host_header'] == true %}"
+          condition_end: "{% endif %}"
+        deny:
+          value: all
+          condition_start: "{% if domain['set_whitelist_ips'] is defined %} "
+          condition_end: "{% endif %}"
+        allow:
+          value: "{{ ip }}"
+          condition_start: "{% if domain['set_whitelist_ips'] is defined %} {% for ip in domain['set_whitelist_ips'] %}"
+          condition_end: "{% endfor %}{% endif %}"
+        return:
+          value: "403"
+          condition_start: "{% if domain['type'] == 'blackhole' %}"
+          condition_end: "{% endif %}"
+    root:
+      value: "{{ root }}"
+      condition_start: "{% if domain['type'] == 'main' %}"
+      condition_end: "{% endif %}"
+    index:
+      value: "{{ root_index }}"
+      condition_start: "{% if domain['type'] == 'main' %}"
+      condition_end: "{% endif %}"
+    rewrites:
+      - value: "^/$  https://{{ marketing_domain }}/  permanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+        name: "name1"
+      - name: rewrite1
+        value: "^/$  https://{{ marketing_domain }}/  permanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite2
+        value: "^/welcome/?$ https://{{ marketing_domain }}/ permanent;"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite2
+        value: "^/about/?$ https://{{ marketing_domain }}/about-wepaypermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite3
+        value: "^/about/team/?$https://{{ marketing_domain }}/about-wepaypermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite4
+        value: "^/team/?$https://{{ marketing_domain }}/people permanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite5
+        value: "^/careers/?$ https://{{ marketing_domain }}/careerspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite6
+        value: "^/customers/?$ https://{{ marketing_domain }}/customerspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite7
+        value: "^/gallery/?$ https://{{ marketing_domain }}/customerspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite8
+        value: "^/pricing/?$ https://{{ marketing_domain }}/pricingpermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite9
+        value: "^/fees/?$https://{{ marketing_domain }}/pricingpermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite10
+        value: "^/payments-in-business/?$https://{{ marketing_domain }}/payments-for-platforms permanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite11
+        value: "^/how-we-can-help/?$ https://{{ marketing_domain }}/payments-for-platforms permanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite12
+        value: "^/get-started/?$ https://{{ marketing_domain }}/getting-startedpermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite13
+        value: "^/wepay-connect/?$ https://{{ marketing_domain }}/solutionspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite14
+        value: "^/wepay-clear/?$ https://{{ marketing_domain }}/solutionspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite15
+        value: "^/platforms/?$ https://{{ marketing_domain }}/solutionspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite16
+        value: "^/features/?$https://{{ marketing_domain }}/solutionspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite17
+        value: "^/security/?$https://{{ marketing_domain }}/security permanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite18
+        value: "^/legal/privacy-policy/us/?$ https://{{ marketing_domain }}/privacy-policy-uspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite19
+        value: "^/legal/privacy-policy/ca/?$ https://{{ marketing_domain }}/privacy-policy-capermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite20
+        value: "^/legal/privacy-policy/?$https://{{ marketing_domain }}/privacy-policy-uspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite21
+        value: "^/legal/terms-of-service/us/?$ https://{{ marketing_domain }}/terms-of-service-uspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite22
+        value: "^/legal/terms-of-service/ca/?$ https://{{ marketing_domain }}/terms-of-service-capermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite23
+        value: "^/legal/terms-of-service/?$https://{{ marketing_domain }}/terms-of-service-uspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite24
+        value: "^/press/?$ https://{{ marketing_domain }}/news-and-eventspermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite25
+        value: "^/vc/?$https://visit.wepay.com/vc.html permanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite26
+        value: "^/harry/?$ https://visit.wepay.com/harry.htmlpermanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+      - name: rewrite27
+        value: "^/saastr/?$https://visit.wepay.com/cheatsheet_revenue_pymts.html permanent"
+        condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
+        condition_end: "{% endif %}"
+    ifs:
+      - condition: "$host = '{{ domain['alternate_hosts'] | join (' ') }}'"
+        rewrite: "^(.+)$ https://{{ domain['host'] }}$1"
+        condition_start: "{% if domain['alternate_hosts'] is defined %}"
+        condition_end: "{% endif %}"
+      - condition: "$request_method !~ ^(GET|HEAD|POST)$"
+        return: 405
+        comment: "Whitelist HTTP methods"
+
+    error_page: "500 502 503 504 403 /error.html"

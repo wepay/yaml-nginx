@@ -1,0 +1,27 @@
+
+http:
+  comment: "Auto generated file"
+  server:
+    open_file_cache_errors: skjdhjkfh 
+    server_name_in_redirect:  
+      value: "off" 
+      condition_start:  "---C----"
+      condition_end: "---C----"
+    server_name: "Roopa"
+    condition_start:  "---A----"
+    condition_end: "---A----"
+    locations:
+      - url: "/home/dist"
+        open_file_cache_errors: "on"
+        condition_start: "---B----" 
+        condition_end: "---B----" 
+      - url: "/home/dist/latest"
+        open_file_cache_errors: "off"
+worker_processes: 6
+worker_rlimit_nofile: 50000
+user: "{{ www_user }} {{ www_group }}"
+events:
+  use: epoll
+  multi_accept: on
+  worker_connections: 4096
+ 

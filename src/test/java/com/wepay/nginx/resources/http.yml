@@ -1,0 +1,43 @@
+server:
+  open_file_cache_errors: skjdhjkfh 
+  server_name_in_redirect:  
+    value: "off" 
+    condition_start:  "---C----"
+    condition_end: "---C----"
+  server_name: "Roopa"
+  condition_start:  "---A----"
+  condition_end: "---A----"
+  locations:
+    - url: "/home/dist"
+      open_file_cache_errors: "on"
+      condition_start: "---B----" 
+      condition_end: "---B----" 
+    - url: "/home/dist/latest"
+      open_file_cache_errors: "off"
+condition_start: "---Z0----" 
+condition_end: "---Z0 ----"
+include: /etc/nginx/conf.d/*
+servers: 
+  - server_name: server1
+    condition_start: "---Z1----" 
+    condition_end: "---Z1----" 
+    locations:
+      - url: "/home/dist"
+        open_file_cache_errors: "on"
+        condition_start: "---B----" 
+        condition_end: "---B----" 
+      - url: "/home/dist/latest"
+        open_file_cache_errors: "off"
+        include: "/etc/nginx/conf.d/*"
+  - server_name: server2
+    condition_start: "---Z2----" 
+    condition_end: "---Z2----" 
+    locations:
+      - url: "/home/dist"
+        open_file_cache_errors: "on"
+        includes:
+          - include: "/hom/nginx/conf.d/*"
+          - include: "/etc/nginc/conf.d/*"
+      - url: "/home/dist/latest"
+        open_file_cache_errors: "off"
+ 

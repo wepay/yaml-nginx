@@ -1,0 +1,14 @@
+gradlew.bat
+# Misc
+.DS_Store
+*.iml
+.idea/
+target/
+.classpath
+.project
+.settings/
+build/
+.gradle/
+logs/
+/bin/
+

@@ -1,4 +1,4 @@
-package com.wepay.nginx.modules.http.rewrite;
+package com.wepay.nginx.modules.http.rewrite.server;
 
 import com.wepay.nginx.ListDumps;
 

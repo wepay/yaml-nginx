@@ -11,7 +11,6 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.BlockAbstractContext;
-import com.wepay.nginx.Context;
 import com.wepay.nginx.Dumps;
 import com.wepay.nginx.modules.core.ErrorLog;
 import com.wepay.nginx.modules.http.access.*;
@@ -40,6 +39,8 @@ import com.wepay.nginx.modules.http.proxy.*;
 import com.wepay.nginx.modules.http.realip.*;
 import com.wepay.nginx.modules.http.referer.*;
 import com.wepay.nginx.modules.http.rewrite.*;
+import com.wepay.nginx.modules.http.rewrite.server.If;
+import com.wepay.nginx.modules.http.rewrite.server.Ifs;
 import com.wepay.nginx.modules.http.scgi.*;
 import com.wepay.nginx.modules.http.secure.link.*;
 import com.wepay.nginx.modules.http.session.log.*;
@@ -64,6 +65,10 @@ public class Server extends BlockAbstractContext {
 
 	public Server() {
 		super(contexts, null, "server");
+	}
+
+	public Server(List contexts, String defaultVal, String classAnnotation) {
+		super(contexts, defaultVal, classAnnotation);
 	}
 
 	@JsonProperty("if")

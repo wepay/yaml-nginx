@@ -45,6 +45,8 @@ import com.wepay.nginx.modules.http.random.index.*;
 import com.wepay.nginx.modules.http.realip.*;
 import com.wepay.nginx.modules.http.referer.*;
 import com.wepay.nginx.modules.http.rewrite.*;
+import com.wepay.nginx.modules.http.rewrite.location.If;
+import com.wepay.nginx.modules.http.rewrite.location.Ifs;
 import com.wepay.nginx.modules.http.scgi.*;
 import com.wepay.nginx.modules.http.secure.link.*;
 import com.wepay.nginx.modules.http.session.log.*;
@@ -70,6 +72,10 @@ public class Location extends NamedAbstractContext {
 
 	public Location() {
 		super(contexts, null, "location");
+	}
+
+	public Location(List contexts, String defaultVal, String classAnnotation) {
+		super(contexts, defaultVal, classAnnotation);
 	}
 
 	@JsonProperty("url")

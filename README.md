@@ -1,19 +1,20 @@
 # yaml-nginx
 
- 	This is a java library which generates configuration file in nginx format from YAML. 
- 	It supports the directives of [nginx-1.13.8](https://nginx.org/en/docs)
- 	
- 	Configuration blocks could be generated at different levels as shown below.
- 	
- 	* main:  generates main nginx.conf file content.
- 	* http: generates http blocks.
- 	* server: generates server blocks.
- 	* location:  generates location blocks.
- 	
- 	Input configuration file is more of a key:value paired structure specified in yaml format. 
- 	All the keys are derived from [Nginx directives](https://nginx.org/en/docs) and should be unique. 
- 	Some of the keys( like if, location, server... etc) which could have more than one values are specified as list using the key "<directive_name>s". 
- 	See [here](src/test/java/com/wepay/nginx/resources) for more example configurations.
+This is a java library which generates configuration file in nginx format from YAML. 
+It supports the directives of [nginx-1.13.8](https://nginx.org/en/docs)
+
+Configuration blocks could be generated at different levels as shown below.
+
+* main:  generates main nginx.conf file content.
+* http: generates http blocks.
+* server: generates server blocks.
+* location:  generates location blocks.
+
+Input configuration file is more of a *key:value* paired structure specified in yaml format. 
+All the keys are derived from [Nginx directives](https://nginx.org/en/docs) and should be unique. 
+Some of the keys( like if, location, server... etc) which could have more than one values are specified as list using the key "<directive_name>s". 
+
+See [here](src/test/java/com/wepay/nginx/resources) for more example configurations.
  	
 ## Usage
 config.yml

@@ -11,6 +11,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.Directive;
+import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 
 public class Rewrite extends Directive {
 	static final List<String> contexts;
@@ -25,7 +26,7 @@ public class Rewrite extends Directive {
 		super(contexts, null, "rewrite");
 	}
 
-	public String dump(int level) throws Exception {
+	public String dump(int level) throws InvalidConditionDirectiveException {
 		if (rewrite != null) {
 			return rewrite.dump(level);
 		} else {

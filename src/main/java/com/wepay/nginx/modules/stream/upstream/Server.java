@@ -11,6 +11,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.Directive;
+import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 
 public class Server extends Directive {
 	static final List<String> contexts;
@@ -25,7 +26,7 @@ public class Server extends Directive {
 		super(contexts, null, "server");
 	}
 	 
-	public String dump(int level) throws Exception {
+	public String dump(int level) throws InvalidConditionDirectiveException {
 		if(server!=null){
 			return server.dump(level);
 		}else{

@@ -11,6 +11,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.Directive;
+import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 import com.wepay.nginx.modules.core.Include;
 
 public class FastcgiParam extends Directive {
@@ -23,7 +24,7 @@ public class FastcgiParam extends Directive {
 	public FastcgiParam() {
 		super(contexts, null, "fastcgi_param");
 	}
-	public String dump(int level) throws Exception {
+	public String dump(int level) throws InvalidConditionDirectiveException {
 		if(fastcgiParam!=null){
 			return fastcgiParam.dump(level);
 		}else{

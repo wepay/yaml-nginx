@@ -37,7 +37,7 @@ public abstract class Directive extends NginxAbstractClass {
 		this.value = value;
 	}
 
-	public String updateConditionBlock(int level, String str) throws Exception {
+	public String updateConditionBlock(int level, String str) throws InvalidConditionDirectiveException   {
 		String s = str;
 		if (conditionStart != null && !conditionStart.trim().isEmpty()) {
 			if (conditionEnd == null || conditionEnd.trim().isEmpty()) {
@@ -50,7 +50,7 @@ public abstract class Directive extends NginxAbstractClass {
 		}  
 		return updateComment(level,s);
 	}
-	public String dump(int level) throws Exception {
+	public String dump(int level) throws InvalidConditionDirectiveException {
 		String value = getValue() == null ? getDefault() : getValue();
 		String pre = NginxHelper.getSpace(level);
 		if (value == null) {

@@ -5,6 +5,7 @@ import static com.wepay.nginx.Constants.SPACE_COUNT;
 
 import java.util.List;
 
+import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 import com.wepay.nginx.helper.NginxHelper;
 
 public abstract class NamedAbstractContext extends Context {
@@ -13,7 +14,7 @@ public abstract class NamedAbstractContext extends Context {
 	}
 
 	@Override
-	public String dump(int level) throws Exception {
+	public String dump(int level) throws InvalidConditionDirectiveException{
 		String s = super.dump(level + SPACE_COUNT);
 		String pre = NginxHelper.getSpace(level);
 		return updateConditionBlock(level,

@@ -92,7 +92,7 @@ public abstract class Context extends NginxAbstractClass {
 
 	abstract public void populateMap();
 
-	public String dump(int level) throws Exception {
+	public String dump(int level)throws InvalidConditionDirectiveException  {
 		populateMap();
 		StringBuilder sb = new StringBuilder();
 		Map<String, Dumps> map = getMap();
@@ -111,7 +111,7 @@ public abstract class Context extends NginxAbstractClass {
 		return sb.toString();
 	}
 
-	public String updateConditionBlock(int level, String str) throws Exception {
+	public String updateConditionBlock(int level, String str) throws InvalidConditionDirectiveException {
 		String s = str;
 		if (conditionStart != null && !conditionStart.getValue().trim().isEmpty()) {
 			if (conditionEnd == null || conditionEnd.getValue().trim().isEmpty()) {

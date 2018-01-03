@@ -12,7 +12,7 @@ import com.wepay.nginx.helper.NginxHelper;
 
 public class ListDumps<T> extends ArrayList<T> implements Dumps {
 	@Override
-	public String dump(int level) throws Exception {
+	public String dump(int level) throws InvalidConditionDirectiveException {
 		StringBuilder sb = new StringBuilder();
 		String pre = NginxHelper.getSpace(level);
 		Iterator it = this.iterator();

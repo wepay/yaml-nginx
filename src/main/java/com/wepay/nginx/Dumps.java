@@ -1,5 +1,7 @@
 package com.wepay.nginx;
 
+import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
+
 public interface Dumps<T> {
-	public String dump(int level)throws Exception; 
+	public String dump(int level) throws InvalidConditionDirectiveException; 
 }

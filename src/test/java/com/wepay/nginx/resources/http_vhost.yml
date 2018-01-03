@@ -1,3 +1,11 @@
+geo:
+  address: "$internal_address"
+  default: "0"
+  ip: 
+    value: "{{ ip }} 1"
+    condition_start: "{% for ip in nat_external_ip %}"
+    condition_end: "{% endfor %}"
+
 servers:
   - name: server1
     listen: 80

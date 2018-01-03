@@ -13,6 +13,7 @@ public class Constants {
 	public static String MAIL = "mail";
 	public static String UPSTREAM ="upstream";
 	public static String STREAM = "stream";
+	public static String GEO = "geo";
 	public static String IF_IN_LOCATION ="if_in_location";
 	public static final String ANY="any";
 	public static final String LIMIT_EXCEPT="limit_except";
@@ -26,6 +27,7 @@ public class Constants {
 	public static final String TAB_SPACE = "%s";
 	public static final String COMMENT_PRINT_FORMAT=TAB_SPACE+"#%s"+NEWLINE+"%s";
 	public static final String DIRECTIVE_PRINT_FORMAT = TAB_SPACE+"%-25s %s" + SEMICOLON + NEWLINE;//ex: "     dir_name      /etc/nginx/*;"
+	public static final String DIRECTIVE_IP_PRINT_FORMAT = TAB_SPACE+"%s" + SEMICOLON + NEWLINE;//ex: "     dir_name      /etc/nginx/*;"
 	public static final String DIRECTIVE_PRINT_FORMAT_CONDITION = TAB_SPACE+"%s" + NEWLINE + DIRECTIVE_PRINT_FORMAT+TAB_SPACE+"%s"+ NEWLINE;
 	public static final String TEST_RESOURCE_PATH="src/test/java/com/wepay/nginx/resources";
 	public static final String CONTEXT_PRINT_FORMAT = TAB_SPACE+"%s {" + NEWLINE + "%s" + TAB_SPACE+"}" + NEWLINE;

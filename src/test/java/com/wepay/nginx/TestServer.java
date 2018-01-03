@@ -13,13 +13,13 @@ public class TestServer {
 
 	@Test
 	public void testDumps() {
-		String expected="---A----\nserver {\n    if ($request_method = GET) {\n        return                    500;\n    }\n    if ($request_method = POST) {\n         break;\n        return                    200;\n    }\n    ---B----\n    location /home/dist {\n        open_file_cache_errors    on;\n    }\n    ---B----\n    location /home/dist/latest {\n        open_file_cache_errors    off;\n    }\n    open_file_cache_errors    skjdhjkfh;\n    server_name               Roopa;\n    ---C----\n    server_name_in_redirect   off;\n    ---C----\n}\n---A----\n";
+		String expected="---A----\nserver {\n    if ($request_method = GET) {\n        return                    500;\n        ancient_browser_value     none;\n    }\n    if ($request_method = POST) {\n        break;\n    }\n    location /home/dist {\n        if (xxx) {\n            return                    444;\n        }\n        if (xxx) {\n            return                    444;\n        }\n        open_file_cache_errors    on;\n    }\n    location /home/dist/latest {\n        open_file_cache_errors    off;\n    }\n    open_file_cache_errors    skjdhjkfh;\n    server_name               Roopa;\n    ---C----\n    server_name_in_redirect   off;\n    ---C----\n}\n---A----\n";
 		String filename = Constants.TEST_RESOURCE_PATH + "/server.yml";
 		try {
 			ObjectMapper m;
 			String res = NginxFormatter.format(filename, "server");
 			assertEquals(res, expected);
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}

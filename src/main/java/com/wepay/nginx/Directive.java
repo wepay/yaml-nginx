@@ -37,24 +37,27 @@ public abstract class Directive extends NginxAbstractClass {
 		this.value = value;
 	}
 
+	public String updateConditionBlock(int level, String str) throws Exception {
+		String s = str;
+		if (conditionStart != null && !conditionStart.trim().isEmpty()) {
+			if (conditionEnd == null || conditionEnd.trim().isEmpty()) {
+				throw new InvalidConditionDirectiveException();
+			} else {
+				String pre = NginxHelper.getSpace(level);
+				s = String.format(CONTEXT_PRINT_FORMAT_CONDITION, pre, conditionStart, str, pre,
+						conditionEnd);
+			}
+		}  
+		return updateComment(level,s);
+	}
 	public String dump(int level) throws Exception {
 		String value = getValue() == null ? getDefault() : getValue();
 		String pre = NginxHelper.getSpace(level);
 		if (value == null) {
 			return "";
 		}
-		String s = null;
-		if (conditionStart != null && !conditionStart.trim().isEmpty()) {
-			if (conditionEnd == null || conditionEnd.trim().isEmpty()) {
-				throw new InvalidConditionDirectiveException();
-			} else {
-				s = String.format(DIRECTIVE_PRINT_FORMAT_CONDITION, pre, conditionStart, pre, getClassAnnotation(),
-						getValue(), pre, conditionEnd);
-			}
-		} else {
-			s = String.format(DIRECTIVE_PRINT_FORMAT, pre, getClassAnnotation(), getValue());
-		}
-		return updateComment(level, s);
+		String s = String.format(DIRECTIVE_PRINT_FORMAT, pre, getClassAnnotation(), getValue());
+		return updateConditionBlock(level, s);
 	}
 
 	@Override

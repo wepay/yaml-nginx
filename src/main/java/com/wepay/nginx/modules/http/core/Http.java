@@ -19,6 +19,7 @@ import com.wepay.nginx.modules.http.browser.*;
 import com.wepay.nginx.modules.http.dav.*;
 import com.wepay.nginx.modules.http.f4f.*;
 import com.wepay.nginx.modules.http.fastcgi.*;
+import com.wepay.nginx.modules.http.geo.*;
 import com.wepay.nginx.modules.http.geoip.*;
 import com.wepay.nginx.modules.http.gunzip.*;
 import com.wepay.nginx.modules.http.gzip.*;
@@ -59,7 +60,6 @@ import com.wepay.nginx.modules.http.xslt.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.BlockAbstractContext;
 import com.wepay.nginx.Dumps;
-import com.wepay.nginx.helper.NginxHelper;
 
 public class Http extends BlockAbstractContext {
 	static final List<String> contexts;
@@ -349,6 +349,9 @@ public class Http extends BlockAbstractContext {
 	@JsonProperty("fastcgi_temp_path")
 	private FastcgiTempPath fastcgiTempPath;
 
+	@JsonProperty("geo")
+	private Geo geo;
+	
 	@JsonProperty("geoip_city")
 	private GeoipCity geoipCity;
 
@@ -1491,6 +1494,7 @@ public class Http extends BlockAbstractContext {
 		mapLocal.put("fastcgi_store_access", fastcgiStoreAccess);
 		mapLocal.put("fastcgi_temp_file_write_size", fastcgiTempFileWriteSize);
 		mapLocal.put("fastcgi_temp_path", fastcgiTempPath);
+		mapLocal.put("geo", geo);
 		mapLocal.put("geoip_city", geoipCity);
 		mapLocal.put("geoip_country", geoipCountry);
 		mapLocal.put("geoip_org", geoipOrg);

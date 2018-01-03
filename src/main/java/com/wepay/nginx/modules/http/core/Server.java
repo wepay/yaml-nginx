@@ -11,7 +11,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.BlockAbstractContext;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.Dumps; 
 import com.wepay.nginx.modules.core.ErrorLog;
 import com.wepay.nginx.modules.http.access.*;
 import com.wepay.nginx.modules.http.addition.*;
@@ -67,20 +67,10 @@ public class Server extends BlockAbstractContext {
 		super(contexts, null, "server");
 	}
 
-	public Server(List contexts, String defaultVal, String classAnnotation) {
-		super(contexts, defaultVal, classAnnotation);
-	}
+	
 
 	@JsonProperty("if")
 	private If ifO;
-
-	public If getIf() {
-		return ifO;
-	}
-
-	public void setIf(If ifO) {
-		this.ifO = ifO;
-	}
 
 	@JsonProperty("absolute_redirect")
 	private AbsoluteRedirect absoluteRedirect;
@@ -1766,4 +1756,5 @@ public class Server extends BlockAbstractContext {
 		map.put("xslt_string_param", xsltStringParam);
 		map.put("xslt_types", xsltTypes);
 	}
+	 
 }

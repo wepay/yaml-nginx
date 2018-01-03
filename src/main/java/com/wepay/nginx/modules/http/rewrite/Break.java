@@ -12,7 +12,7 @@ import java.util.*;
 import com.wepay.nginx.Directive;
 import com.wepay.nginx.helper.NginxHelper;
 
-public class Break extends Directive {
+public class Break extends MarkerAbstractDirective {
 	static final List<String> contexts;
 
 	static {
@@ -24,9 +24,8 @@ public class Break extends Directive {
 	}
 
 	@Override
-	public String dump(int level) {
-		String pre = NginxHelper.getSpace(level);
-		return pre + SPACE + "break;\n";
+	public String getValue(){
+		return "break";
 	}
 
 }

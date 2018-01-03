@@ -112,7 +112,7 @@ public abstract class Context extends NginxAbstractClass {
 	}
 
 	public String updateConditionBlock(int level, String str) throws Exception {
-		String s = null;
+		String s = str;
 		if (conditionStart != null && !conditionStart.getValue().trim().isEmpty()) {
 			if (conditionEnd == null || conditionEnd.getValue().trim().isEmpty()) {
 				throw new InvalidConditionDirectiveException();
@@ -121,8 +121,6 @@ public abstract class Context extends NginxAbstractClass {
 				s = String.format(CONTEXT_PRINT_FORMAT_CONDITION, pre, conditionStart.getValue(), str, pre,
 						conditionEnd.getValue());
 			}
-		} else {
-			s = str;
 		}
 		return updateComment(level,s);
 	}

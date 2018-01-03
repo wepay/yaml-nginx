@@ -1,7 +1,7 @@
 # yaml-nginx
 
  	This is a java library which generates configuration file in nginx format from YAML. 
- 	It supports all the directives of nginx-1.13.8 specified at https://nginx.org/en/docs.
+ 	It supports the directives of [nginx-1.13.8](https://nginx.org/en/docs)
  	
  	Configuration blocks could be generated at different levels as shown below.
  	

@@ -1,0 +1,10 @@
+server:
+  open_file_cache_errors: "off" 
+  server_name_in_redirect:  
+    value: "off"  
+  server_name: "xyz" 
+  locations:
+    - url: "/home/dist"
+      open_file_cache_errors: "on" 
+    - url: "/home/dist/latest"
+      open_file_cache_errors: "off" 

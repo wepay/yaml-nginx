@@ -1,6 +1,8 @@
 # yaml-nginx
 
- 	This is a java library which generates configuration file in nginx format given configuration values in YAML. It supports all the directives of Nginx specified at https://nginx.org/en/docs.
+ 	This is a java library which generates configuration file in nginx format from YAML. 
+ 	It supports all the directives of nginx-1.13.8 specified at https://nginx.org/en/docs.
+ 	
  	Configuration blocks could be generated at different levels as shown below.
  	
  	* main:  generates main nginx.conf file content.
@@ -8,8 +10,10 @@
  	* server: generates server blocks.
  	* location:  generates location blocks.
  	
- 	Input configuration file is more of a key:value paired structure specified in yaml format. All the keys are derived from [Nginx directives](https://nginx.org/en/docs) and should be unique. 
- 	Some of the keys( like if, location, server... etc) which could have more than one values are specified as list using the key "<directive_name>s". See [here](src/test/java/com/wepay/nginx/resources) for more example configurations.
+ 	Input configuration file is more of a key:value paired structure specified in yaml format. 
+ 	All the keys are derived from [Nginx directives](https://nginx.org/en/docs) and should be unique. 
+ 	Some of the keys( like if, location, server... etc) which could have more than one values are specified as list using the key "<directive_name>s". 
+ 	See [here](src/test/java/com/wepay/nginx/resources) for more example configurations.
  	
 ## Usage
 config.yml
@@ -50,7 +54,7 @@ Result:
 	    }
 	}
  
-**Note:** This library uses com.fasterxml.jackson.databind.ObjectMapper class. Values like "on" and "off" should always be surrounded with double quotes since objectMapper internally treates them as "true" and "false" respectively.
+**Note:** This library uses com.fasterxml.jackson.databind.ObjectMapper class. Values like "on" and "off" should always be surrounded with double quotes since objectMapper internally treats them as "true" and "false" respectively.
 
 ## Requirements
 	JDK 1.8+

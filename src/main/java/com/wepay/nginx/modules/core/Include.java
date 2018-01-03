@@ -11,6 +11,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.Directive;
+import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 
 public class Include extends Directive {
 	static final List<String> contexts;
@@ -24,7 +25,7 @@ public class Include extends Directive {
 	public Include() {
 		super(contexts, null, "include");
 	}
-	public String dump(int level) throws Exception {
+	public String dump(int level) throws InvalidConditionDirectiveException {
 		if(include!=null){
 			return include.dump(level);
 		}else{

@@ -11,14 +11,17 @@ import java.util.Map;
 import org.yaml.snakeyaml.Yaml;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.wepay.nginx.NginxAbstractClass;
+import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 import com.wepay.nginx.Constants;
 import com.wepay.nginx.Dumps; 
 
 public class NginxHelper {
-	public Dumps parse(String filename, Class cls) throws IOException {
+	public Dumps parse(String filename, Class cls) throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
 		Yaml yaml = new Yaml();
 		Map<String, Object> mapObj;
 		mapObj = (Map<String, Object>) yaml.load(new FileReader(filename));

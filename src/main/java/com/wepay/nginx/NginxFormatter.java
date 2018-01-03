@@ -1,5 +1,7 @@
 package com.wepay.nginx;
 
+import java.io.IOException;
+
 import com.wepay.nginx.exceptions.InvalidArgumentException;
 import com.wepay.nginx.helper.NginxHelper;
 import com.wepay.nginx.modules.core.Main;
@@ -9,7 +11,7 @@ import com.wepay.nginx.modules.http.core.Server;
 
 public class NginxFormatter {
 
-	public static String format(String filename, String context) throws Exception {
+	public static String format(String filename, String context) throws  InvalidArgumentException, IOException {
 		if(context==null || context.trim().isEmpty() || filename==null ||filename.trim().isEmpty()){
 			throw new InvalidArgumentException();
 		}

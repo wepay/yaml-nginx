@@ -21,10 +21,29 @@ import com.wepay.nginx.Constants;
 import com.wepay.nginx.Dumps; 
 
 public class NginxHelper {
-	public Dumps parse(String filename, Class cls) throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
+	public Dumps parseFromFile(String filename, Class cls) throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
 		Yaml yaml = new Yaml();
 		Map<String, Object> mapObj;
 		mapObj = (Map<String, Object>) yaml.load(new FileReader(filename));
+		return generateObject(cls, yaml, mapObj);
+	}
+	public Dumps parseFromString(String str, Class cls) throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
+		Yaml yaml = new Yaml();
+		Map<String, Object> mapObj;
+		mapObj = (Map<String, Object>) yaml.load(str);
+		return generateObject(cls, yaml, mapObj);
+	}
+	/**
+	 * @param cls
+	 * @param yaml
+	 * @param mapObj
+	 * @return
+	 * @throws IOException
+	 * @throws JsonParseException
+	 * @throws JsonMappingException
+	 */
+	private Dumps generateObject(Class cls, Yaml yaml, Map<String, Object> mapObj)
+			throws IOException, JsonParseException, JsonMappingException {
 		for (String key : mapObj.keySet()) {
 			enhanceMap(mapObj, key);
 		}

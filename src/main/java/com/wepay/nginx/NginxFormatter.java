@@ -11,11 +11,31 @@ import com.wepay.nginx.modules.http.core.Server;
 
 public class NginxFormatter {
 
-	public static String format(String filename, String context) throws  InvalidArgumentException, IOException {
+	public static String formatFile(String filename, String context) throws  InvalidArgumentException, IOException {
 		if(context==null || context.trim().isEmpty() || filename==null ||filename.trim().isEmpty()){
 			throw new InvalidArgumentException();
 		}
 		NginxHelper ngnx=new NginxHelper();
+		Class cls = getContextClass(context);
+		Dumps dumpObj=ngnx.parseFromFile(filename, cls);
+		return dumpObj.dump(0);
+	}
+
+	public static String formatString(String str, String context) throws  InvalidArgumentException, IOException {
+		if(context==null || context.trim().isEmpty() || str==null ||str.trim().isEmpty()){
+			throw new InvalidArgumentException();
+		}
+		NginxHelper ngnx=new NginxHelper();
+		Class cls = getContextClass(context);
+		Dumps dumpObj=ngnx.parseFromFile(str, cls);
+		return dumpObj.dump(0);
+	}
+	/**
+	 * @param context
+	 * @return
+	 * @throws InvalidArgumentException
+	 */
+	private static Class getContextClass(String context) throws InvalidArgumentException {
 		Class cls=null;
 		switch (context.toLowerCase()) {
 		case "server":
@@ -33,7 +53,6 @@ public class NginxFormatter {
 	    default:
 			throw new InvalidArgumentException("context should be one of 'server', 'http', 'location' or 'main'. ");
 		}
-		Dumps dumpObj=ngnx.parse(filename, cls);
-		return dumpObj.dump(0);
+		return cls;
 	}
 }

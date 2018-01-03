@@ -17,7 +17,7 @@ public class TestServer {
 		String filename = Constants.TEST_RESOURCE_PATH + "/server.yml";
 		try {
 			ObjectMapper m;
-			String res = NginxFormatter.format(filename, "server");
+			String res = NginxFormatter.formatFile(filename, "server");
 			assertEquals(res, expected);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -30,7 +30,7 @@ public class TestServer {
 		String filename = Constants.TEST_RESOURCE_PATH + "/server_simple.yml";
 		String expected = "server {\n    open_file_cache_errors    skjdhjkfh;\n    server_name               Roopa;\n    server_name_in_redirect   off;\n}\n";
 		try {
-			String res = NginxFormatter.format(filename, "server");
+			String res = NginxFormatter.formatFile(filename, "server");
 			assertEquals(res, expected);
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -42,7 +42,7 @@ public class TestServer {
 		String filename = Constants.TEST_RESOURCE_PATH + "/server_location.yml";
 		String expected = "---A----\nserver {\n    ---B----\n    location /home/dist {\n        open_file_cache_errors    on;\n    }\n    ---B----\n    location /home/dist/latest {\n        open_file_cache_errors    off;\n    }\n    open_file_cache_errors    skjdhjkfh;\n    server_name               Roopa;\n    ---C----\n    server_name_in_redirect   off;\n    ---C----\n}\n---A----\n";
 		try {
-			String res = NginxFormatter.format(filename, "server");
+			String res = NginxFormatter.formatFile(filename, "server");
 			assertEquals(res, expected); 
 		} catch (Throwable e) {
 			e.printStackTrace();

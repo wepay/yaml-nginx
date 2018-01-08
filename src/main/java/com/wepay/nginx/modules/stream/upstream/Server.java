@@ -26,11 +26,11 @@ public class Server extends Directive {
 		super(contexts, null, "server");
 	}
 	 
-	public String dump(int level) throws InvalidConditionDirectiveException {
+	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		if(server!=null){
-			return server.dump(level);
+			return server.dump(level, ctx);
 		}else{
-			return super.dump(level);
+			return super.dump(level, ctx);
 		}
 	}
 

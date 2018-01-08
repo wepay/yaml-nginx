@@ -24,11 +24,11 @@ public class FastcgiParam extends Directive {
 	public FastcgiParam() {
 		super(contexts, null, "fastcgi_param");
 	}
-	public String dump(int level) throws InvalidConditionDirectiveException {
+	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		if(fastcgiParam!=null){
-			return fastcgiParam.dump(level);
+			return fastcgiParam.dump(level, ctx);
 		}else{
-			return super.dump(level);
+			return super.dump(level, ctx);
 		}
 	}
 }

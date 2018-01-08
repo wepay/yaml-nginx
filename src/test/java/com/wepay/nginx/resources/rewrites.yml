@@ -2,10 +2,6 @@ url:
   value: "~* \\.php$" 
 rewrites: 
   - value: "^/$  https://{{ marketing_domain }}/  permanent"
-    condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
-    condition_end: "{% endif %}"
     name: "name1"
   - value: "^/$  https://{{ marketing_domain }}/  permanent"
-    condition_start: "{% if domain['type'] == 'main' and if enable_marketing_redirects and enable_marketing_redirects_by_role|default(False) %}"
-    condition_end: "{% endif %}"
     name: "name2"

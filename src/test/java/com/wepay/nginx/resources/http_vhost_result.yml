@@ -1,0 +1,161 @@
+geo $internal_address {
+    default 0;
+    {{ ip }} 1;
+}
+server {
+    listen      80;
+    location / {
+        rewrite ^(.*) https://{{ domain['host'] }}$1 permanent;
+    }
+    server_name {{ domain['host'] }} {{ domain['alternate_hosts'] | default([]) | join(' ') }};
+}
+server {
+    if ($host = '{{ domain['alternate_hosts'] | join (' ') }}') {
+        rewrite ^(.+)$ https://{{ domain['host'] }}$1;
+    }
+    #Whitelist HTTP methods
+    if ($request_method !~ ^(GET|HEAD|POST)$) {
+        return 405;
+    }
+    access_log                {{ access_log_absolute_path }} main;
+    error_log                 {{ error_log_absolute_path }} info;
+    add_header                Strict-Transport-Security max-age={{ hsts }}; preload;
+    client_body_buffer_size   {{ client_body_buffer_size_and_unit }};
+    client_max_body_size      {{ client_max_body_size_and_unit }};
+    error_page                500 502 503 504 403 /error.html;
+    index                     {{ root_index }};
+    keepalive_requests        {{ keepalive_requests_integer }};
+    keepalive_timeout         {{ keepalive_timeout_seconds }};
+    listen                    443 ssl;
+    location / {
+        deny all;
+    }
+    location /{{ fb_token_provider_location }}/ {
+        if (!-e $request_filename) {
+            rewrite ^/{{ fb_token_provider_location }}/(.+)$ /index.php?kohana_uri={{ fb_token_provider_location }}/$1 last;
+        }
+    }
+    location ~*  php$ {
+        include        /etc/nginx/fastcgi_params;
+        fastcgi_param HTTPS on;
+        fastcgi_param SERVER_ADDR 127.0.0.1;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_param HTTP_PROXY '';
+        fastcgi_pass   {{ fastcgi_pass }};
+        limit_req      zone=one burst={{ limit_burst }};
+    }
+    location ~ /.svn {
+        deny all;
+    }
+    #Support CORS so font embedding works in modern browsers
+    location ~* .(eot|ttf|woff)$ {
+        add_header Access-Control-Allow-Origin *;
+    }
+    location / {
+        if ($request_uri ~* ^/internal) {
+            set $internal_request I;
+        }
+        if ($internal_address = 0) {
+            set $internal_request  ${internal_request}E;
+        }
+        if ($internal_request = IE) {
+            return 405;
+        }
+        #Facebook token provider is always blocked on default https port
+        if ($internal_request = AE) {
+            return 404;
+        }
+        #Set cache headers for straight files
+        if (-f $request_filename) {
+            break;
+        }
+        #Block static resources we never use
+        if ($request_filename ~* .(gif|ico|feed)$) {
+            return 404;
+        }
+        #FIXME the url beatification logic should not be tied to kohana!
+        if (!-e $request_filename) {
+            rewrite ^/(.+)$ /{{ root_index }}?kohana_uri=$1 last;
+        }
+        #Rate limiting
+        limit_req zone=one burst={{ limit_burst }};
+    }
+    #buildinfo endpoint, based on buildinfo.json file
+    location /buildinfo {
+        alias {{ root }};
+        index {{ buildinfo_index }};
+    }
+    #POS portal callback, served by Possum service
+    location /portal/ {
+        proxy_pass http://$target_host$request_uri;
+        set        $target_host '{{ possum_host }}';
+    }
+    location = /error.html {
+        root /var/www/nginx-error;
+    }
+    location = /error-logo.html {
+        root /var/www/nginx-error;
+    }
+    #FIXME this shouldn't really go here (fake an ssl cert in hb script?)
+    location = /{{ healthcheck_index }} {
+        include        /etc/nginx/fastcgi_params;
+        access_log     /var/log/nginx/hb_access.log;
+        error_log      /var/log/nginx/hb_error.log;
+        fastcgi_param HTTPS on;
+        fastcgi_param SERVER_ADDR 127.0.0.1;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_param HTTP_PROXY '';
+        fastcgi_pass   {{ fastcgi_pass }};
+    }
+    location = /nginx_status {
+        access_log  false;
+        allow       {{nginx_status_access_ip}};
+        deny        all;
+        stub_status true;
+    }
+    #Pass PHP requests to FPM
+    location ~* .php$ {
+        include        /etc/nginx/fastcgi_params;
+        fastcgi_param HTTPS on;
+        fastcgi_param SERVER_ADDR 127.0.0.1;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_param HTTP_PROXY '';
+        fastcgi_pass   {{ fastcgi_pass }};
+        limit_req      zone=one burst={{ limit_burst }};
+    }
+    #deny access to {{ domain['name'] }}'s monitoring endpoints
+    location ~ /(buildinfo|healthcheck|ping) {
+        deny all;
+    }
+    location / {
+        allow            {{ ip }};
+        deny             all;
+        proxy_pass       {{ domain['proxy_dst'] }};
+        proxy_set_header Host $http_host;
+        return           403;
+    }
+    resolver                  8.8.8.8 8.8.4.4 valid={{ ocsp_resolver_valid_time_and_unit }};
+    resolver_timeout          {{ ocsp_resolver_timeout_and_unit }};
+    rewrite ^/$  https://{{ marketing_domain }}/  permanent;
+    rewrite ^/$  https://{{ marketing_domain }}/  permanent;
+    rewrite ^/welcome/?$ https://{{ marketing_domain }}/ permanent;;
+    rewrite ^/about/?$ https://{{ marketing_domain }}/about-wepaypermanent;
+    rewrite ^/about/team/?$https://{{ marketing_domain }}/about-wepaypermanent;
+    root                      {{ root }};
+    server_name               {{ domain['host'] }} {{ domain['alternate_hosts'] | default([]) | join(' ') }};
+    #SSL Configuration
+    ssl                       true;
+    ssl_certificate           {{ ssl_cert_directory }}/{{ domain['ssl'] }}.crt;
+    ssl_certificate_key       {{ ssl_cert_directory }}/{{ domain['ssl'] }}.key;
+    ssl_ciphers               {{ ssl_ciphers_list }};
+    ssl_client_certificate    {{ ssl_cert_directory }}/fb_ca.pem;
+    ssl_crl                   {{ ssl_cert_directory }}/fb_crl.pem;
+    ssl_dhparam               {{ ssl_cert_directory }}/dhparams.pem;
+    ssl_prefer_server_ciphers {{ ssl_prefer_server_ciphers_switch }};
+    ssl_protocols             {{ ssl_protocols_list }};
+    ssl_session_cache         {{ ssl_session_cache_info }};
+    ssl_session_timeout       {{ ssl_session_timeout_and_unit }};
+    ssl_stapling              true;
+    ssl_stapling_verify       true;
+    ssl_verify_client         true;
+}

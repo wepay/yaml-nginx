@@ -18,7 +18,7 @@ public class NginxFormatter {
 		NginxHelper ngnx=new NginxHelper();
 		Class cls = getContextClass(context);
 		Dumps dumpObj=ngnx.parseFromFile(filename, cls);
-		return dumpObj.dump(0);
+		return dumpObj.dump(0, context);
 	}
 
 	public static String formatString(String str, String context) throws  InvalidArgumentException, IOException {
@@ -27,8 +27,8 @@ public class NginxFormatter {
 		}
 		NginxHelper ngnx=new NginxHelper();
 		Class cls = getContextClass(context);
-		Dumps dumpObj=ngnx.parseFromFile(str, cls);
-		return dumpObj.dump(0);
+		Dumps dumpObj=ngnx.parseFromString(str, cls);
+		return dumpObj.dump(0, context);
 	}
 	/**
 	 * @param context

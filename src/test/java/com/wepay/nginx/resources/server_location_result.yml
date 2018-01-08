@@ -1,0 +1,9 @@
+location /home/dist {
+    open_file_cache_errors on;
+}
+location /home/dist/latest {
+    open_file_cache_errors off;
+}
+open_file_cache_errors  skjdhjkfh;
+server_name             Roopa;
+server_name_in_redirect off;

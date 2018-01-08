@@ -2,6 +2,9 @@ package com.wepay.nginx;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,13 +16,16 @@ public class TestServer {
 
 	@Test
 	public void testDumps() {
-		String expected="---A----\nserver {\n    if ($request_method = GET) {\n        return                    500;\n        ancient_browser_value     none;\n    }\n    if ($request_method = POST) {\n        break;\n    }\n    location /home/dist {\n        if (xxx) {\n            return                    444;\n        }\n        if (xxx) {\n            return                    444;\n        }\n        open_file_cache_errors    on;\n    }\n    location /home/dist/latest {\n        open_file_cache_errors    off;\n    }\n    open_file_cache_errors    skjdhjkfh;\n    server_name               Roopa;\n    ---C----\n    server_name_in_redirect   off;\n    ---C----\n}\n---A----\n";
 		String filename = Constants.TEST_RESOURCE_PATH + "/server.yml";
+		String res_filename = Constants.TEST_RESOURCE_PATH + "/server_result.yml";
+		String res;
 		try {
-			ObjectMapper m;
-			String res = NginxFormatter.formatFile(filename, "server");
-			assertEquals(res, expected);
-		} catch (Exception e) {
+			res = NginxFormatter.formatFile(filename, "server");
+			List<String> expected = NginxHelper.getAsList(res_filename);
+			List<String> resList = (List) Arrays.asList(res.split("\n"));
+			assertEquals(expected.size(), resList.size());
+			assertTrue(resList.containsAll(expected));
+		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
 		}
@@ -28,26 +34,34 @@ public class TestServer {
 	@Test
 	public void testSimpleDumps() {
 		String filename = Constants.TEST_RESOURCE_PATH + "/server_simple.yml";
-		String expected = "server {\n    open_file_cache_errors    skjdhjkfh;\n    server_name               Roopa;\n    server_name_in_redirect   off;\n}\n";
+		String res_filename = Constants.TEST_RESOURCE_PATH + "/server_simple_result.yml";
+		String res;
 		try {
-			String res = NginxFormatter.formatFile(filename, "server");
-			assertEquals(res, expected);
+			res = NginxFormatter.formatFile(filename, "server");
+			List<String> expected = NginxHelper.getAsList(res_filename);
+			List<String> resList = (List) Arrays.asList(res.split("\n"));
+			assertEquals(expected.size(), resList.size());
+			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
 		}
 	}
+
 	@Test
 	public void testLocationDumps() {
 		String filename = Constants.TEST_RESOURCE_PATH + "/server_location.yml";
-		String expected = "---A----\nserver {\n    ---B----\n    location /home/dist {\n        open_file_cache_errors    on;\n    }\n    ---B----\n    location /home/dist/latest {\n        open_file_cache_errors    off;\n    }\n    open_file_cache_errors    skjdhjkfh;\n    server_name               Roopa;\n    ---C----\n    server_name_in_redirect   off;\n    ---C----\n}\n---A----\n";
+		String res_filename = Constants.TEST_RESOURCE_PATH + "/server_location_result.yml";
+		String res;
 		try {
-			String res = NginxFormatter.formatFile(filename, "server");
-			assertEquals(res, expected); 
+			res = NginxFormatter.formatFile(filename, "server");
+			List<String> expected = NginxHelper.getAsList(res_filename);
+			List<String> resList = (List) Arrays.asList(res.split("\n"));
+			assertEquals(expected.size(), resList.size());
+			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
 		}
 	}
 }
- 

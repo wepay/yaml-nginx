@@ -1,0 +1,33 @@
+include /etc/nginx/conf.d/*;
+server {
+    location /home/dist {
+        open_file_cache_errors on;
+    }
+    location /home/dist/latest {
+        open_file_cache_errors off;
+    }
+    open_file_cache_errors  skjdhjkfh;
+    server_name             Roopa;
+    server_name_in_redirect off;
+}
+server {
+    location /home/dist {
+        open_file_cache_errors on;
+    }
+    location /home/dist/latest {
+        include                /etc/nginx/conf.d/*;
+        open_file_cache_errors off;
+    }
+    server_name server1;
+}
+server {
+    location /home/dist {
+        include /hom/nginx/conf.d/*;
+        include /etc/nginc/conf.d/*;
+        open_file_cache_errors on;
+    }
+    location /home/dist/latest {
+        open_file_cache_errors off;
+    }
+    server_name server2;
+}

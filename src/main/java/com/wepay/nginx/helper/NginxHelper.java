@@ -1,10 +1,14 @@
 package com.wepay.nginx.helper;
 
+
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,14 +28,25 @@ public class NginxHelper {
 	public Dumps parseFromFile(String filename, Class cls) throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
 		Yaml yaml = new Yaml();
 		Map<String, Object> mapObj;
-		mapObj = (Map<String, Object>) yaml.load(new FileReader(filename));
+		mapObj = (Map<String, Object>) yaml.loadAs(new FileReader(filename), LinkedHashMap.class);
 		return generateObject(cls, yaml, mapObj);
 	}
 	public Dumps parseFromString(String str, Class cls) throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
 		Yaml yaml = new Yaml();
 		Map<String, Object> mapObj;
-		mapObj = (Map<String, Object>) yaml.load(str);
+		mapObj = (Map<String, Object>) yaml.loadAs(str, LinkedHashMap.class);
 		return generateObject(cls, yaml, mapObj);
+	}
+	public static List<String> getAsList(String res_filename) throws Exception{
+		List<String> list = new ArrayList<String>();
+		try (BufferedReader bf = new BufferedReader(new FileReader(res_filename))) {
+			String line = null;
+			while ((line = bf.readLine()) != null)
+				{
+				list.add(line);
+				}
+		}  
+		return list;
 	}
 	/**
 	 * @param cls

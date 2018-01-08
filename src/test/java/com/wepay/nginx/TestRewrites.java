@@ -1,5 +1,6 @@
 package com.wepay.nginx;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.FileReader;
@@ -18,7 +19,7 @@ public class TestRewrites {
 	@Test
 	public void testVhostDumps() {
 		String filename = Constants.TEST_RESOURCE_PATH + "/rewrites.yml";
-		String expected = "";
+		String expected = "rewrite ^/$  https://{{ marketing_domain }}/  permanent;\nrewrite ^/$  https://{{ marketing_domain }}/  permanent;\n";
 		try {
 			Yaml yaml = new Yaml();
 			Map<String, Object> mapObj;
@@ -26,9 +27,8 @@ public class TestRewrites {
 			String s = yaml.dump(mapObj);
 			final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 			Dumps dps= (Dumps)mapper.readValue(s, Location.class);
-			//String res = NginxFormatter.format(filename, "http");
-			System.out.println(dps.dump(0));
-			//assertEquals(res, expected); 
+			String res=dps.dump(0, "location");
+			assertEquals(res, expected); 
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();

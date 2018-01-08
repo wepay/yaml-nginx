@@ -1,0 +1,40 @@
+servers:
+  - name: "developer-docs"
+    comment: "developer-docs"
+    listen: 8000
+    server_name: "{{ environment_prefix }}-developer-docs.{{ environment_domain_name }}"
+    root: "/var/www/developer-docs"
+    locations:
+      - name: "location1"
+        url: "/VERSION"
+        deny: all
+      - name: "location2"
+        url: "/LAST_MODIFIED"
+        deny: all
+      - name: "/"
+        url: "/"
+        try_files: "$uri $uri.html $uri/index.html index.html"
+  - name: "engineering-blog"
+    comment: "engineering-blog"
+    server_name: "{{ environment_prefix }}-engineering-blog.{{ environment_domain_name }}"
+    root: /var/www/engineering-blog
+    listen: 8000
+    locations:
+      - url: /VERSION
+        deny: all
+      - url: /LAST_MODIFIED
+        deny: all
+      - url: /
+        try_files: "$uri $uri.html $uri/index.html index.html"
+  - name: "v3-developer-docs"
+    comment: "v3-developer-docs"
+    server_name: "{{ environment_prefix }}-v3-developer-docs.{{ environment_domain_name }}"
+    root: "/var/www/v3-developer-docs"
+    listen: 8000
+    locations:
+      - url: /VERSION
+        deny: all
+      - url: /LAST_MODIFIED
+        deny: all
+      - url: /
+        try_files: "$uri $uri.html $uri/index.html index.html"

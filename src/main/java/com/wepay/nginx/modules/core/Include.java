@@ -25,11 +25,11 @@ public class Include extends Directive {
 	public Include() {
 		super(contexts, null, "include");
 	}
-	public String dump(int level) throws InvalidConditionDirectiveException {
+	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		if(include!=null){
-			return include.dump(level);
+			return include.dump(level, ctx);
 		}else{
-			return super.dump(level);
+			return super.dump(level, ctx);
 		}
 	}
 

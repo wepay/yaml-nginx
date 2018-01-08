@@ -1,0 +1,22 @@
+events {
+    multi_accept       true;
+    use                epoll;
+    worker_connections 4096;
+}
+#Auto generated file
+http {
+    server {
+        location /home/dist {
+            open_file_cache_errors on;
+        }
+        location /home/dist/latest {
+            open_file_cache_errors off;
+        }
+        open_file_cache_errors  skjdhjkfh;
+        server_name             Roopa;
+        server_name_in_redirect off;
+    }
+}
+user                 {{ www_user }} {{ www_group }};
+worker_processes     6;
+worker_rlimit_nofile 50000;

@@ -12,14 +12,14 @@ import com.wepay.nginx.helper.NginxHelper;
 
 public class ListDumps<T> extends ArrayList<T> implements Dumps {
 	@Override
-	public String dump(int level) throws InvalidConditionDirectiveException {
+	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		StringBuilder sb = new StringBuilder();
 		String pre = NginxHelper.getSpace(level);
 		Iterator it = this.iterator();
 		int i = 0;
 		while (it.hasNext()) {
 			Dumps dp = (Dumps) it.next();
-			sb.append( dp.dump(level));
+			sb.append( dp.dump(level, ctx));
 		}
 		return sb.toString();
 	}

@@ -23,10 +23,11 @@ public class Constants {
 	public static String RCB = "}";
 	public static int SPACE_COUNT=2;
 	public static String SPACE=" ";
+	public static final int BASIC_LEVEL = 0;
 	public static final String SEMICOLON = ";";
 	public static final String TAB_SPACE = "%s";
 	public static final String COMMENT_PRINT_FORMAT=TAB_SPACE+"#%s"+NEWLINE+"%s";
-	public static final String DIRECTIVE_PRINT_FORMAT = TAB_SPACE+"%-25s %s" + SEMICOLON + NEWLINE;//ex: "     dir_name      /etc/nginx/*;"
+	public static final String DIRECTIVE_PRINT_FORMAT = TAB_SPACE+"%-{0}s %s" + SEMICOLON + NEWLINE;//ex: "     dir_name      /etc/nginx/*;"
 	public static final String DIRECTIVE_IP_PRINT_FORMAT = TAB_SPACE+"%s" + SEMICOLON + NEWLINE;//ex: "     dir_name      /etc/nginx/*;"
 	public static final String DIRECTIVE_PRINT_FORMAT_CONDITION = TAB_SPACE+"%s" + NEWLINE + DIRECTIVE_PRINT_FORMAT+TAB_SPACE+"%s"+ NEWLINE;
 	public static final String TEST_RESOURCE_PATH="src/test/java/com/wepay/nginx/resources";

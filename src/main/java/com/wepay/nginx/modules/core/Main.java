@@ -13,6 +13,7 @@ import com.wepay.nginx.Dumps;
 import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 
 import static com.wepay.nginx.Constants.*;
+
 public class Main extends Context {
 
 	@JsonProperty("daemon")
@@ -295,11 +296,11 @@ public class Main extends Context {
 	}
 
 	@Override
-	public String dump(int level) throws InvalidConditionDirectiveException {
-		if(getComment()!=null && ! getComment().trim().isEmpty()){
-			return "#"+getComment()+NEWLINE+super.dump(level);
+	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
+		if (getComment() != null && !getComment().trim().isEmpty()) {
+			return "#" + getComment() + NEWLINE + super.dump(level, ctx);
 		}
-		return super.dump(level);
+		return super.dump(level, ctx);
 	}
 
 	@Override

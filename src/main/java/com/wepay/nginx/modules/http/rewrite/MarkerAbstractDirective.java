@@ -15,7 +15,7 @@ public abstract class MarkerAbstractDirective extends Directive{
 	}
 	
 	@Override
-	public String dump(int level) throws InvalidConditionDirectiveException {
+	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		String pre = NginxHelper.getSpace(level);
 		String str = String.format(DIRECTIVE_IP_PRINT_FORMAT, pre, getValue());
 		return  updateConditionBlock(level, str);

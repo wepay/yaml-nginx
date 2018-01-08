@@ -1,0 +1,45 @@
+#developer-docs
+server {
+    listen      8000;
+    location /VERSION {
+        deny all;
+    }
+    location /LAST_MODIFIED {
+        deny all;
+    }
+    location / {
+        try_files $uri $uri.html $uri/index.html index.html;
+    }
+    root        /var/www/developer-docs;
+    server_name {{ environment_prefix }}-developer-docs.{{ environment_domain_name }};
+}
+#engineering-blog
+server {
+    listen      8000;
+    location /VERSION {
+        deny all;
+    }
+    location /LAST_MODIFIED {
+        deny all;
+    }
+    location / {
+        try_files $uri $uri.html $uri/index.html index.html;
+    }
+    root        /var/www/engineering-blog;
+    server_name {{ environment_prefix }}-engineering-blog.{{ environment_domain_name }};
+}
+#v3-developer-docs
+server {
+    listen      8000;
+    location /VERSION {
+        deny all;
+    }
+    location /LAST_MODIFIED {
+        deny all;
+    }
+    location / {
+        try_files $uri $uri.html $uri/index.html index.html;
+    }
+    root        /var/www/v3-developer-docs;
+    server_name {{ environment_prefix }}-v3-developer-docs.{{ environment_domain_name }};
+}

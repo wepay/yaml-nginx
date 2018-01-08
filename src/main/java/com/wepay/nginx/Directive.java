@@ -2,6 +2,7 @@ package com.wepay.nginx;
 
 import static com.wepay.nginx.Constants.*;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,7 +17,7 @@ public abstract class Directive extends NginxAbstractClass {
 
 	@JsonProperty("name")
 	protected String name;
-	
+
 	@JsonProperty("value")
 	protected String value;
 
@@ -25,9 +26,10 @@ public abstract class Directive extends NginxAbstractClass {
 
 	@JsonProperty("condition_end")
 	protected String conditionEnd;
-	
+
 	@JsonProperty("comment")
 	protected String comment;
+	private int formatLength;
 
 	public String getValue() {
 		return value;
@@ -37,31 +39,44 @@ public abstract class Directive extends NginxAbstractClass {
 		this.value = value;
 	}
 
-	public String updateConditionBlock(int level, String str) throws InvalidConditionDirectiveException   {
+	public int getFormatLength() {
+		if(formatLength==0){
+			formatLength=getClassAnnotation()==null?1:getClassAnnotation().length();
+		}
+		return formatLength;
+	}
+
+	public void setFormatLength(int formatLength) {
+		this.formatLength = formatLength;
+	}
+
+	public String updateConditionBlock(int level, String str) throws InvalidConditionDirectiveException {
 		String s = str;
 		if (conditionStart != null && !conditionStart.trim().isEmpty()) {
 			if (conditionEnd == null || conditionEnd.trim().isEmpty()) {
 				throw new InvalidConditionDirectiveException();
 			} else {
 				String pre = NginxHelper.getSpace(level);
-				s = String.format(CONTEXT_PRINT_FORMAT_CONDITION, pre, conditionStart, str, pre,
-						conditionEnd);
+				s = String.format(CONTEXT_PRINT_FORMAT_CONDITION, pre, conditionStart, str, pre, conditionEnd);
 			}
-		}  
-		return updateComment(level,s);
+		}
+		return updateComment(level, s);
 	}
-	public String dump(int level) throws InvalidConditionDirectiveException {
+
+	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		String value = getValue() == null ? getDefault() : getValue();
 		String pre = NginxHelper.getSpace(level);
 		if (value == null) {
 			return "";
 		}
-		String s = String.format(DIRECTIVE_PRINT_FORMAT, pre, getClassAnnotation(), getValue());
+		String format=MessageFormat.format(DIRECTIVE_PRINT_FORMAT,getFormatLength());
+		String s = String.format(format, pre, getClassAnnotation(), getValue());
 		return updateConditionBlock(level, s);
 	}
 
+	
 	@Override
-	public String getComment(){
+	public String getComment() {
 		return comment;
 	}
 

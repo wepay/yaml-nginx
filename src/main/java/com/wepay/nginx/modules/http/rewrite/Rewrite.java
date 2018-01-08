@@ -26,11 +26,11 @@ public class Rewrite extends Directive {
 		super(contexts, null, "rewrite");
 	}
 
-	public String dump(int level) throws InvalidConditionDirectiveException {
+	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		if (rewrite != null) {
-			return rewrite.dump(level);
+			return rewrite.dump(level, ctx);
 		} else {
-			return super.dump(level);
+			return super.dump(level, ctx);
 		}
 	}
 }

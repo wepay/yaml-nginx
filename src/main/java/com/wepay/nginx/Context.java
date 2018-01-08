@@ -15,12 +15,6 @@ import com.wepay.nginx.modules.http.core.Includes;
 public abstract class Context extends NginxAbstractClass {
 	private Map<String, Dumps> map;
 
-	@JsonProperty("condition_start")
-	protected ConditionStart conditionStart;
-
-	@JsonProperty("condition_end")
-	protected ConditionEnd conditionEnd;
-
 	@JsonProperty("includes")
 	private Includes includes;
 
@@ -32,22 +26,6 @@ public abstract class Context extends NginxAbstractClass {
 
 	@JsonProperty("name")
 	private Name name;
-
-	public ConditionStart getConditionStart() {
-		return conditionStart;
-	}
-
-	public void setConditionStart(ConditionStart conditionStart) {
-		this.conditionStart = conditionStart;
-	}
-
-	public ConditionEnd getConditionEnd() {
-		return conditionEnd;
-	}
-
-	public void setConditionEnd(ConditionEnd conditionEnd) {
-		this.conditionEnd = conditionEnd;
-	}
 
 	public Includes getIncludes() {
 		return includes;
@@ -92,38 +70,45 @@ public abstract class Context extends NginxAbstractClass {
 
 	abstract public void populateMap();
 
-	public String dump(int level)throws InvalidConditionDirectiveException  {
+	public String dump(int level, String ctx)throws InvalidConditionDirectiveException  {
 		populateMap();
 		StringBuilder sb = new StringBuilder();
 		Map<String, Dumps> map = getMap();
+		int strlen=0;
+		for (String key : map.keySet()) {
+			if(map.get(key)!=null && key.length()>strlen){
+				strlen=key.length();
+			}
+		}
 		for (String key : map.keySet()) {
 			if (map.get(key) instanceof Directive) {
 				Directive directive = (Directive) map.get(key);
-				sb.append(directive.dump(level));
+				directive.setFormatLength(strlen);
+				sb.append(directive.dump(level, ctx));
 			} else if (map.get(key) instanceof Context) {
 				Context context = (Context) map.get(key);
-				sb.append(context.dump(level));
+				sb.append(context.dump(level, ctx));
 			} else if (map.get(key) instanceof List) {
 				Dumps dumps = (Dumps) map.get(key);
-				sb.append(dumps.dump(level));
+				sb.append(dumps.dump(level, ctx));
 			}
 		}
 		return sb.toString();
 	}
 
-	public String updateConditionBlock(int level, String str) throws InvalidConditionDirectiveException {
-		String s = str;
-		if (conditionStart != null && !conditionStart.getValue().trim().isEmpty()) {
-			if (conditionEnd == null || conditionEnd.getValue().trim().isEmpty()) {
-				throw new InvalidConditionDirectiveException();
-			} else {
-				String pre = NginxHelper.getSpace(level);
-				s = String.format(CONTEXT_PRINT_FORMAT_CONDITION, pre, conditionStart.getValue(), str, pre,
-						conditionEnd.getValue());
-			}
-		}
-		return updateComment(level,s);
-	}
+//	public String updateConditionBlock(int level, String str) throws InvalidConditionDirectiveException {
+//		String s = str;
+//		if (conditionStart != null && !conditionStart.getValue().trim().isEmpty()) {
+//			if (conditionEnd == null || conditionEnd.getValue().trim().isEmpty()) {
+//				throw new InvalidConditionDirectiveException();
+//			} else {
+//				String pre = NginxHelper.getSpace(level);
+//				s = String.format(CONTEXT_PRINT_FORMAT_CONDITION, pre, conditionStart.getValue(), str, pre,
+//						conditionEnd.getValue());
+//			}
+//		}
+//		return updateComment(level,s);
+//	}
 
 	@Override
 	public String getComment() {

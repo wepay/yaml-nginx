@@ -1,10 +1,6 @@
 open_file_cache_errors: skjdhjkfh 
 server_name_in_redirect:
   value: "off" 
-  condition_start: "---B----"
-  condition_end: "---B----"
-condition_start: "---A----"
-condition_end: "---A----" 
 ifs:
   - condition: "$request_method = GET"
     return: 500
@@ -26,5 +22,3 @@ open_file_cache_errors: skjdhjkfh
 server_name: Roopa
 server_name_in_redirect:
   value: "off"
-  condition_start: "---C----"
-  condition_end: "---C----"

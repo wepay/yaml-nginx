@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 import com.wepay.nginx.helper.NginxHelper;
 
-public class ListDumps<T> extends ArrayList<T> implements Dumps {
+public class ListDumps<T> extends ArrayList<T> implements IDumps {
 	@Override
 	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		StringBuilder sb = new StringBuilder();
@@ -18,7 +18,7 @@ public class ListDumps<T> extends ArrayList<T> implements Dumps {
 		Iterator it = this.iterator();
 		int i = 0;
 		while (it.hasNext()) {
-			Dumps dp = (Dumps) it.next();
+			IDumps dp = (IDumps) it.next();
 			sb.append(dp.dump(level, ctx));
 		}
 		return sb.toString();

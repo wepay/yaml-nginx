@@ -10,7 +10,7 @@ import static com.wepay.nginx.Constants.*;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 import com.wepay.nginx.helper.NginxHelper;
 import com.wepay.nginx.modules.http.core.Location;
 import com.wepay.nginx.modules.http.core.Server;
@@ -64,7 +64,7 @@ public class If extends Location {
 
 	@Override
 	public void populateMap() {
-		Map<String, Dumps> map = getMap();
+		Map<String, IDumps> map = getMap();
 		map.put("rewrites", rewrites);
 		map.put("break", breakO);
 		map.put("return", returnO);

@@ -9,7 +9,7 @@ import com.wepay.nginx.modules.google.perftools.*;
 import com.wepay.nginx.modules.http.core.*;
 import com.wepay.nginx.modules.mail.core.*;
 import com.wepay.nginx.modules.stream.core.*;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 
 import static com.wepay.nginx.Constants.*;
@@ -306,7 +306,7 @@ public class Main extends Context {
 	@Override
 	public void populateMap() {
 
-		Map<String, Dumps> map = getMap();
+		Map<String, IDumps> map = getMap();
 		map.put("daemon", daemon);
 		map.put("debug_points", debugPoints);
 		map.put("env", env);

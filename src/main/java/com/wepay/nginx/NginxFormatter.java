@@ -17,7 +17,7 @@ public class NginxFormatter {
 		}
 		NginxHelper ngnx = new NginxHelper();
 		Class cls = getContextClass(context);
-		Dumps dumpObj = ngnx.parseFromFile(filename, cls);
+		IDumps dumpObj = ngnx.parseFromFile(filename, cls);
 		return dumpObj.dump(0, context);
 	}
 
@@ -27,7 +27,7 @@ public class NginxFormatter {
 		}
 		NginxHelper ngnx = new NginxHelper();
 		Class cls = getContextClass(context);
-		Dumps dumpObj = ngnx.parseFromString(str, cls);
+		IDumps dumpObj = ngnx.parseFromString(str, cls);
 		return dumpObj.dump(0, context);
 	}
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.wepay.nginx.helper.NginxHelper;
 
-public abstract class NginxAbstractClass<T> implements IContext, Defaults, Dumps<T> {
+public abstract class NginxAbstractClass<T> implements IContext, Defaults, IDumps<T> {
 
 	private List<String> contexts;
 	private String defaultValue;

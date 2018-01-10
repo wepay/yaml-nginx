@@ -10,7 +10,7 @@ import static com.wepay.nginx.Constants.*;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 import com.wepay.nginx.NamedAbstractContext;
 import com.wepay.nginx.modules.http.access.*;
 import com.wepay.nginx.modules.http.auth.basic.*;
@@ -68,7 +68,7 @@ public class LimitExcept extends NamedAbstractContext {
 
 	@Override
 	public void populateMap() {
-		Map<String, Dumps> map = getMap();
+		Map<String, IDumps> map = getMap();
 		// map.clear();
 		map.put("access_log", accessLog);
 		map.put("allow", allow);

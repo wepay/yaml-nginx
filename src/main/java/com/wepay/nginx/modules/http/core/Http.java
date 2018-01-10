@@ -59,7 +59,7 @@ import com.wepay.nginx.modules.http.v2.*;
 import com.wepay.nginx.modules.http.xslt.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.BlockAbstractContext;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 
 public class Http extends BlockAbstractContext {
 	static final List<String> contexts;
@@ -1403,7 +1403,7 @@ public class Http extends BlockAbstractContext {
 
 	@Override
 	public void populateMap() {
-		java.util.Map<String, Dumps> mapLocal = super.getMap();
+		java.util.Map<String, IDumps> mapLocal = super.getMap();
 		// mapLocal.clear();
 		mapLocal.put("absolute_redirect", absoluteRedirect);
 		mapLocal.put("access_log", accessLog);

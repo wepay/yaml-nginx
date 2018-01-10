@@ -10,7 +10,7 @@ import static com.wepay.nginx.Constants.*;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 import com.wepay.nginx.NamedAbstractContext;
 import com.wepay.nginx.modules.core.Include;
 import com.wepay.nginx.modules.http.flv.Address;
@@ -77,7 +77,7 @@ public class Geo extends NamedAbstractContext {
 
 	@Override
 	public void populateMap() {
-		java.util.Map<String, Dumps> map = super.getMap();
+		java.util.Map<String, IDumps> map = super.getMap();
 		map.put("default", defaultObj);
 		map.put("include", include);
 		map.put("includes", includes);

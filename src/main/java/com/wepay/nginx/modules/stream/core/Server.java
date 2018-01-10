@@ -11,7 +11,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.BlockAbstractContext;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 import com.wepay.nginx.modules.stream.access.*;
 import com.wepay.nginx.modules.stream.js.*;
 import com.wepay.nginx.modules.stream.limit.conn.*;
@@ -228,7 +228,7 @@ public class Server extends BlockAbstractContext {
 	@Override
 	public void populateMap() {
 
-		Map<String, Dumps> map = getMap();
+		Map<String, IDumps> map = getMap();
 		// map.clear();
 		map.put("access_log", accessLog);
 		map.put("allow", allow);

@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.wepay.nginx.Constants;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 import com.wepay.nginx.helper.NginxHelper;
 
 public class TestMain {

@@ -10,7 +10,7 @@ import static com.wepay.nginx.Constants.*;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 import com.wepay.nginx.NamedAbstractContext;
 
 public class Upstream extends NamedAbstractContext {
@@ -65,7 +65,7 @@ public class Upstream extends NamedAbstractContext {
 	@Override
 	public void populateMap() {
 
-		Map<String, Dumps> map = getMap();
+		Map<String, IDumps> map = getMap();
 		// map.clear();
 		map.put("hash", hash);
 		map.put("ip_hash", ipHash);

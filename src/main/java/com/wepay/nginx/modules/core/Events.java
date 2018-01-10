@@ -12,7 +12,7 @@ import java.util.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.BlockAbstractContext;
 import com.wepay.nginx.Context;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 
 public class Events extends BlockAbstractContext {
 	static final List<String> contexts;
@@ -47,7 +47,7 @@ public class Events extends BlockAbstractContext {
 
 	@Override
 	public void populateMap() {
-		Map<String, Dumps> map = getMap();
+		Map<String, IDumps> map = getMap();
 		// map.clear();
 		map.put("accept_mutex", acceptMutex);
 		map.put("accept_mutex_delay", acceptMutexDelay);

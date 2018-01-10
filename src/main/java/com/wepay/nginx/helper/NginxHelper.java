@@ -21,10 +21,10 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.wepay.nginx.NginxAbstractClass;
 import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 import com.wepay.nginx.Constants;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 
 public class NginxHelper {
-	public Dumps parseFromFile(String filename, Class cls)
+	public IDumps parseFromFile(String filename, Class cls)
 			throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
 		Yaml yaml = new Yaml();
 		Map<String, Object> mapObj;
@@ -32,7 +32,7 @@ public class NginxHelper {
 		return generateObject(cls, yaml, mapObj);
 	}
 
-	public Dumps parseFromString(String str, Class cls)
+	public IDumps parseFromString(String str, Class cls)
 			throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
 		Yaml yaml = new Yaml();
 		Map<String, Object> mapObj;
@@ -60,7 +60,7 @@ public class NginxHelper {
 	 * @throws JsonParseException
 	 * @throws JsonMappingException
 	 */
-	private Dumps generateObject(Class cls, Yaml yaml, Map<String, Object> mapObj)
+	private IDumps generateObject(Class cls, Yaml yaml, Map<String, Object> mapObj)
 			throws IOException, JsonParseException, JsonMappingException {
 		for (String key : mapObj.keySet()) {
 			enhanceMap(mapObj, key);
@@ -68,12 +68,12 @@ public class NginxHelper {
 		String s = yaml.dump(mapObj);
 		// System.out.println(s);
 		final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-		return (Dumps) mapper.readValue(s, cls);
+		return (IDumps) mapper.readValue(s, cls);
 	}
 
 	public static void populatelinkingMapCode(Object obj, Class<? extends NginxAbstractClass> c) {
 		Class<? extends Annotation> ann = JsonProperty.class;
-		System.out.println("Map<String, Dumps> map = new HashMap<String, Dumps>();");
+		System.out.println("Map<String, IDumps> map = new HashMap<String, IDumps>();");
 		System.out.println("//map.clear();");
 		for (Field field : c.getDeclaredFields()) {
 			if (field.isAnnotationPresent(ann)) {

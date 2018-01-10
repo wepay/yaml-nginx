@@ -13,7 +13,7 @@ import java.util.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.BlockAbstractContext;
 import com.wepay.nginx.Context;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 import com.wepay.nginx.helper.NginxHelper;
 import com.wepay.nginx.modules.core.*;
 import com.wepay.nginx.modules.mail.auth.http.*;
@@ -159,7 +159,7 @@ public class Mail extends BlockAbstractContext {
 	@Override
 	public void populateMap() {
 
-		Map<String, Dumps> map = getMap();
+		Map<String, IDumps> map = getMap();
 		// map.clear();
 		map.put("auth_http", authHttp);
 		map.put("auth_http_header", authHttpHeader);

@@ -13,7 +13,7 @@ import com.wepay.nginx.modules.core.Include;
 import com.wepay.nginx.modules.http.core.Includes;
 
 public abstract class Context extends NginxAbstractClass {
-	private Map<String, Dumps> map;
+	private Map<String, IDumps> map;
 
 	@JsonProperty("includes")
 	private Includes includes;
@@ -53,10 +53,10 @@ public abstract class Context extends NginxAbstractClass {
 
 	public Context(List contexts, String defaultVal, String classAnnotation) {
 		super(contexts, defaultVal, classAnnotation);
-		map = new LinkedHashMap<String, Dumps>();
+		map = new LinkedHashMap<String, IDumps>();
 	}
 
-	public Map<String, Dumps> getMap() {
+	public Map<String, IDumps> getMap() {
 		if (map.size() == 0) {
 			map.put("include", include);
 			map.put("includes", includes);
@@ -64,7 +64,7 @@ public abstract class Context extends NginxAbstractClass {
 		return map;
 	}
 
-	public void setMap(Map<String, Dumps> map) {
+	public void setMap(Map<String, IDumps> map) {
 		this.map = map;
 	}
 
@@ -73,7 +73,7 @@ public abstract class Context extends NginxAbstractClass {
 	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		populateMap();
 		StringBuilder sb = new StringBuilder();
-		Map<String, Dumps> map = getMap();
+		Map<String, IDumps> map = getMap();
 		int strlen = 0;
 		for (String key : map.keySet()) {
 			if (map.get(key) != null && key.length() > strlen) {
@@ -89,8 +89,8 @@ public abstract class Context extends NginxAbstractClass {
 				Context context = (Context) map.get(key);
 				sb.append(context.dump(level, ctx));
 			} else if (map.get(key) instanceof List) {
-				Dumps dumps = (Dumps) map.get(key);
-				sb.append(dumps.dump(level, ctx));
+				IDumps iDumps = (IDumps) map.get(key);
+				sb.append(iDumps.dump(level, ctx));
 			}
 		}
 		return sb.toString();

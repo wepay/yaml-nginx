@@ -10,7 +10,7 @@ import static com.wepay.nginx.Constants.*;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wepay.nginx.Dumps;
+import com.wepay.nginx.IDumps;
 import com.wepay.nginx.NamedAbstractContext;
 import com.wepay.nginx.modules.core.*;
 import com.wepay.nginx.modules.http.access.*;
@@ -1293,7 +1293,7 @@ public class Location extends NamedAbstractContext {
 
 	@Override
 	public void populateMap() {
-		Map<String, Dumps> map = getMap();
+		Map<String, IDumps> map = getMap();
 		// map.clear();
 		map.put("absolute_redirect", absoluteRedirect);
 		map.put("access_log", accessLog);

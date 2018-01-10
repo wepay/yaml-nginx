@@ -26,7 +26,7 @@ public class TestRewrites {
 			mapObj = (Map<String, Object>) yaml.load(new FileReader(filename));
 			String s = yaml.dump(mapObj);
 			final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-			Dumps dps = (Dumps) mapper.readValue(s, Location.class);
+			IDumps dps = (IDumps) mapper.readValue(s, Location.class);
 			String res = dps.dump(0, "location");
 			assertEquals(res, expected);
 		} catch (Throwable e) {

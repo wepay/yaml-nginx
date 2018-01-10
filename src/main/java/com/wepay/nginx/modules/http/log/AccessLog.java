@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class AccessLog extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION,IF_IN_LOCATION,LIMIT_EXCEPT);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION, IF_IN_LOCATION, LIMIT_EXCEPT);
 	}
+
 	public AccessLog() {
 		super(contexts, "logs/access.log combined", "access_log");
 	}

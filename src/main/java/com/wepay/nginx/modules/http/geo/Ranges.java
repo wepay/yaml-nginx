@@ -16,7 +16,7 @@ public class Ranges extends Directive {
 	public Ranges() {
 		super(contexts, null, "ranges");
 	}
-	
+
 	@Override
 	public String dump(int level, String ctx) {
 		String pre = NginxHelper.getSpace(level);

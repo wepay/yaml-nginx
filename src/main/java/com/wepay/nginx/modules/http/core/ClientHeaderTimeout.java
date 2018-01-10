@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ClientHeaderTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public ClientHeaderTimeout() {
 		super(contexts, "60s", "client_header_timeout");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SmtpAuth extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public SmtpAuth() {
 		super(contexts, "login plain", "smtp_auth");
 	}

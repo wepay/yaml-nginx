@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyNextUpstream extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public ProxyNextUpstream() {
 		super(contexts, "on", "proxy_next_upstream");
 	}

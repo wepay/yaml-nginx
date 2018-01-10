@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslEcdhCurve extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public SslEcdhCurve() {
 		super(contexts, "auto", "ssl_ecdh_curve");
 	}

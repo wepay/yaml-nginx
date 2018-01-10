@@ -16,6 +16,7 @@ public class WorkerProcesses extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public WorkerProcesses() {
 		super(contexts, "1", "worker_processes");
 	}

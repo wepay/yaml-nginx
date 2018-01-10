@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class XmlEntities extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public XmlEntities() {
 		super(contexts, null, "xml_entities");
 	}

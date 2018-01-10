@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class XsltStringParam extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public XsltStringParam() {
 		super(contexts, null, "xslt_string_param");
 	}

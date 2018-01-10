@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslCertificate extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public SslCertificate() {
 		super(contexts, null, "ssl_certificate");
 	}

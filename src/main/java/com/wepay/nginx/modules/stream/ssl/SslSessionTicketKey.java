@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslSessionTicketKey extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public SslSessionTicketKey() {
 		super(contexts, null, "ssl_session_ticket_key");
 	}

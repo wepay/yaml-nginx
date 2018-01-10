@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiCacheMethods extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiCacheMethods() {
 		super(contexts, "GET HEAD", "uwsgi_cache_methods");
 	}

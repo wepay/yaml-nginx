@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class RequestPoolSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public RequestPoolSize() {
 		super(contexts, "4k", "request_pool_size");
 	}

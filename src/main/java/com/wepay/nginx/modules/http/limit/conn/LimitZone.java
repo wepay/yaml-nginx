@@ -16,6 +16,7 @@ public class LimitZone extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public LimitZone() {
 		super(contexts, null, "limit_zone");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class GzipBuffers extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public GzipBuffers() {
 		super(contexts, "32 4k|16 8k", "gzip_buffers");
 	}

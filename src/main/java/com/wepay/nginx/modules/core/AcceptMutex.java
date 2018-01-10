@@ -16,6 +16,7 @@ public class AcceptMutex extends Directive {
 	static {
 		contexts = Arrays.asList(EVENTS);
 	}
+
 	public AcceptMutex() {
 		super(contexts, "off", "accept_mutex");
 	}

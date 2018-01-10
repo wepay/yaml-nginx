@@ -9,11 +9,12 @@ public class ConditionStart extends Directive {
 	static final List<String> contexts;
 	static {
 		contexts = new ArrayList<String>();
-		contexts.add(LOCATION); 
+		contexts.add(LOCATION);
 		contexts.add(SERVER);
 	}
+
 	public ConditionStart() {
 		super(contexts, "", "condition_start");
 	}
-	
+
 }

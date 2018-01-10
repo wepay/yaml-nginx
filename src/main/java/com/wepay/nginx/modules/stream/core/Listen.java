@@ -16,6 +16,7 @@ public class Listen extends Directive {
 	static {
 		contexts = Arrays.asList(SERVER);
 	}
+
 	public Listen() {
 		super(contexts, null, "listen");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxySslCrl extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxySslCrl() {
 		super(contexts, null, "proxy_ssl_crl");
 	}

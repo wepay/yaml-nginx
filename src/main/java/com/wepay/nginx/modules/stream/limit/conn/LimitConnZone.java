@@ -16,6 +16,7 @@ public class LimitConnZone extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public LimitConnZone() {
 		super(contexts, null, "limit_conn_zone");
 	}

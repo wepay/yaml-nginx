@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UninitializedVariableWarn extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION,IF);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION, IF);
 	}
+
 	public UninitializedVariableWarn() {
 		super(contexts, "on", "uninitialized_variable_warn");
 	}

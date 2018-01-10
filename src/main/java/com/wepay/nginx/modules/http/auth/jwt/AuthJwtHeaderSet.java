@@ -16,6 +16,7 @@ public class AuthJwtHeaderSet extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public AuthJwtHeaderSet() {
 		super(contexts, null, "auth_jwt_header_set");
 	}

@@ -16,6 +16,7 @@ public class FastcgiSplitPathInfo extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public FastcgiSplitPathInfo() {
 		super(contexts, null, "fastcgi_split_path_info");
 	}

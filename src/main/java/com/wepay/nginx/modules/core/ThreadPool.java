@@ -16,6 +16,7 @@ public class ThreadPool extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public ThreadPool() {
 		super(contexts, "default threads=32 max_queue=65536", "thread_pool");
 	}

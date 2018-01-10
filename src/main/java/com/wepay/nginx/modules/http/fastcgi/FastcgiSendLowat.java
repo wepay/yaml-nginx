@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiSendLowat extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiSendLowat() {
 		super(contexts, "0", "fastcgi_send_lowat");
 	}

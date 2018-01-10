@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class PostponeOutput extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public PostponeOutput() {
 		super(contexts, "1460", "postpone_output");
 	}

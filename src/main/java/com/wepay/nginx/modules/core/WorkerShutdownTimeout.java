@@ -16,6 +16,7 @@ public class WorkerShutdownTimeout extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public WorkerShutdownTimeout() {
 		super(contexts, null, "worker_shutdown_timeout");
 	}

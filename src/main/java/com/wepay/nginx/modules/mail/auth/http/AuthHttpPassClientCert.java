@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class AuthHttpPassClientCert extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public AuthHttpPassClientCert() {
 		super(contexts, "off", "auth_http_pass_client_cert");
 	}

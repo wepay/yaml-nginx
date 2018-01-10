@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxySslCiphers extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public ProxySslCiphers() {
 		super(contexts, "DEFAULT", "proxy_ssl_ciphers");
 	}

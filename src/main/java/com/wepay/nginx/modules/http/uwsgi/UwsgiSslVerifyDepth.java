@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiSslVerifyDepth extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiSslVerifyDepth() {
 		super(contexts, "1", "uwsgi_ssl_verify_depth");
 	}

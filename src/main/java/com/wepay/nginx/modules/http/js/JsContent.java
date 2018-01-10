@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class JsContent extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(LOCATION,LIMIT_EXCEPT);
+		contexts = Arrays.asList(LOCATION, LIMIT_EXCEPT);
 	}
+
 	public JsContent() {
 		super(contexts, null, "js_content");
 	}

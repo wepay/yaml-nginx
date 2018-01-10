@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class RefererHashMaxSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(SERVER,LOCATION);
+		contexts = Arrays.asList(SERVER, LOCATION);
 	}
+
 	public RefererHashMaxSize() {
 		super(contexts, "2048", "referer_hash_max_size");
 	}

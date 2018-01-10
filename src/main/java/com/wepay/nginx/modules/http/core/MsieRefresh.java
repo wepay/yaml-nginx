@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class MsieRefresh extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public MsieRefresh() {
 		super(contexts, "off", "msie_refresh");
 	}

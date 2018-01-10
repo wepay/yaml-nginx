@@ -1,5 +1,4 @@
 package com.wepay.nginx.modules.http.geo;
- 
 
 import static com.wepay.nginx.Constants.*;
 
@@ -12,6 +11,7 @@ public class Delete extends Directive {
 	static {
 		contexts = Arrays.asList(GEO);
 	}
+
 	public Delete() {
 		super(contexts, null, "delete");
 	}

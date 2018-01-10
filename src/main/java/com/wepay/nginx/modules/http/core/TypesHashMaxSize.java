@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class TypesHashMaxSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public TypesHashMaxSize() {
 		super(contexts, "1024", "types_hash_max_size");
 	}

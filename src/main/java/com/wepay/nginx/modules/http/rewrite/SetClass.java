@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SetClass extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(SERVER,LOCATION,IF);
+		contexts = Arrays.asList(SERVER, LOCATION, IF);
 	}
+
 	public SetClass() {
 		super(contexts, null, "set");
 	}

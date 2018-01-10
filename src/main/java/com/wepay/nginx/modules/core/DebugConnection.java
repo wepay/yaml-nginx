@@ -16,6 +16,7 @@ public class DebugConnection extends Directive {
 	static {
 		contexts = Arrays.asList(EVENTS);
 	}
+
 	public DebugConnection() {
 		super(contexts, null, "debug_connection");
 	}

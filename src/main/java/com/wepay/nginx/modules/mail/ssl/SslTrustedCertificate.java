@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslTrustedCertificate extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public SslTrustedCertificate() {
 		super(contexts, null, "ssl_trusted_certificate");
 	}

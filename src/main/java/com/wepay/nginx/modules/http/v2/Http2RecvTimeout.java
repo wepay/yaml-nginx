@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Http2RecvTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public Http2RecvTimeout() {
 		super(contexts, "30s", "http2_recv_timeout");
 	}

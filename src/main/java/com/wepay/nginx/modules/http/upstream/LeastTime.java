@@ -16,6 +16,7 @@ public class LeastTime extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public LeastTime() {
 		super(contexts, null, "least_time");
 	}

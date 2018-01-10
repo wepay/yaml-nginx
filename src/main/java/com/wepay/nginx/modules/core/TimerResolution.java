@@ -16,6 +16,7 @@ public class TimerResolution extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public TimerResolution() {
 		super(contexts, null, "timer_resolution");
 	}

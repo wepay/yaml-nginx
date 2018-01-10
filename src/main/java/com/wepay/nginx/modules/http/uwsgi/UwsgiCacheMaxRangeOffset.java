@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiCacheMaxRangeOffset extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiCacheMaxRangeOffset() {
 		super(contexts, null, "uwsgi_cache_max_range_offset");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ClientBodyTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ClientBodyTimeout() {
 		super(contexts, "60s", "client_body_timeout");
 	}

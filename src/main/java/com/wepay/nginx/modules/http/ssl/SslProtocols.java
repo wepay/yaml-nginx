@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslProtocols extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public SslProtocols() {
 		super(contexts, "TLSv1 TLSv1.1 TLSv1.2", "ssl_protocols");
 	}

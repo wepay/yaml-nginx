@@ -16,6 +16,7 @@ public class JsSet extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public JsSet() {
 		super(contexts, null, "js_set");
 	}

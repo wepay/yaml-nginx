@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ServerNameInRedirect extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ServerNameInRedirect() {
 		super(contexts, "off", "server_name_in_redirect");
 	}

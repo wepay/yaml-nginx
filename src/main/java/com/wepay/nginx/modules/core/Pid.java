@@ -16,6 +16,7 @@ public class Pid extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public Pid() {
 		super(contexts, "logs/nginx.pid", "pid");
 	}

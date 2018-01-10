@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SubFilterOnce extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public SubFilterOnce() {
 		super(contexts, "on", "sub_filter_once");
 	}

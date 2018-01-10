@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ScgiBufferSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ScgiBufferSize() {
 		super(contexts, "4k|8k", "scgi_buffer_size");
 	}

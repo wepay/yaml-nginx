@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyLimitRate extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyLimitRate() {
 		super(contexts, "0", "proxy_limit_rate");
 	}

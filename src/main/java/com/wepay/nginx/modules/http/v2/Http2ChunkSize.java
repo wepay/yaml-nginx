@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Http2ChunkSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public Http2ChunkSize() {
 		super(contexts, "8k", "http2_chunk_size");
 	}

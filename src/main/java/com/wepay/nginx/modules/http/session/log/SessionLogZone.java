@@ -16,6 +16,7 @@ public class SessionLogZone extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public SessionLogZone() {
 		super(contexts, null, "session_log_zone");
 	}

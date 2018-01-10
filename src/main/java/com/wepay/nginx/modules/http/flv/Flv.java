@@ -16,6 +16,7 @@ public class Flv extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public Flv() {
 		super(contexts, null, "flv");
 	}

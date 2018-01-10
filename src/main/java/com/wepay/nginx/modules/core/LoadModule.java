@@ -16,6 +16,7 @@ public class LoadModule extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public LoadModule() {
 		super(contexts, null, "load_module");
 	}

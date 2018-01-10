@@ -16,6 +16,7 @@ public class Api extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public Api() {
 		super(contexts, null, "api");
 	}

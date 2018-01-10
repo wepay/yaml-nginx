@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class OpenFileCacheErrors extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public OpenFileCacheErrors() {
 		super(contexts, "off", "open_file_cache_errors");
 	}

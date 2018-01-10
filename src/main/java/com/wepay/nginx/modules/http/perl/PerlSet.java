@@ -16,6 +16,7 @@ public class PerlSet extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public PerlSet() {
 		super(contexts, null, "perl_set");
 	}

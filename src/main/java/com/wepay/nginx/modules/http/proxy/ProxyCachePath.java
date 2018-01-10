@@ -16,6 +16,7 @@ public class ProxyCachePath extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public ProxyCachePath() {
 		super(contexts, null, "proxy_cache_path");
 	}

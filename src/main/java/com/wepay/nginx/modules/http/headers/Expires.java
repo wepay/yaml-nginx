@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Expires extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION,IF_IN_LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION, IF_IN_LOCATION);
 	}
+
 	public Expires() {
 		super(contexts, "off", "expires");
 	}

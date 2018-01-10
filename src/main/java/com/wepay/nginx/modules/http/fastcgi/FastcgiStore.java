@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiStore extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiStore() {
 		super(contexts, "off", "fastcgi_store");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Slice extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public Slice() {
 		super(contexts, "0", "slice");
 	}

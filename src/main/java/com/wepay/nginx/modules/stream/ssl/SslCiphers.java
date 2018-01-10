@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslCiphers extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public SslCiphers() {
 		super(contexts, "HIGH:!aNULL:!MD5", "ssl_ciphers");
 	}

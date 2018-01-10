@@ -16,6 +16,7 @@ public class MapHashMaxSize extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public MapHashMaxSize() {
 		super(contexts, "2048", "map_hash_max_size");
 	}

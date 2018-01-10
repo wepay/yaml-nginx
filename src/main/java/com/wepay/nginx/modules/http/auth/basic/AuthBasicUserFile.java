@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class AuthBasicUserFile extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION,LIMIT_EXCEPT);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION, LIMIT_EXCEPT);
 	}
+
 	public AuthBasicUserFile() {
 		super(contexts, null, "auth_basic_user_file");
 	}

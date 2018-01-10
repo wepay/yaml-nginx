@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class MirrorRequestBody extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public MirrorRequestBody() {
 		super(contexts, "on", "mirror_request_body");
 	}

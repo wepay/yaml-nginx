@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiPassHeader extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiPassHeader() {
 		super(contexts, null, "fastcgi_pass_header");
 	}

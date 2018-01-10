@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class RewriteLog extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION,IF);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION, IF);
 	}
+
 	public RewriteLog() {
 		super(contexts, "off", "rewrite_log");
 	}

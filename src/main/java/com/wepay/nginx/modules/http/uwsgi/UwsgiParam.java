@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiParam extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiParam() {
 		super(contexts, null, "uwsgi_param");
 	}

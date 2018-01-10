@@ -1,4 +1,5 @@
 package com.wepay.nginx.modules.http.rewrite.server;
+
 import static com.wepay.nginx.Constants.SERVER;
 
 import java.util.Arrays;
@@ -431,7 +432,7 @@ public class If extends NamedAbstractContext {
 
 	@JsonProperty("condition")
 	private Condition condition;
-	
+
 	@JsonProperty("break")
 	private Break breakO;
 
@@ -440,7 +441,7 @@ public class If extends NamedAbstractContext {
 
 	@JsonProperty("rewrite")
 	private Rewrite rewrite;
-	
+
 	@JsonProperty("rewrites")
 	private Rewrites rewrites;
 
@@ -453,14 +454,14 @@ public class If extends NamedAbstractContext {
 	@JsonProperty("uninitialized_variable_warn")
 	private UninitializedVariableWarn uninitializedVariableWarn;
 
-	//properties from server.
-	
+	// properties from server.
+
 	@JsonProperty("absolute_redirect")
 	private AbsoluteRedirect absoluteRedirect;
 
 	@JsonProperty("access_log")
 	private AccessLog accessLog;
-	
+
 	@JsonProperty("error_log")
 	private ErrorLog errorLog;
 
@@ -882,7 +883,7 @@ public class If extends NamedAbstractContext {
 	private Location location;
 
 	@JsonProperty("locations")
-	private Locations  locations;
+	private Locations locations;
 
 	@JsonProperty("log_not_found")
 	private LogNotFound logNotFound;
@@ -1174,7 +1175,7 @@ public class If extends NamedAbstractContext {
 
 	@JsonProperty("resolver_timeout")
 	private ResolverTimeout resolverTimeout;
- 
+
 	@JsonProperty("root")
 	private Root root;
 
@@ -1690,13 +1691,15 @@ public class If extends NamedAbstractContext {
 
 	@JsonProperty("ifs")
 	private Ifs ifs;
+
 	public If() {
 		super(Arrays.asList(SERVER), null, "if");
 	}
-	
-	public Condition getCondition(){
+
+	public Condition getCondition() {
 		return condition;
 	}
+
 	@Override
 	public void populateMap() {
 		Map<String, Dumps> map = getMap();
@@ -2127,10 +2130,9 @@ public class If extends NamedAbstractContext {
 		map.put("xslt_types", xsltTypes);
 
 	}
-	 
-	public String getBlockName() {
-		return "("+getCondition().getValue()+")";
-	}
- 
-}
 
+	public String getBlockName() {
+		return "(" + getCondition().getValue() + ")";
+	}
+
+}

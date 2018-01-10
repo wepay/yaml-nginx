@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ClientBodyInFileOnly extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ClientBodyInFileOnly() {
 		super(contexts, "off", "client_body_in_file_only");
 	}

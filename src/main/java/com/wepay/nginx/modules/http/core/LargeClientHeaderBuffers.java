@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class LargeClientHeaderBuffers extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public LargeClientHeaderBuffers() {
 		super(contexts, "4 8k", "large_client_header_buffers");
 	}

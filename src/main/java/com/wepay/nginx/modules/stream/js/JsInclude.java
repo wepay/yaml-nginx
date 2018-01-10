@@ -16,6 +16,7 @@ public class JsInclude extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public JsInclude() {
 		super(contexts, null, "js_include");
 	}

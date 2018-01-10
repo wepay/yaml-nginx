@@ -16,6 +16,7 @@ public class ServerNamesHashMaxSize extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public ServerNamesHashMaxSize() {
 		super(contexts, "512", "server_names_hash_max_size");
 	}

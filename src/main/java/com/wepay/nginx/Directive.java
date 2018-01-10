@@ -40,8 +40,8 @@ public abstract class Directive extends NginxAbstractClass {
 	}
 
 	public int getFormatLength() {
-		if(formatLength==0){
-			formatLength=getClassAnnotation()==null?1:getClassAnnotation().length();
+		if (formatLength == 0) {
+			formatLength = getClassAnnotation() == null ? 1 : getClassAnnotation().length();
 		}
 		return formatLength;
 	}
@@ -69,12 +69,11 @@ public abstract class Directive extends NginxAbstractClass {
 		if (value == null) {
 			return "";
 		}
-		String format=MessageFormat.format(DIRECTIVE_PRINT_FORMAT,getFormatLength());
+		String format = MessageFormat.format(DIRECTIVE_PRINT_FORMAT, getFormatLength());
 		String s = String.format(format, pre, getClassAnnotation(), getValue());
 		return updateConditionBlock(level, s);
 	}
 
-	
 	@Override
 	public String getComment() {
 		return comment;

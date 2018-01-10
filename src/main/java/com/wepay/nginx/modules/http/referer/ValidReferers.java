@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ValidReferers extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(SERVER,LOCATION);
+		contexts = Arrays.asList(SERVER, LOCATION);
 	}
+
 	public ValidReferers() {
 		super(contexts, null, "valid_referers");
 	}

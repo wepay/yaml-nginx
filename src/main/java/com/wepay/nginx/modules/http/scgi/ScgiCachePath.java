@@ -16,6 +16,7 @@ public class ScgiCachePath extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public ScgiCachePath() {
 		super(contexts, null, "scgi_cache_path");
 	}

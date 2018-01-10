@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyRequestBuffering extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyRequestBuffering() {
 		super(contexts, "on", "proxy_request_buffering");
 	}

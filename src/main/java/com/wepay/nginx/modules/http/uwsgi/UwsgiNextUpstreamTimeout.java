@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiNextUpstreamTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiNextUpstreamTimeout() {
 		super(contexts, "0", "uwsgi_next_upstream_timeout");
 	}

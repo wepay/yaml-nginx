@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslSessionCache extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public SslSessionCache() {
 		super(contexts, "none", "ssl_session_cache");
 	}

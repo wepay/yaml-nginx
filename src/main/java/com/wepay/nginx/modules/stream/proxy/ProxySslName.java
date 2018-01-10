@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxySslName extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public ProxySslName() {
 		super(contexts, "host from proxy_pass", "proxy_ssl_name");
 	}

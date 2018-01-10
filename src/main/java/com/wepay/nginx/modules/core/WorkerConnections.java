@@ -16,6 +16,7 @@ public class WorkerConnections extends Directive {
 	static {
 		contexts = Arrays.asList(EVENTS);
 	}
+
 	public WorkerConnections() {
 		super(contexts, "512", "worker_connections");
 	}

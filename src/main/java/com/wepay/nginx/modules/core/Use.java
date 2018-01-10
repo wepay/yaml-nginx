@@ -16,6 +16,7 @@ public class Use extends Directive {
 	static {
 		contexts = Arrays.asList(EVENTS);
 	}
+
 	public Use() {
 		super(contexts, null, "use");
 	}

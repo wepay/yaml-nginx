@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiForceRanges extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiForceRanges() {
 		super(contexts, "off", "fastcgi_force_ranges");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ChunkedTransferEncoding extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ChunkedTransferEncoding() {
 		super(contexts, "on", "chunked_transfer_encoding");
 	}

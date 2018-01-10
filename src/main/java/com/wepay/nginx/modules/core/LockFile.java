@@ -16,6 +16,7 @@ public class LockFile extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public LockFile() {
 		super(contexts, "logs/nginx.lock", "lock_file");
 	}

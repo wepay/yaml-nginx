@@ -16,6 +16,7 @@ public class VariablesHashBucketSize extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public VariablesHashBucketSize() {
 		super(contexts, "64", "variables_hash_bucket_size");
 	}

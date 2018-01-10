@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyProtocolTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public ProxyProtocolTimeout() {
 		super(contexts, "30s", "proxy_protocol_timeout");
 	}

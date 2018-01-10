@@ -1,6 +1,5 @@
 package com.wepay.nginx.helper;
 
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,32 +21,36 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.wepay.nginx.NginxAbstractClass;
 import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 import com.wepay.nginx.Constants;
-import com.wepay.nginx.Dumps; 
+import com.wepay.nginx.Dumps;
 
 public class NginxHelper {
-	public Dumps parseFromFile(String filename, Class cls) throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
+	public Dumps parseFromFile(String filename, Class cls)
+			throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
 		Yaml yaml = new Yaml();
 		Map<String, Object> mapObj;
 		mapObj = (Map<String, Object>) yaml.loadAs(new FileReader(filename), LinkedHashMap.class);
 		return generateObject(cls, yaml, mapObj);
 	}
-	public Dumps parseFromString(String str, Class cls) throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
+
+	public Dumps parseFromString(String str, Class cls)
+			throws InvalidConditionDirectiveException, JsonParseException, JsonMappingException, IOException {
 		Yaml yaml = new Yaml();
 		Map<String, Object> mapObj;
 		mapObj = (Map<String, Object>) yaml.loadAs(str, LinkedHashMap.class);
 		return generateObject(cls, yaml, mapObj);
 	}
-	public static List<String> getAsList(String res_filename) throws Exception{
+
+	public static List<String> getAsList(String res_filename) throws Exception {
 		List<String> list = new ArrayList<String>();
 		try (BufferedReader bf = new BufferedReader(new FileReader(res_filename))) {
 			String line = null;
-			while ((line = bf.readLine()) != null)
-				{
+			while ((line = bf.readLine()) != null) {
 				list.add(line);
-				}
-		}  
+			}
+		}
 		return list;
 	}
+
 	/**
 	 * @param cls
 	 * @param yaml
@@ -63,42 +66,34 @@ public class NginxHelper {
 			enhanceMap(mapObj, key);
 		}
 		String s = yaml.dump(mapObj);
-		//System.out.println(s);
+		// System.out.println(s);
 		final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-		return (Dumps)mapper.readValue(s, cls);
+		return (Dumps) mapper.readValue(s, cls);
 	}
-	public static void populatelinkingMapCode(Object obj, Class<? extends NginxAbstractClass> c){
-		 Class<? extends Annotation> ann = JsonProperty.class;
-	      System.out.println("Map<String, Dumps> map = new HashMap<String, Dumps>();");
-	      System.out.println("//map.clear();");
-			for (Field field : c.getDeclaredFields()) {
-				if (field.isAnnotationPresent(ann)) {     
-					JsonProperty a = (JsonProperty) field.getAnnotation(ann);
-					System.out.println("map.put(\""+a.value()+"\", "+field.getName()+");");}
-					/*
-					Class<?> var = field.getType();
-					Class[] argTypes = new Class[] { Integer.class };
-					Method m;
-					try {
-						if (!var.isPrimitive()) {
-							Method[] methods = var.getDeclaredMethods();
-							for (Method method : methods) {
-								System.out.println(method.getName());
-								if (method.getName().equals("dump")) {
-									method.setAccessible(true);
-									OpenFileCacheErrors err = new OpenFileCacheErrors();
-									System.out.println(method.invoke(err, 2));
-								}
-							}
 
-						}
-					} catch (Throwable e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
-			 
-			 
-		} 
+	public static void populatelinkingMapCode(Object obj, Class<? extends NginxAbstractClass> c) {
+		Class<? extends Annotation> ann = JsonProperty.class;
+		System.out.println("Map<String, Dumps> map = new HashMap<String, Dumps>();");
+		System.out.println("//map.clear();");
+		for (Field field : c.getDeclaredFields()) {
+			if (field.isAnnotationPresent(ann)) {
+				JsonProperty a = (JsonProperty) field.getAnnotation(ann);
+				System.out.println("map.put(\"" + a.value() + "\", " + field.getName() + ");");
+			}
+			/*
+			 * Class<?> var = field.getType(); Class[] argTypes = new Class[] {
+			 * Integer.class }; Method m; try { if (!var.isPrimitive()) {
+			 * Method[] methods = var.getDeclaredMethods(); for (Method method :
+			 * methods) { System.out.println(method.getName()); if
+			 * (method.getName().equals("dump")) { method.setAccessible(true);
+			 * OpenFileCacheErrors err = new OpenFileCacheErrors();
+			 * System.out.println(method.invoke(err, 2)); } }
+			 * 
+			 * } } catch (Throwable e) { // TODO Auto-generated catch block
+			 * e.printStackTrace(); }
+			 */
+
+		}
 	}
 
 	private void enhanceMap(Map<String, Object> load, String key) {
@@ -106,8 +101,7 @@ public class NginxHelper {
 			if (load.get(key) instanceof Map) {
 				Map<String, Object> m = (Map<String, Object>) load.get(key);
 				{
-					if (m.get(Constants.VALUE_STR) == null)
-					{	 
+					if (m.get(Constants.VALUE_STR) == null) {
 						for (String k : m.keySet()) {
 							enhanceMap(m, k);
 						}
@@ -116,8 +110,7 @@ public class NginxHelper {
 			} else if (load.get(key) instanceof List) {
 				List<Map<String, Object>> l = (List<Map<String, Object>>) load.get(key);
 				for (Map<String, Object> o : l) {
-					if (o.get(Constants.VALUE_STR) == null)
-					{
+					if (o.get(Constants.VALUE_STR) == null) {
 						for (String k : o.keySet()) {
 							enhanceMap(o, k);
 						}
@@ -132,6 +125,7 @@ public class NginxHelper {
 		}
 
 	}
+
 	static public String getSpace(int level) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < level * Constants.SPACE_COUNT; i++) {
@@ -140,7 +134,6 @@ public class NginxHelper {
 		return sb.toString();
 	}
 
- 
 	static public String getTab(int level) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < level * Constants.TAB_COUNT; i++) {

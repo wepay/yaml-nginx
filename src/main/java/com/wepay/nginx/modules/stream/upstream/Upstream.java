@@ -19,33 +19,35 @@ public class Upstream extends NamedAbstractContext {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
-	
+
 	@JsonProperty("UpstreamName")
 	private UpstreamName upstreamName;
-	
-	@JsonProperty("hash") 
+
+	@JsonProperty("hash")
 	private Hash hash;
 
-	@JsonProperty("least_conn") 
+	@JsonProperty("least_conn")
 	private LeastConn leastConn;
 
-	@JsonProperty("least_time") 
+	@JsonProperty("least_time")
 	private LeastTime leastTime;
 
-	@JsonProperty("server") 
+	@JsonProperty("server")
 	private Server server;
-	
-	@JsonProperty("servers") 
+
+	@JsonProperty("servers")
 	private Servers servers;
 
-	@JsonProperty("state") 
+	@JsonProperty("state")
 	private State state;
 
-	@JsonProperty("zone") 
+	@JsonProperty("zone")
 	private Zone zone;
+
 	public Upstream() {
 		super(contexts, null, "upstream");
 	}
+
 	@Override
 	public void populateMap() {
 		Map<String, Dumps> map = getMap();
@@ -57,7 +59,7 @@ public class Upstream extends NamedAbstractContext {
 		map.put("state", state);
 		map.put("zone", zone);
 	}
-	 
+
 	@Override
 	public String getBlockName() {
 		return upstreamName.getValue();

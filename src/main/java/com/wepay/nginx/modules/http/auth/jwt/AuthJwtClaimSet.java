@@ -16,6 +16,7 @@ public class AuthJwtClaimSet extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public AuthJwtClaimSet() {
 		super(contexts, null, "auth_jwt_claim_set");
 	}

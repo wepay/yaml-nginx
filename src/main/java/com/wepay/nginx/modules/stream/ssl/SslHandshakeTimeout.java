@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslHandshakeTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public SslHandshakeTimeout() {
 		super(contexts, "60s", "ssl_handshake_timeout");
 	}

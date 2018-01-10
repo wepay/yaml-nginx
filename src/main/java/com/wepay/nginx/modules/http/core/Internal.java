@@ -16,6 +16,7 @@ public class Internal extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public Internal() {
 		super(contexts, null, "internal");
 	}

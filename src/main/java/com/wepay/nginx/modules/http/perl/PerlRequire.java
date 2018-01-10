@@ -16,6 +16,7 @@ public class PerlRequire extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public PerlRequire() {
 		super(contexts, null, "perl_require");
 	}

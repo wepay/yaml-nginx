@@ -9,7 +9,6 @@ import static com.wepay.nginx.Constants.*;
 
 import java.util.*;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.Dumps;
 import com.wepay.nginx.NamedAbstractContext;
@@ -19,55 +18,58 @@ import com.wepay.nginx.modules.http.js.*;
 import com.wepay.nginx.modules.http.log.*;
 import com.wepay.nginx.modules.http.perl.*;
 import com.wepay.nginx.modules.http.proxy.*;
+
 public class LimitExcept extends NamedAbstractContext {
 	static final List<String> contexts;
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
-	
+
 	@JsonProperty("method")
 	private Method method;
-	
-	@JsonProperty("access_log") 
+
+	@JsonProperty("access_log")
 	private AccessLog accessLog;
 
-	@JsonProperty("allow") 
+	@JsonProperty("allow")
 	private Allow allow;
-	
-	@JsonProperty("allows") 
+
+	@JsonProperty("allows")
 	private Allows allows;
 
-	@JsonProperty("auth_basic") 
+	@JsonProperty("auth_basic")
 	private AuthBasic authBasic;
 
-	@JsonProperty("auth_basic_user_file") 
+	@JsonProperty("auth_basic_user_file")
 	private AuthBasicUserFile authBasicUserFile;
 
-	@JsonProperty("deny") 
+	@JsonProperty("deny")
 	private Deny deny;
-	
-	@JsonProperty("denys") 
+
+	@JsonProperty("denys")
 	private Denys denys;
 
-	@JsonProperty("js_content") 
+	@JsonProperty("js_content")
 	private JsContent jsContent;
 
-	@JsonProperty("perl") 
+	@JsonProperty("perl")
 	private Perl perl;
 
-	@JsonProperty("proxy_pass") 
+	@JsonProperty("proxy_pass")
 	private ProxyPass proxyPass;
 
-	public Method getMethod(){
+	public Method getMethod() {
 		return method;
 	}
+
 	public LimitExcept() {
 		super(contexts, null, "limit_except");
 	}
+
 	@Override
 	public void populateMap() {
 		Map<String, Dumps> map = getMap();
-		//map.clear();
+		// map.clear();
 		map.put("access_log", accessLog);
 		map.put("allow", allow);
 		map.put("allows", allows);
@@ -79,7 +81,7 @@ public class LimitExcept extends NamedAbstractContext {
 		map.put("perl", perl);
 		map.put("proxy_pass", proxyPass);
 	}
-	 
+
 	@Override
 	public String getBlockName() {
 		return getMethod().getValue();

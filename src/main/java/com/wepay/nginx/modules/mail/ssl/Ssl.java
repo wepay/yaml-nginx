@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Ssl extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public Ssl() {
 		super(contexts, "off", "ssl");
 	}

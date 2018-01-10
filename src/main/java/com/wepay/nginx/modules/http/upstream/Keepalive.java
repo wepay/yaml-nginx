@@ -16,6 +16,7 @@ public class Keepalive extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public Keepalive() {
 		super(contexts, null, "keepalive");
 	}

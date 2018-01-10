@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiCacheBackgroundUpdate extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiCacheBackgroundUpdate() {
 		super(contexts, "off", "uwsgi_cache_background_update");
 	}

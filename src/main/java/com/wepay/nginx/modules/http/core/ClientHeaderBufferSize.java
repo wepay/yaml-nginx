@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ClientHeaderBufferSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public ClientHeaderBufferSize() {
 		super(contexts, "1k", "client_header_buffer_size");
 	}

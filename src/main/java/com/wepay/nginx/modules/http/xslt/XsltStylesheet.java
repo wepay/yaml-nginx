@@ -16,6 +16,7 @@ public class XsltStylesheet extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public XsltStylesheet() {
 		super(contexts, null, "xslt_stylesheet");
 	}

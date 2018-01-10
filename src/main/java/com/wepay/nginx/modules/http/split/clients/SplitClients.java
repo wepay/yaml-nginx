@@ -16,6 +16,7 @@ public class SplitClients extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public SplitClients() {
 		super(contexts, null, "split_clients");
 	}

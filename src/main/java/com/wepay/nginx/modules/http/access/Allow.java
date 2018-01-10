@@ -16,19 +16,20 @@ import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 public class Allow extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION,LIMIT_EXCEPT);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION, LIMIT_EXCEPT);
 	}
+
 	public Allow() {
 		super(contexts, null, "allow");
 	}
-	
+
 	@JsonProperty("allow")
 	private Allow allow;
-	
+
 	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
-		if(allow!=null){
+		if (allow != null) {
 			return allow.dump(level, ctx);
-		}else{
+		} else {
 			return super.dump(level, ctx);
 		}
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class AuthJwt extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public AuthJwt() {
 		super(contexts, "off", "auth_jwt");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ScgiIgnoreHeaders extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ScgiIgnoreHeaders() {
 		super(contexts, null, "scgi_ignore_headers");
 	}

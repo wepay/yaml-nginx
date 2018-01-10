@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Http2IdleTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public Http2IdleTimeout() {
 		super(contexts, "3m", "http2_idle_timeout");
 	}

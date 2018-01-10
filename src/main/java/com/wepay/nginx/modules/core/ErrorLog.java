@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ErrorLog extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIN,HTTP,MAIL,STREAM,SERVER,LOCATION);
+		contexts = Arrays.asList(MAIN, HTTP, MAIL, STREAM, SERVER, LOCATION);
 	}
+
 	public ErrorLog() {
 		super(contexts, "logs/error.log error", "error_log");
 	}

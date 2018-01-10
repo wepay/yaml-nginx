@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ScgiTempPath extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ScgiTempPath() {
 		super(contexts, "scgi_temp", "scgi_temp_path");
 	}

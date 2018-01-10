@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiCacheKey extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiCacheKey() {
 		super(contexts, null, "fastcgi_cache_key");
 	}

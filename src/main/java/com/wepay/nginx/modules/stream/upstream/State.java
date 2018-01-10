@@ -16,6 +16,7 @@ public class State extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public State() {
 		super(contexts, null, "state");
 	}

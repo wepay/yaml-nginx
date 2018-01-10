@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyPass extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(LOCATION,IF_IN_LOCATION,LIMIT_EXCEPT);
+		contexts = Arrays.asList(LOCATION, IF_IN_LOCATION, LIMIT_EXCEPT);
 	}
+
 	public ProxyPass() {
 		super(contexts, null, "proxy_pass");
 	}

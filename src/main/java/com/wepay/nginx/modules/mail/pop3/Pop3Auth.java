@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Pop3Auth extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public Pop3Auth() {
 		super(contexts, "plain", "pop3_auth");
 	}

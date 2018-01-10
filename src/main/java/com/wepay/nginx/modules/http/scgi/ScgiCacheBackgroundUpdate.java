@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ScgiCacheBackgroundUpdate extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ScgiCacheBackgroundUpdate() {
 		super(contexts, "off", "scgi_cache_background_update");
 	}

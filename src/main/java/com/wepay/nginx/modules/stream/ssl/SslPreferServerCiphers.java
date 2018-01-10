@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslPreferServerCiphers extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public SslPreferServerCiphers() {
 		super(contexts, "off", "ssl_prefer_server_ciphers");
 	}

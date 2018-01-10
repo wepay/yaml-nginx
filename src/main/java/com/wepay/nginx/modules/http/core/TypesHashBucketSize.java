@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class TypesHashBucketSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public TypesHashBucketSize() {
 		super(contexts, "64", "types_hash_bucket_size");
 	}

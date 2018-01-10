@@ -7,12 +7,13 @@ import java.util.List;
 
 import com.wepay.nginx.Directive;
 
-public class Condition extends Directive{
+public class Condition extends Directive {
 	static final List<String> contexts;
 
 	static {
 		contexts = Arrays.asList(IF);
 	}
+
 	public Condition() {
 		super(contexts, null, null);
 	}

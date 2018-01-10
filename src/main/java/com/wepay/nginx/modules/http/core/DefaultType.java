@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class DefaultType extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public DefaultType() {
 		super(contexts, "text/plain", "default_type");
 	}

@@ -16,6 +16,7 @@ public class Map extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public Map() {
 		super(contexts, null, "map");
 	}

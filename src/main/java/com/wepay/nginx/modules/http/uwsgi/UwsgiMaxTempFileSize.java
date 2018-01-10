@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiMaxTempFileSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiMaxTempFileSize() {
 		super(contexts, "1024m", "uwsgi_max_temp_file_size");
 	}

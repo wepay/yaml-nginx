@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ScgiSendTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ScgiSendTimeout() {
 		super(contexts, "60s", "scgi_send_timeout");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiConnectTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiConnectTimeout() {
 		super(contexts, "60s", "uwsgi_connect_timeout");
 	}

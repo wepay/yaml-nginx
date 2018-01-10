@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ImageFilterBuffer extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ImageFilterBuffer() {
 		super(contexts, "1M", "image_filter_buffer");
 	}

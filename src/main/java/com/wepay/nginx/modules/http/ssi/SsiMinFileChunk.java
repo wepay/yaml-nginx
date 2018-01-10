@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SsiMinFileChunk extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public SsiMinFileChunk() {
 		super(contexts, "1k", "ssi_min_file_chunk");
 	}

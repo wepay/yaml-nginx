@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyPassErrorMessage extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public ProxyPassErrorMessage() {
 		super(contexts, "off", "proxy_pass_error_message");
 	}

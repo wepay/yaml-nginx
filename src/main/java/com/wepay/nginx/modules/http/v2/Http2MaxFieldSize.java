@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Http2MaxFieldSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public Http2MaxFieldSize() {
 		super(contexts, "4k", "http2_max_field_size");
 	}

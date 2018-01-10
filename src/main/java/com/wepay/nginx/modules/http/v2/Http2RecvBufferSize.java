@@ -16,6 +16,7 @@ public class Http2RecvBufferSize extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public Http2RecvBufferSize() {
 		super(contexts, "256k", "http2_recv_buffer_size");
 	}

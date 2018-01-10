@@ -16,6 +16,7 @@ public class Mp4 extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public Mp4() {
 		super(contexts, null, "mp4");
 	}

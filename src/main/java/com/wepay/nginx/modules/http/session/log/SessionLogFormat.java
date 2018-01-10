@@ -16,6 +16,7 @@ public class SessionLogFormat extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public SessionLogFormat() {
 		super(contexts, "combined \"...\"", "session_log_format");
 	}

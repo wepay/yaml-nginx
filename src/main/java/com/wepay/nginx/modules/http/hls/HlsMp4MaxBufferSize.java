@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class HlsMp4MaxBufferSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public HlsMp4MaxBufferSize() {
 		super(contexts, "10m", "hls_mp4_max_buffer_size");
 	}

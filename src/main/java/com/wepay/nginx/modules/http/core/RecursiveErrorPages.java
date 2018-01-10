@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class RecursiveErrorPages extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public RecursiveErrorPages() {
 		super(contexts, "off", "recursive_error_pages");
 	}

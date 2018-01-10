@@ -16,6 +16,7 @@ public class UwsgiCachePath extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public UwsgiCachePath() {
 		super(contexts, null, "uwsgi_cache_path");
 	}

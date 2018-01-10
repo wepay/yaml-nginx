@@ -16,6 +16,7 @@ public class StickyCookieInsert extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public StickyCookieInsert() {
 		super(contexts, null, "sticky_cookie_insert");
 	}

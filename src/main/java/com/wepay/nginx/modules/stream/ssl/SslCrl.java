@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslCrl extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public SslCrl() {
 		super(contexts, null, "ssl_crl");
 	}

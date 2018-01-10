@@ -16,6 +16,7 @@ public class LeastConn extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public LeastConn() {
 		super(contexts, null, "least_conn");
 	}

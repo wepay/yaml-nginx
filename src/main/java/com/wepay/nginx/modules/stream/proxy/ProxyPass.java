@@ -16,6 +16,7 @@ public class ProxyPass extends Directive {
 	static {
 		contexts = Arrays.asList(SERVER);
 	}
+
 	public ProxyPass() {
 		super(contexts, null, "proxy_pass");
 	}

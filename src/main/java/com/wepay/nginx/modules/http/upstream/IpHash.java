@@ -16,6 +16,7 @@ public class IpHash extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public IpHash() {
 		super(contexts, null, "ip_hash");
 	}

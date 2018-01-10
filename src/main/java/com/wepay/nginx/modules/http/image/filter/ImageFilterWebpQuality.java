@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ImageFilterWebpQuality extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ImageFilterWebpQuality() {
 		super(contexts, "80", "image_filter_webp_quality");
 	}

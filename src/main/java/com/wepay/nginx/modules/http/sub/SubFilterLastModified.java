@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SubFilterLastModified extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public SubFilterLastModified() {
 		super(contexts, "off", "sub_filter_last_modified");
 	}

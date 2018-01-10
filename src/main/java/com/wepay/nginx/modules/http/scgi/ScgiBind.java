@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ScgiBind extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ScgiBind() {
 		super(contexts, null, "scgi_bind");
 	}

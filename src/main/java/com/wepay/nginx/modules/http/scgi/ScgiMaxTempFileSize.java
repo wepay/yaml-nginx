@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ScgiMaxTempFileSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ScgiMaxTempFileSize() {
 		super(contexts, "1024m", "scgi_max_temp_file_size");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SecureLinkMd5 extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public SecureLinkMd5() {
 		super(contexts, null, "secure_link_md5");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiSslName extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiSslName() {
 		super(contexts, "host from uwsgi_pass", "uwsgi_ssl_name");
 	}

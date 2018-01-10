@@ -16,6 +16,7 @@ public class WorkerRlimitCore extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public WorkerRlimitCore() {
 		super(contexts, null, "worker_rlimit_core");
 	}

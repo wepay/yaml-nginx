@@ -192,7 +192,7 @@ public class Location extends NamedAbstractContext {
 
 	@JsonProperty("deny")
 	private Deny deny;
-	
+
 	@JsonProperty("denys")
 	private Denys denys;
 
@@ -1002,7 +1002,7 @@ public class Location extends NamedAbstractContext {
 
 	@JsonProperty("set_real_ip_from")
 	private SetRealIpFrom setRealIpFrom;
-	
+
 	@JsonProperty("set_real_ip_froms")
 	private SetRealIpFroms setRealIpFroms;
 

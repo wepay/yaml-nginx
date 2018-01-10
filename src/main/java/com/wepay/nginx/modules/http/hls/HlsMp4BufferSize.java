@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class HlsMp4BufferSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public HlsMp4BufferSize() {
 		super(contexts, "512k", "hls_mp4_buffer_size");
 	}

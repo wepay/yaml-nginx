@@ -16,6 +16,7 @@ public class WorkerAioRequests extends Directive {
 	static {
 		contexts = Arrays.asList(EVENTS);
 	}
+
 	public WorkerAioRequests() {
 		super(contexts, "32", "worker_aio_requests");
 	}

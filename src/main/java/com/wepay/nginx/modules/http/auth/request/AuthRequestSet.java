@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class AuthRequestSet extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public AuthRequestSet() {
 		super(contexts, null, "auth_request_set");
 	}

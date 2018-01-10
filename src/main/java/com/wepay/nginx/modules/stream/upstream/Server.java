@@ -21,15 +21,15 @@ public class Server extends Directive {
 	}
 	@JsonProperty("server")
 	private Address server;
-	 
+
 	public Server() {
 		super(contexts, null, "server");
 	}
-	 
+
 	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
-		if(server!=null){
+		if (server != null) {
 			return server.dump(level, ctx);
-		}else{
+		} else {
 			return super.dump(level, ctx);
 		}
 	}

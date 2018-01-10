@@ -16,6 +16,7 @@ public class Return extends Directive {
 	static {
 		contexts = Arrays.asList(SERVER);
 	}
+
 	public Return() {
 		super(contexts, null, "return");
 	}

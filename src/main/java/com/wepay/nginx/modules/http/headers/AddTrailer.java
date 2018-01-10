@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class AddTrailer extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION,IF_IN_LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION, IF_IN_LOCATION);
 	}
+
 	public AddTrailer() {
 		super(contexts, null, "add_trailer");
 	}

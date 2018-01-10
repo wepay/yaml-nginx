@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class OutputBuffers extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public OutputBuffers() {
 		super(contexts, "2 32k", "output_buffers");
 	}

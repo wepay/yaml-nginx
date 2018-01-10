@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslStapling extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public SslStapling() {
 		super(contexts, "off", "ssl_stapling");
 	}

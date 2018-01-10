@@ -16,6 +16,7 @@ public class Protocol extends Directive {
 	static {
 		contexts = Arrays.asList(SERVER);
 	}
+
 	public Protocol() {
 		super(contexts, null, "protocol");
 	}

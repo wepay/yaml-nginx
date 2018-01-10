@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class OpenFileCacheValid extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public OpenFileCacheValid() {
 		super(contexts, "60s", "open_file_cache_valid");
 	}

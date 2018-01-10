@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ScgiCacheLockTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ScgiCacheLockTimeout() {
 		super(contexts, "5s", "scgi_cache_lock_timeout");
 	}

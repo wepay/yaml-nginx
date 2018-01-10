@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiInterceptErrors extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiInterceptErrors() {
 		super(contexts, "off", "uwsgi_intercept_errors");
 	}

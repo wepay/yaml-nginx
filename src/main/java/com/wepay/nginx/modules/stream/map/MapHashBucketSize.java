@@ -16,6 +16,7 @@ public class MapHashBucketSize extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public MapHashBucketSize() {
 		super(contexts, "32|64|128", "map_hash_bucket_size");
 	}

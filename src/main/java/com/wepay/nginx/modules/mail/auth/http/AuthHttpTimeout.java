@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class AuthHttpTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public AuthHttpTimeout() {
 		super(contexts, "60s", "auth_http_timeout");
 	}

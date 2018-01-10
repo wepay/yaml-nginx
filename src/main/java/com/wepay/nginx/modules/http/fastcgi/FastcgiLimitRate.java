@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiLimitRate extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiLimitRate() {
 		super(contexts, "0", "fastcgi_limit_rate");
 	}

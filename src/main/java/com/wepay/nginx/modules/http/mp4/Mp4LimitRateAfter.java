@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Mp4LimitRateAfter extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public Mp4LimitRateAfter() {
 		super(contexts, "60s", "mp4_limit_rate_after");
 	}

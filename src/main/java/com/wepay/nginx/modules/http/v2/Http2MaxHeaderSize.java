@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Http2MaxHeaderSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public Http2MaxHeaderSize() {
 		super(contexts, "16k", "http2_max_header_size");
 	}

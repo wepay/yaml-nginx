@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxySslVerifyDepth extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public ProxySslVerifyDepth() {
 		super(contexts, "1", "proxy_ssl_verify_depth");
 	}

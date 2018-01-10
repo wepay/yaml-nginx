@@ -16,6 +16,7 @@ public class GeoipCountry extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public GeoipCountry() {
 		super(contexts, null, "geoip_country");
 	}

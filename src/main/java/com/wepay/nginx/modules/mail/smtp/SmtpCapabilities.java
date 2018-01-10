@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SmtpCapabilities extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public SmtpCapabilities() {
 		super(contexts, null, "smtp_capabilities");
 	}

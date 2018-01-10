@@ -16,6 +16,7 @@ public class StatusZone extends Directive {
 	static {
 		contexts = Arrays.asList(SERVER);
 	}
+
 	public StatusZone() {
 		super(contexts, null, "status_zone");
 	}

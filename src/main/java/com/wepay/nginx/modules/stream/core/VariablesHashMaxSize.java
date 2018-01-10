@@ -16,6 +16,7 @@ public class VariablesHashMaxSize extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public VariablesHashMaxSize() {
 		super(contexts, "1024", "variables_hash_max_size");
 	}

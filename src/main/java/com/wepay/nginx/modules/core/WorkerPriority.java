@@ -16,6 +16,7 @@ public class WorkerPriority extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public WorkerPriority() {
 		super(contexts, "0", "worker_priority");
 	}

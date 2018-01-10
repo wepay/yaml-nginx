@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiMaxTempFileSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiMaxTempFileSize() {
 		super(contexts, "1024m", "fastcgi_max_temp_file_size");
 	}

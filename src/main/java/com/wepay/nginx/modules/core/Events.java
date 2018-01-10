@@ -16,7 +16,7 @@ import com.wepay.nginx.Dumps;
 
 public class Events extends BlockAbstractContext {
 	static final List<String> contexts;
-	 
+
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
@@ -45,11 +45,10 @@ public class Events extends BlockAbstractContext {
 		super(contexts, null, "events");
 	}
 
-
 	@Override
 	public void populateMap() {
 		Map<String, Dumps> map = getMap();
-		//map.clear();
+		// map.clear();
 		map.put("accept_mutex", acceptMutex);
 		map.put("accept_mutex_delay", acceptMutexDelay);
 		map.put("debug_connection", debugConnection);

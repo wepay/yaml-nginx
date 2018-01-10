@@ -16,6 +16,7 @@ public class UpstreamConf extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public UpstreamConf() {
 		super(contexts, null, "upstream_conf");
 	}

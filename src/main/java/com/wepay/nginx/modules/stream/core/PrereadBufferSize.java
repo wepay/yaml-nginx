@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class PrereadBufferSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public PrereadBufferSize() {
 		super(contexts, "16k", "preread_buffer_size");
 	}

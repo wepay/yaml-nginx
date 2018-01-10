@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxySetHeader extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxySetHeader() {
 		super(contexts, "Host $proxy_host", "proxy_set_header");
 	}

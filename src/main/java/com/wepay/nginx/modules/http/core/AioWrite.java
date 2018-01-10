@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class AioWrite extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public AioWrite() {
 		super(contexts, "off", "aio_write");
 	}

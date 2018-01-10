@@ -15,20 +15,22 @@ import com.wepay.nginx.exceptions.InvalidConditionDirectiveException;
 
 public class Include extends Directive {
 	static final List<String> contexts;
-	
+
 	@JsonProperty("include")
 	private Include include;
-	 
+
 	static {
 		contexts = Arrays.asList(ANY);
 	}
+
 	public Include() {
 		super(contexts, null, "include");
 	}
+
 	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
-		if(include!=null){
+		if (include != null) {
 			return include.dump(level, ctx);
-		}else{
+		} else {
 			return super.dump(level, ctx);
 		}
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyMaxTempFileSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyMaxTempFileSize() {
 		super(contexts, "1024m", "proxy_max_temp_file_size");
 	}

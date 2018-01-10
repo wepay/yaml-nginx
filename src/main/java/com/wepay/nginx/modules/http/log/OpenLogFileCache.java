@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class OpenLogFileCache extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public OpenLogFileCache() {
 		super(contexts, "off", "open_log_file_cache");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SessionLog extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public SessionLog() {
 		super(contexts, "off", "session_log");
 	}

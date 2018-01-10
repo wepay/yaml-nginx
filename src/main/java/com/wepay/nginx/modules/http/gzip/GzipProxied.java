@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class GzipProxied extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public GzipProxied() {
 		super(contexts, "off", "gzip_proxied");
 	}

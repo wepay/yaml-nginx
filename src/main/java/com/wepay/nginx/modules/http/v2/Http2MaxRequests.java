@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Http2MaxRequests extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public Http2MaxRequests() {
 		super(contexts, "1000", "http2_max_requests");
 	}

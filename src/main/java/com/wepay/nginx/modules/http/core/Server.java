@@ -11,7 +11,7 @@ import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wepay.nginx.BlockAbstractContext;
-import com.wepay.nginx.Dumps; 
+import com.wepay.nginx.Dumps;
 import com.wepay.nginx.modules.core.ErrorLog;
 import com.wepay.nginx.modules.http.access.*;
 import com.wepay.nginx.modules.http.addition.*;
@@ -67,7 +67,6 @@ public class Server extends BlockAbstractContext {
 		super(contexts, null, "server");
 	}
 
-
 	@JsonProperty("if")
 	private If ifO;
 
@@ -76,7 +75,7 @@ public class Server extends BlockAbstractContext {
 
 	@JsonProperty("access_log")
 	private AccessLog accessLog;
-	
+
 	@JsonProperty("error_log")
 	private ErrorLog errorLog;
 
@@ -103,7 +102,7 @@ public class Server extends BlockAbstractContext {
 
 	@JsonProperty("allow")
 	private Allow allow;
-	
+
 	@JsonProperty("allows")
 	private Allows allows;
 
@@ -190,7 +189,7 @@ public class Server extends BlockAbstractContext {
 
 	@JsonProperty("deny")
 	private Deny deny;
-	
+
 	@JsonProperty("denys")
 	private Denys denys;
 
@@ -507,7 +506,7 @@ public class Server extends BlockAbstractContext {
 	private Location location;
 
 	@JsonProperty("locations")
-	private Locations  locations;
+	private Locations locations;
 
 	@JsonProperty("log_not_found")
 	private LogNotFound logNotFound;
@@ -805,7 +804,7 @@ public class Server extends BlockAbstractContext {
 
 	@JsonProperty("rewrite")
 	private Rewrite rewrite;
-	
+
 	@JsonProperty("rewrites")
 	private Rewrites rewrites;
 
@@ -979,10 +978,10 @@ public class Server extends BlockAbstractContext {
 
 	@JsonProperty("set_real_ip_from")
 	private SetRealIpFrom setRealIpFrom;
-	
+
 	@JsonProperty("set_real_ip_froms")
 	private SetRealIpFroms setRealIpFroms;
-	
+
 	@JsonProperty("slice")
 	private Slice slice;
 
@@ -1767,5 +1766,5 @@ public class Server extends BlockAbstractContext {
 		map.put("xslt_string_param", xsltStringParam);
 		map.put("xslt_types", xsltTypes);
 	}
-	 
+
 }

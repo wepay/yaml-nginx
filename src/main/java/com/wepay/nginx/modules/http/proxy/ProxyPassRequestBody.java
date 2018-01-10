@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyPassRequestBody extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyPassRequestBody() {
 		super(contexts, "on", "proxy_pass_request_body");
 	}

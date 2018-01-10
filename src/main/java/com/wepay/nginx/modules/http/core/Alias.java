@@ -16,6 +16,7 @@ public class Alias extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public Alias() {
 		super(contexts, null, "alias");
 	}

@@ -24,7 +24,7 @@ public class Break extends MarkerAbstractDirective {
 	}
 
 	@Override
-	public String getValue(){
+	public String getValue() {
 		return "break";
 	}
 

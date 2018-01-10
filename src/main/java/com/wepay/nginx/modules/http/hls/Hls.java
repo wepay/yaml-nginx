@@ -16,6 +16,7 @@ public class Hls extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public Hls() {
 		super(contexts, null, "hls");
 	}

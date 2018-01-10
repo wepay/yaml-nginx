@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ResolverTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ResolverTimeout() {
 		super(contexts, "30s", "resolver_timeout");
 	}

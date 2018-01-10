@@ -16,6 +16,7 @@ public class Geo extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public Geo() {
 		super(contexts, null, "geo");
 	}

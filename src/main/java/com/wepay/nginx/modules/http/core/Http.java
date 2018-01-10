@@ -97,7 +97,7 @@ public class Http extends BlockAbstractContext {
 	@JsonProperty("allow")
 	private Allow allow;
 
-	@JsonProperty("allows") 
+	@JsonProperty("allows")
 	private Allows allows;
 
 	@JsonProperty("ancient_browser")
@@ -186,7 +186,7 @@ public class Http extends BlockAbstractContext {
 
 	@JsonProperty("deny")
 	private Deny deny;
-	@JsonProperty("denys") 
+	@JsonProperty("denys")
 	private Denys denys;
 	@JsonProperty("directio")
 	private Directio directio;
@@ -355,7 +355,7 @@ public class Http extends BlockAbstractContext {
 
 	@JsonProperty("geo")
 	private Geo geo;
-	
+
 	@JsonProperty("geoip_city")
 	private GeoipCity geoipCity;
 
@@ -1015,7 +1015,7 @@ public class Http extends BlockAbstractContext {
 
 	@JsonProperty("servers")
 	private Servers servers;
-	
+
 	@JsonProperty("server_name_in_redirect")
 	private ServerNameInRedirect serverNameInRedirect;
 
@@ -1039,7 +1039,7 @@ public class Http extends BlockAbstractContext {
 
 	@JsonProperty("set_real_ip_from")
 	private SetRealIpFrom setRealIpFrom;
-	
+
 	@JsonProperty("set_real_ip_froms")
 	private SetRealIpFroms setRealIpFroms;
 
@@ -1401,12 +1401,10 @@ public class Http extends BlockAbstractContext {
 		super(contexts, null, "http");
 	}
 
-	
-
 	@Override
 	public void populateMap() {
 		java.util.Map<String, Dumps> mapLocal = super.getMap();
-		//mapLocal.clear();
+		// mapLocal.clear();
 		mapLocal.put("absolute_redirect", absoluteRedirect);
 		mapLocal.put("access_log", accessLog);
 		mapLocal.put("add_after_body", addAfterBody);
@@ -1853,5 +1851,5 @@ public class Http extends BlockAbstractContext {
 		mapLocal.put("servers", servers);
 
 	}
- 
+
 }

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public ProxyTimeout() {
 		super(contexts, "24h", "proxy_timeout");
 	}

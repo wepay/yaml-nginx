@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ConnectionPoolSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER);
+		contexts = Arrays.asList(HTTP, SERVER);
 	}
+
 	public ConnectionPoolSize() {
 		super(contexts, "256|512", "connection_pool_size");
 	}

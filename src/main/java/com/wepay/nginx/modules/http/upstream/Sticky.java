@@ -16,6 +16,7 @@ public class Sticky extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public Sticky() {
 		super(contexts, null, "sticky");
 	}

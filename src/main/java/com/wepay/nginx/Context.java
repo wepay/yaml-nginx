@@ -70,14 +70,14 @@ public abstract class Context extends NginxAbstractClass {
 
 	abstract public void populateMap();
 
-	public String dump(int level, String ctx)throws InvalidConditionDirectiveException  {
+	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
 		populateMap();
 		StringBuilder sb = new StringBuilder();
 		Map<String, Dumps> map = getMap();
-		int strlen=0;
+		int strlen = 0;
 		for (String key : map.keySet()) {
-			if(map.get(key)!=null && key.length()>strlen){
-				strlen=key.length();
+			if (map.get(key) != null && key.length() > strlen) {
+				strlen = key.length();
 			}
 		}
 		for (String key : map.keySet()) {
@@ -96,19 +96,22 @@ public abstract class Context extends NginxAbstractClass {
 		return sb.toString();
 	}
 
-//	public String updateConditionBlock(int level, String str) throws InvalidConditionDirectiveException {
-//		String s = str;
-//		if (conditionStart != null && !conditionStart.getValue().trim().isEmpty()) {
-//			if (conditionEnd == null || conditionEnd.getValue().trim().isEmpty()) {
-//				throw new InvalidConditionDirectiveException();
-//			} else {
-//				String pre = NginxHelper.getSpace(level);
-//				s = String.format(CONTEXT_PRINT_FORMAT_CONDITION, pre, conditionStart.getValue(), str, pre,
-//						conditionEnd.getValue());
-//			}
-//		}
-//		return updateComment(level,s);
-//	}
+	// public String updateConditionBlock(int level, String str) throws
+	// InvalidConditionDirectiveException {
+	// String s = str;
+	// if (conditionStart != null &&
+	// !conditionStart.getValue().trim().isEmpty()) {
+	// if (conditionEnd == null || conditionEnd.getValue().trim().isEmpty()) {
+	// throw new InvalidConditionDirectiveException();
+	// } else {
+	// String pre = NginxHelper.getSpace(level);
+	// s = String.format(CONTEXT_PRINT_FORMAT_CONDITION, pre,
+	// conditionStart.getValue(), str, pre,
+	// conditionEnd.getValue());
+	// }
+	// }
+	// return updateComment(level,s);
+	// }
 
 	@Override
 	public String getComment() {

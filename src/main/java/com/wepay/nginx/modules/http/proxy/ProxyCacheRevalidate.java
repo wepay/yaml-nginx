@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyCacheRevalidate extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyCacheRevalidate() {
 		super(contexts, "off", "proxy_cache_revalidate");
 	}

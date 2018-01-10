@@ -22,13 +22,13 @@ public class TestMain {
 			res = NginxFormatter.formatFile(filename, "main");
 			List<String> expected = NginxHelper.getAsList(res_filename);
 			List<String> resList = (List) Arrays.asList(res.split("\n"));
-			assertEquals(expected.size(),resList.size());
+			assertEquals(expected.size(), resList.size());
 			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
-		}  
-	
+		}
+
 	}
 
 	@Test
@@ -40,13 +40,13 @@ public class TestMain {
 			res = NginxFormatter.formatFile(filename, "main");
 			List<String> expected = NginxHelper.getAsList(res_filename);
 			List<String> resList = (List) Arrays.asList(res.split("\n"));
-			assertEquals(expected.size(),resList.size());
+			assertEquals(expected.size(), resList.size());
 			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
-		}  
-	
+		}
+
 	}
 
 	@Test
@@ -58,13 +58,14 @@ public class TestMain {
 			res = NginxFormatter.formatFile(filename, "main");
 			List<String> expected = NginxHelper.getAsList(res_filename);
 			List<String> resList = (List) Arrays.asList(res.split("\n"));
-			assertEquals(expected.size(),resList.size());
+			assertEquals(expected.size(), resList.size());
 			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
-		} 
+		}
 	}
+
 	@Test
 	public void testnginx2Dumps() {
 		String filename = Constants.TEST_RESOURCE_PATH + "/main_nginx2.yml";
@@ -74,12 +75,12 @@ public class TestMain {
 			res = NginxFormatter.formatFile(filename, "main");
 			List<String> expected = NginxHelper.getAsList(res_filename);
 			List<String> resList = (List) Arrays.asList(res.split("\n"));
-			assertEquals(expected.size(),resList.size());
+			assertEquals(expected.size(), resList.size());
 			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
-		} 
+		}
 	}
 
 }

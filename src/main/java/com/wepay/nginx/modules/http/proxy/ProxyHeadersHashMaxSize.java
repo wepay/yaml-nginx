@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyHeadersHashMaxSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyHeadersHashMaxSize() {
 		super(contexts, "512", "proxy_headers_hash_max_size");
 	}

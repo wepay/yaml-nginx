@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiSslSessionReuse extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiSslSessionReuse() {
 		super(contexts, "on", "uwsgi_ssl_session_reuse");
 	}

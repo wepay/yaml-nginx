@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class DisableSymlinks extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public DisableSymlinks() {
 		super(contexts, "off", "disable_symlinks");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiCacheUseStale extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiCacheUseStale() {
 		super(contexts, "off", "fastcgi_cache_use_stale");
 	}

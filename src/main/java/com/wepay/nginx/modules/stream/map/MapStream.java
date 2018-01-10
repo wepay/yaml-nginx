@@ -16,6 +16,7 @@ public class MapStream extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public MapStream() {
 		super(contexts, null, "map");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class HlsFragment extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public HlsFragment() {
 		super(contexts, "5s", "hls_fragment");
 	}

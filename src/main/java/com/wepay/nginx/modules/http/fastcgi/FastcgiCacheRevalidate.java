@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiCacheRevalidate extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiCacheRevalidate() {
 		super(contexts, "off", "fastcgi_cache_revalidate");
 	}

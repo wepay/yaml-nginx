@@ -16,6 +16,7 @@ public class ServerNamesHashBucketSize extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public ServerNamesHashBucketSize() {
 		super(contexts, "32|64|128", "server_names_hash_bucket_size");
 	}

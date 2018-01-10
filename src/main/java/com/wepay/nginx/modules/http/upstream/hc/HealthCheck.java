@@ -16,6 +16,7 @@ public class HealthCheck extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public HealthCheck() {
 		super(contexts, null, "health_check");
 	}

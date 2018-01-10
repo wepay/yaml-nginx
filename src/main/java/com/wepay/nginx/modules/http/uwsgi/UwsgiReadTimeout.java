@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiReadTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiReadTimeout() {
 		super(contexts, "60s", "uwsgi_read_timeout");
 	}

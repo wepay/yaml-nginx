@@ -16,6 +16,7 @@ public class GeoipProxy extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public GeoipProxy() {
 		super(contexts, null, "geoip_proxy");
 	}

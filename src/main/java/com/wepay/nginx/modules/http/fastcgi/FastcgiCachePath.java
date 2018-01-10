@@ -16,6 +16,7 @@ public class FastcgiCachePath extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public FastcgiCachePath() {
 		super(contexts, null, "fastcgi_cache_path");
 	}

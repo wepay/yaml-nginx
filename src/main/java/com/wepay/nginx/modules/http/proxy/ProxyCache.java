@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyCache extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyCache() {
 		super(contexts, "off", "proxy_cache");
 	}

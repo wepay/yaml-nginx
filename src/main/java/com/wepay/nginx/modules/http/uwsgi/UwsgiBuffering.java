@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiBuffering extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiBuffering() {
 		super(contexts, "on", "uwsgi_buffering");
 	}

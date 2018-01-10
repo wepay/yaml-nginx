@@ -16,6 +16,7 @@ public class AcceptMutexDelay extends Directive {
 	static {
 		contexts = Arrays.asList(EVENTS);
 	}
+
 	public AcceptMutexDelay() {
 		super(contexts, "500ms", "accept_mutex_delay");
 	}

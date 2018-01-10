@@ -16,6 +16,7 @@ public class WorkerRlimitNofile extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public WorkerRlimitNofile() {
 		super(contexts, null, "worker_rlimit_nofile");
 	}

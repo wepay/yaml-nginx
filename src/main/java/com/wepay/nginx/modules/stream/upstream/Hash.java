@@ -16,6 +16,7 @@ public class Hash extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public Hash() {
 		super(contexts, null, "hash");
 	}

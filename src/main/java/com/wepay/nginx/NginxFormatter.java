@@ -11,32 +11,33 @@ import com.wepay.nginx.modules.http.core.Server;
 
 public class NginxFormatter {
 
-	public static String formatFile(String filename, String context) throws  InvalidArgumentException, IOException {
-		if(context==null || context.trim().isEmpty() || filename==null ||filename.trim().isEmpty()){
+	public static String formatFile(String filename, String context) throws InvalidArgumentException, IOException {
+		if (context == null || context.trim().isEmpty() || filename == null || filename.trim().isEmpty()) {
 			throw new InvalidArgumentException();
 		}
-		NginxHelper ngnx=new NginxHelper();
+		NginxHelper ngnx = new NginxHelper();
 		Class cls = getContextClass(context);
-		Dumps dumpObj=ngnx.parseFromFile(filename, cls);
+		Dumps dumpObj = ngnx.parseFromFile(filename, cls);
 		return dumpObj.dump(0, context);
 	}
 
-	public static String formatString(String str, String context) throws  InvalidArgumentException, IOException {
-		if(context==null || context.trim().isEmpty() || str==null ||str.trim().isEmpty()){
+	public static String formatString(String str, String context) throws InvalidArgumentException, IOException {
+		if (context == null || context.trim().isEmpty() || str == null || str.trim().isEmpty()) {
 			throw new InvalidArgumentException();
 		}
-		NginxHelper ngnx=new NginxHelper();
+		NginxHelper ngnx = new NginxHelper();
 		Class cls = getContextClass(context);
-		Dumps dumpObj=ngnx.parseFromString(str, cls);
+		Dumps dumpObj = ngnx.parseFromString(str, cls);
 		return dumpObj.dump(0, context);
 	}
+
 	/**
 	 * @param context
 	 * @return
 	 * @throws InvalidArgumentException
 	 */
 	private static Class getContextClass(String context) throws InvalidArgumentException {
-		Class cls=null;
+		Class cls = null;
 		switch (context.toLowerCase()) {
 		case "server":
 			cls = Server.class;
@@ -50,7 +51,7 @@ public class NginxFormatter {
 		case "main":
 			cls = Main.class;
 			break;
-	    default:
+		default:
 			throw new InvalidArgumentException("context should be one of 'server', 'http', 'location' or 'main'. ");
 		}
 		return cls;

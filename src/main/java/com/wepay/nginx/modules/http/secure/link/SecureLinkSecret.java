@@ -16,6 +16,7 @@ public class SecureLinkSecret extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public SecureLinkSecret() {
 		super(contexts, null, "secure_link_secret");
 	}

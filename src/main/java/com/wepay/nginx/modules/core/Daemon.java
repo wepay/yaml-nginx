@@ -16,6 +16,7 @@ public class Daemon extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public Daemon() {
 		super(contexts, "on", "daemon");
 	}

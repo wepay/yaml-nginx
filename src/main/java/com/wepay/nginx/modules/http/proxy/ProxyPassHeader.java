@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyPassHeader extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyPassHeader() {
 		super(contexts, null, "proxy_pass_header");
 	}

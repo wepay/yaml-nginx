@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class LimitReq extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public LimitReq() {
 		super(contexts, null, "limit_req");
 	}

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiCacheLockAge extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiCacheLockAge() {
 		super(contexts, "5s", "fastcgi_cache_lock_age");
 	}

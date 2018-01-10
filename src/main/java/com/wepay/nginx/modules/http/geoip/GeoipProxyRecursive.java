@@ -16,6 +16,7 @@ public class GeoipProxyRecursive extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public GeoipProxyRecursive() {
 		super(contexts, "off", "geoip_proxy_recursive");
 	}

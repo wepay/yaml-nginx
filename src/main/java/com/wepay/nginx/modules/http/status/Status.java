@@ -16,6 +16,7 @@ public class Status extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public Status() {
 		super(contexts, null, "status");
 	}

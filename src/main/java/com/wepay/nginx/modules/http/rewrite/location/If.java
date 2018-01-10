@@ -32,7 +32,7 @@ public class If extends Location {
 
 	@JsonProperty("condition")
 	private Condition condition;
-	
+
 	@JsonProperty("break")
 	private Break breakO;
 
@@ -41,7 +41,7 @@ public class If extends Location {
 
 	@JsonProperty("rewrite")
 	private Rewrite rewrite;
-	
+
 	@JsonProperty("rewrites")
 	private Rewrites rewrites;
 
@@ -57,10 +57,11 @@ public class If extends Location {
 	public If() {
 		super(contexts, null, "if");
 	}
-	
-	public Condition getCondition(){
+
+	public Condition getCondition() {
 		return condition;
 	}
+
 	@Override
 	public void populateMap() {
 		Map<String, Dumps> map = getMap();
@@ -73,8 +74,8 @@ public class If extends Location {
 		map.put("uninitialized_variable_warn", uninitializedVariableWarn);
 
 	}
-	 
+
 	public String getBlockName() {
-		return "("+getCondition().getValue()+")";
+		return "(" + getCondition().getValue() + ")";
 	}
 }

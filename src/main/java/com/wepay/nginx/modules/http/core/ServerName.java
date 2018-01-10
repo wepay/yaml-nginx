@@ -16,6 +16,7 @@ public class ServerName extends Directive {
 	static {
 		contexts = Arrays.asList(SERVER);
 	}
+
 	public ServerName() {
 		super(contexts, "\"\"", "server_name");
 	}

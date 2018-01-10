@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyBuffer extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public ProxyBuffer() {
 		super(contexts, "4k|8k", "proxy_buffer");
 	}

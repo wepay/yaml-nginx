@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyCacheLockTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyCacheLockTimeout() {
 		super(contexts, "5s", "proxy_cache_lock_timeout");
 	}

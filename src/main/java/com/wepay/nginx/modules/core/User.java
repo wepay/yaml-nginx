@@ -16,6 +16,7 @@ public class User extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public User() {
 		super(contexts, "nobody nobody", "user");
 	}

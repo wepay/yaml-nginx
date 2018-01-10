@@ -16,6 +16,7 @@ public class RandomIndex extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public RandomIndex() {
 		super(contexts, "off", "random_index");
 	}

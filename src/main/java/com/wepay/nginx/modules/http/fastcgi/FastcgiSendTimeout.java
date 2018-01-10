@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiSendTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiSendTimeout() {
 		super(contexts, "60s", "fastcgi_send_timeout");
 	}

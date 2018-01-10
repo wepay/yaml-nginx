@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiCacheValid extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiCacheValid() {
 		super(contexts, null, "uwsgi_cache_valid");
 	}

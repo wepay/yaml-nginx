@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyCacheConvertHead extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyCacheConvertHead() {
 		super(contexts, "on", "proxy_cache_convert_head");
 	}

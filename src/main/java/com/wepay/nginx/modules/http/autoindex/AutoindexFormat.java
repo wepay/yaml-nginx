@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class AutoindexFormat extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public AutoindexFormat() {
 		super(contexts, "html", "autoindex_format");
 	}

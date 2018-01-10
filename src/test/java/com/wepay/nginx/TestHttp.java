@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.wepay.nginx.Constants;
 import com.wepay.nginx.exceptions.InvalidArgumentException;
 import com.wepay.nginx.helper.NginxHelper;
- 
+
 import java.io.IOException;
 import java.util.*;
 
@@ -22,14 +22,13 @@ public class TestHttp {
 			res = NginxFormatter.formatFile(filename, "http");
 			List<String> expected = NginxHelper.getAsList(res_filename);
 			List<String> resList = (List) Arrays.asList(res.split("\n"));
-			assertEquals(expected.size(),resList.size());
+			assertEquals(expected.size(), resList.size());
 			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
-		}  
+		}
 	}
-
 
 	@Test
 	public void testVhostDumps() {
@@ -40,12 +39,12 @@ public class TestHttp {
 			res = NginxFormatter.formatFile(filename, "http");
 			List<String> expected = NginxHelper.getAsList(res_filename);
 			List<String> resList = (List) Arrays.asList(res.split("\n"));
-			assertEquals(expected.size(),resList.size());
+			assertEquals(expected.size(), resList.size());
 			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
-		}  
+		}
 	}
 
 	@Test
@@ -57,13 +56,14 @@ public class TestHttp {
 			res = NginxFormatter.formatFile(filename, "http");
 			List<String> expected = NginxHelper.getAsList(res_filename);
 			List<String> resList = (List) Arrays.asList(res.split("\n"));
-			assertEquals(expected.size(),resList.size());
+			assertEquals(expected.size(), resList.size());
 			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
-		}  
+		}
 	}
+
 	@Test
 	public void testvhost2HttpDumps() {
 		String filename = Constants.TEST_RESOURCE_PATH + "/http_vhost2.yml";
@@ -73,11 +73,11 @@ public class TestHttp {
 			res = NginxFormatter.formatFile(filename, "http");
 			List<String> expected = NginxHelper.getAsList(res_filename);
 			List<String> resList = (List) Arrays.asList(res.split("\n"));
-			assertEquals(expected.size(),resList.size());
+			assertEquals(expected.size(), resList.size());
 			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail();
-		}  
+		}
 	}
 }

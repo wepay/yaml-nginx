@@ -18,10 +18,10 @@ public class Upstream extends NamedAbstractContext {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
-	
+
 	@JsonProperty("upstream_name")
 	private UpstreamName upstreamName;
-	
+
 	@JsonProperty("hash")
 	private Hash hash;
 

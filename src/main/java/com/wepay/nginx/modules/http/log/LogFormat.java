@@ -16,6 +16,7 @@ public class LogFormat extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public LogFormat() {
 		super(contexts, "combined \"...\"", "log_format");
 	}

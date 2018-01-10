@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslVerifyDepth extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public SslVerifyDepth() {
 		super(contexts, "1", "ssl_verify_depth");
 	}

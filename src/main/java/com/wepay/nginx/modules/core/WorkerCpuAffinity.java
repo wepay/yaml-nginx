@@ -16,6 +16,7 @@ public class WorkerCpuAffinity extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public WorkerCpuAffinity() {
 		super(contexts, null, "worker_cpu_affinity");
 	}

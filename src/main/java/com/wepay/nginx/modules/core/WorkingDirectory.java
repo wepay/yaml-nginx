@@ -16,6 +16,7 @@ public class WorkingDirectory extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public WorkingDirectory() {
 		super(contexts, null, "working_directory");
 	}

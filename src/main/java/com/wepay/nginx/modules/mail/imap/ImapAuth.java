@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ImapAuth extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public ImapAuth() {
 		super(contexts, "plain", "imap_auth");
 	}

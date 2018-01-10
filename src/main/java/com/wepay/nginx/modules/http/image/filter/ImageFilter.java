@@ -16,6 +16,7 @@ public class ImageFilter extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public ImageFilter() {
 		super(contexts, "off", "image_filter");
 	}

@@ -16,6 +16,7 @@ public class Queue extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public Queue() {
 		super(contexts, null, "queue");
 	}

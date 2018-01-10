@@ -7,8 +7,8 @@ import com.wepay.nginx.modules.http.core.Server;
 
 public class TestNginxHelper {
 	@Test
-	public void testPopulatelinkingMapCode(){
-		Server server=new Server();
+	public void testPopulatelinkingMapCode() {
+		Server server = new Server();
 		NginxHelper.populatelinkingMapCode(server, Server.class);
 	}
 }

@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiIgnoreClientAbort extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiIgnoreClientAbort() {
 		super(contexts, "off", "fastcgi_ignore_client_abort");
 	}

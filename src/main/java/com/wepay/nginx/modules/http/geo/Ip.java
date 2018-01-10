@@ -15,6 +15,5 @@ public class Ip extends MarkerAbstractDirective {
 	public Ip() {
 		super(contexts, null, "ip");
 	}
-	
 
 }

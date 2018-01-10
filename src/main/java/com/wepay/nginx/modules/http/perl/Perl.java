@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Perl extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(LOCATION,LIMIT_EXCEPT);
+		contexts = Arrays.asList(LOCATION, LIMIT_EXCEPT);
 	}
+
 	public Perl() {
 		super(contexts, null, "perl");
 	}

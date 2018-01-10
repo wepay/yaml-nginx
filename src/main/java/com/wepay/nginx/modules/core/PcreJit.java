@@ -16,6 +16,7 @@ public class PcreJit extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public PcreJit() {
 		super(contexts, "off", "pcre_jit");
 	}

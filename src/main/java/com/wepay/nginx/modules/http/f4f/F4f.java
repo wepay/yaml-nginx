@@ -16,6 +16,7 @@ public class F4f extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public F4f() {
 		super(contexts, null, "f4f");
 	}

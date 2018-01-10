@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SecureLink extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public SecureLink() {
 		super(contexts, null, "secure_link");
 	}

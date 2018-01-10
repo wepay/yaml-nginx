@@ -16,6 +16,7 @@ public class MultiAccept extends Directive {
 	static {
 		contexts = Arrays.asList(EVENTS);
 	}
+
 	public MultiAccept() {
 		super(contexts, "off", "multi_accept");
 	}

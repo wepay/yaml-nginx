@@ -8,6 +8,6 @@ package com.wepay.nginx;
  *
  * @author Roopa Hiremath Chandrasekaraiah
  */
-public class MainClass { 
-    
+public class MainClass {
+
 }

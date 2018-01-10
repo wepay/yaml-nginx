@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class LingeringTime extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public LingeringTime() {
 		super(contexts, "30s", "lingering_time");
 	}

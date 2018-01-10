@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Timeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public Timeout() {
 		super(contexts, "60s", "timeout");
 	}

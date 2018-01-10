@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyInterceptErrors extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyInterceptErrors() {
 		super(contexts, "off", "proxy_intercept_errors");
 	}

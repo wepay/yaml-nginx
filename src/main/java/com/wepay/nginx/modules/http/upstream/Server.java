@@ -16,6 +16,7 @@ public class Server extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public Server() {
 		super(contexts, null, "server");
 	}

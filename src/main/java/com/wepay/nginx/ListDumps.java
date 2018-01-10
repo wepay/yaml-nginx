@@ -19,7 +19,7 @@ public class ListDumps<T> extends ArrayList<T> implements Dumps {
 		int i = 0;
 		while (it.hasNext()) {
 			Dumps dp = (Dumps) it.next();
-			sb.append( dp.dump(level, ctx));
+			sb.append(dp.dump(level, ctx));
 		}
 		return sb.toString();
 	}

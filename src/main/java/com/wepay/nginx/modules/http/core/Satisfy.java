@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class Satisfy extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public Satisfy() {
 		super(contexts, "all", "satisfy");
 	}

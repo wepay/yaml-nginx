@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class TryFiles extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(SERVER,LOCATION);
+		contexts = Arrays.asList(SERVER, LOCATION);
 	}
+
 	public TryFiles() {
 		super(contexts, null, "try_files");
 	}

@@ -16,6 +16,7 @@ public class Zone extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public Zone() {
 		super(contexts, null, "zone");
 	}

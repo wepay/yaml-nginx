@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiCacheMinUses extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiCacheMinUses() {
 		super(contexts, "1", "fastcgi_cache_min_uses");
 	}

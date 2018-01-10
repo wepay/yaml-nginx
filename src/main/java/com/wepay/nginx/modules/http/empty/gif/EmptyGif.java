@@ -16,6 +16,7 @@ public class EmptyGif extends Directive {
 	static {
 		contexts = Arrays.asList(LOCATION);
 	}
+
 	public EmptyGif() {
 		super(contexts, null, "empty_gif");
 	}

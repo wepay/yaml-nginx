@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class MinDeleteDepth extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public MinDeleteDepth() {
 		super(contexts, "0", "min_delete_depth");
 	}

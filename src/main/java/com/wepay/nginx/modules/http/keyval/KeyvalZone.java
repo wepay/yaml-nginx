@@ -16,6 +16,7 @@ public class KeyvalZone extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public KeyvalZone() {
 		super(contexts, null, "keyval_zone");
 	}

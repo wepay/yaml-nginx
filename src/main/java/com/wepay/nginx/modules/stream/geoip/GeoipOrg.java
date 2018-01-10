@@ -16,6 +16,7 @@ public class GeoipOrg extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public GeoipOrg() {
 		super(contexts, null, "geoip_org");
 	}

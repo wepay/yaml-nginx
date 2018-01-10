@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyCacheBypass extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyCacheBypass() {
 		super(contexts, null, "proxy_cache_bypass");
 	}

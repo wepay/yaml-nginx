@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class SslSessionTimeout extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public SslSessionTimeout() {
 		super(contexts, "5m", "ssl_session_timeout");
 	}

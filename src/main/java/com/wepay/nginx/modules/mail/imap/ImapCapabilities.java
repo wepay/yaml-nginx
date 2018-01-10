@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ImapCapabilities extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(MAIL,SERVER);
+		contexts = Arrays.asList(MAIL, SERVER);
 	}
+
 	public ImapCapabilities() {
 		super(contexts, "IMAP4 IMAP4rev1 UIDPLUS", "imap_capabilities");
 	}

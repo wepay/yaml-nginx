@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxyCacheLockAge extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxyCacheLockAge() {
 		super(contexts, "5s", "proxy_cache_lock_age");
 	}

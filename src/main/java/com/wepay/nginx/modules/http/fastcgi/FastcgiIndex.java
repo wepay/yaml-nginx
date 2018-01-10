@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiIndex extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiIndex() {
 		super(contexts, null, "fastcgi_index");
 	}

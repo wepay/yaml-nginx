@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiTempFileWriteSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public UwsgiTempFileWriteSize() {
 		super(contexts, "8k|16k", "uwsgi_temp_file_write_size");
 	}

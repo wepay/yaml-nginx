@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class GzipHttpVersion extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public GzipHttpVersion() {
 		super(contexts, "1.1", "gzip_http_version");
 	}

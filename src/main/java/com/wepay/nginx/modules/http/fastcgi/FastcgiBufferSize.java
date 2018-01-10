@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class FastcgiBufferSize extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiBufferSize() {
 		super(contexts, "4k|8k", "fastcgi_buffer_size");
 	}

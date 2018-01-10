@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class LimitConnLogLevel extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public LimitConnLogLevel() {
 		super(contexts, "error", "limit_conn_log_level");
 	}

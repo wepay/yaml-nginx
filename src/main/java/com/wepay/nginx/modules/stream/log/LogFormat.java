@@ -16,6 +16,7 @@ public class LogFormat extends Directive {
 	static {
 		contexts = Arrays.asList(STREAM);
 	}
+
 	public LogFormat() {
 		super(contexts, null, "log_format");
 	}

@@ -16,6 +16,7 @@ public class Ntlm extends Directive {
 	static {
 		contexts = Arrays.asList(UPSTREAM);
 	}
+
 	public Ntlm() {
 		super(contexts, null, "ntlm");
 	}

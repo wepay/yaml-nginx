@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxySslCertificate extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(STREAM,SERVER);
+		contexts = Arrays.asList(STREAM, SERVER);
 	}
+
 	public ProxySslCertificate() {
 		super(contexts, null, "proxy_ssl_certificate");
 	}

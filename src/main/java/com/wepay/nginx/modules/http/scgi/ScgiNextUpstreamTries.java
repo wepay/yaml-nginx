@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ScgiNextUpstreamTries extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ScgiNextUpstreamTries() {
 		super(contexts, "0", "scgi_next_upstream_tries");
 	}

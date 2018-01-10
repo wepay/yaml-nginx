@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class ProxySslSessionReuse extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public ProxySslSessionReuse() {
 		super(contexts, "on", "proxy_ssl_session_reuse");
 	}

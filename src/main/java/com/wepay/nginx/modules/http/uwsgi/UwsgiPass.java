@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class UwsgiPass extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(LOCATION,IF_IN_LOCATION);
+		contexts = Arrays.asList(LOCATION, IF_IN_LOCATION);
 	}
+
 	public UwsgiPass() {
 		super(contexts, null, "uwsgi_pass");
 	}

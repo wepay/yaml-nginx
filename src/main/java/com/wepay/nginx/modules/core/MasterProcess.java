@@ -16,6 +16,7 @@ public class MasterProcess extends Directive {
 	static {
 		contexts = Arrays.asList(MAIN);
 	}
+
 	public MasterProcess() {
 		super(contexts, "on", "master_process");
 	}

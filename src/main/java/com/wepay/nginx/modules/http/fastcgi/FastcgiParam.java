@@ -19,15 +19,17 @@ public class FastcgiParam extends Directive {
 	@JsonProperty("fastcgi_param")
 	private FastcgiParam fastcgiParam;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public FastcgiParam() {
 		super(contexts, null, "fastcgi_param");
 	}
+
 	public String dump(int level, String ctx) throws InvalidConditionDirectiveException {
-		if(fastcgiParam!=null){
+		if (fastcgiParam != null) {
 			return fastcgiParam.dump(level, ctx);
-		}else{
+		} else {
 			return super.dump(level, ctx);
 		}
 	}

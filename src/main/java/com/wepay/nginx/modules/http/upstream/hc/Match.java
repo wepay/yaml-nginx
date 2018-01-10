@@ -16,6 +16,7 @@ public class Match extends Directive {
 	static {
 		contexts = Arrays.asList(HTTP);
 	}
+
 	public Match() {
 		super(contexts, null, "match");
 	}

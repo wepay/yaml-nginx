@@ -14,8 +14,9 @@ import com.wepay.nginx.Directive;
 public class HlsForwardArgs extends Directive {
 	static final List<String> contexts;
 	static {
-		contexts = Arrays.asList(HTTP,SERVER,LOCATION);
+		contexts = Arrays.asList(HTTP, SERVER, LOCATION);
 	}
+
 	public HlsForwardArgs() {
 		super(contexts, "off", "hls_forward_args");
 	}

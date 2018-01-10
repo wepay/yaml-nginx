@@ -64,4 +64,20 @@ public class TestHttp {
 			fail();
 		}  
 	}
+	@Test
+	public void testvhost2HttpDumps() {
+		String filename = Constants.TEST_RESOURCE_PATH + "/http_vhost2.yml";
+		String res_filename = Constants.TEST_RESOURCE_PATH + "/http_vhost2_result.yml";
+		String res;
+		try {
+			res = NginxFormatter.formatFile(filename, "http");
+			List<String> expected = NginxHelper.getAsList(res_filename);
+			List<String> resList = (List) Arrays.asList(res.split("\n"));
+			assertEquals(expected.size(),resList.size());
+			assertTrue(resList.containsAll(expected));
+		} catch (Throwable e) {
+			e.printStackTrace();
+			fail();
+		}  
+	}
 }

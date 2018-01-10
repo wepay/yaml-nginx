@@ -40,7 +40,6 @@ public class TestMain {
 			res = NginxFormatter.formatFile(filename, "main");
 			List<String> expected = NginxHelper.getAsList(res_filename);
 			List<String> resList = (List) Arrays.asList(res.split("\n"));
-			System.out.println(res);
 			assertEquals(expected.size(),resList.size());
 			assertTrue(resList.containsAll(expected));
 		} catch (Throwable e) {
@@ -54,6 +53,22 @@ public class TestMain {
 	public void testSimpleDumps() {
 		String filename = Constants.TEST_RESOURCE_PATH + "/main_simple.yml";
 		String res_filename = Constants.TEST_RESOURCE_PATH + "/main_simple_result.yml";
+		String res;
+		try {
+			res = NginxFormatter.formatFile(filename, "main");
+			List<String> expected = NginxHelper.getAsList(res_filename);
+			List<String> resList = (List) Arrays.asList(res.split("\n"));
+			assertEquals(expected.size(),resList.size());
+			assertTrue(resList.containsAll(expected));
+		} catch (Throwable e) {
+			e.printStackTrace();
+			fail();
+		} 
+	}
+	@Test
+	public void testnginx2Dumps() {
+		String filename = Constants.TEST_RESOURCE_PATH + "/main_nginx2.yml";
+		String res_filename = Constants.TEST_RESOURCE_PATH + "/main_nginx2_result.yml";
 		String res;
 		try {
 			res = NginxFormatter.formatFile(filename, "main");

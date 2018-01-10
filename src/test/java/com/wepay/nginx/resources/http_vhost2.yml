@@ -1,0 +1,291 @@
+comment: '{{ ansible_managed }}'
+geo:
+  address: $internal_address
+  default: 0
+  ips:
+  - value: 202.21.128.11/32 1
+  - value: 202.21.128.12/32 1
+  - value: 203.57.145.11/32 1
+  - value: 203.57.145.12/32 1
+servers:
+- comment: Server Blocks for Main Site
+  listen: 80
+  location:
+    comment: Redirect all HTTP to HTTPS
+    rewrite: ^(.*) https://dev.wepay-inc.com$1 permanent
+    url: /
+  name: Main Site
+  server_name: 'dev.wepay-inc.com '
+- access_log: '{{ access_log_absolute_path }} main'
+  client_body_buffer_size: '{{ client_body_buffer_size_and_unit }}'
+  client_max_body_size: '{{ client_max_body_size_and_unit }}'
+  error_log: '{{ error_log_absolute_path }} info'
+  error_page: 500 502 503 504 403 /error.html
+  ifs:
+  - condition: Whitelist HTTP methods
+    return: 405
+  index: '{{ root_index }}'
+  keepalive_requests: '{{ keepalive_requests_integer }}'
+  keepalive_timeout: '{{ keepalive_timeout_seconds }}'
+  listen: 443 ssl
+  locations:
+  - comment: Block SVN contents in case they are floating somewhere (should be trimmed
+    deny: all
+    url: ~ /\.svn
+  - add_header: Access-Control-Allow-Origin *
+    comment: Support CORS so font embedding works in modern browsers
+    url: ~* \.(eot|ttf|woff)$
+  - ifs:
+    - condition: $request_uri ~* ^/internal
+      set: $internal_request I
+    - condition: $internal_address = 0
+      set: $internal_request "{{internal_request}E"
+    - condition: $internal_request = IE
+      return: 403
+    - comment: Facebook token provider is always blocked on default https port
+      condition: $request_uri ~* ^/{{ fb_token_provider_location }}
+      return: 404
+    - add_header: Cache-Control public
+      break: ''
+      condition: -f $request_filename
+      expires: 6h"
+    - condition: $request_filename ~* \.(gif|ico|feed)$
+      return: 404
+    - condition: '!-e $request_filename'
+      rewrite: ^/(.+)$ /{{ root_index }}?kohana_uri=$1 last
+    url: /
+  - alias: '{{ root }}'
+    comment: buildinfo endpoint, based on buildinfo.json file
+    index: '{{ buildinfo_index }}'
+    url: /buildinfo
+  - proxy_pass: http://$target_host$request_uri
+    set: '$target_host:  {{ possum_host }}'
+    url: /portal/
+  - root: /var/www/nginx-error
+    url: = /error.html
+  - root: /var/www/nginx-error
+    url: = /error-logo.html
+  - access_log: /var/log/nginx/hb_access.log
+    comment: Heartbeat script logging override. FIXME this shouldn't really go here
+      (fake an ssl cert in hb script?)
+    error_log: /var/log/nginx/hb_error.log
+    fastcgi_params:
+    - fastcgi_param: HTTPS on
+    - fastcgi_param: SERVER_ADDR 127.0.0.1
+    - fastcgi_param: SCRIPT_FILENAME $realpath_root$fastcgi_script_name
+    - fastcgi_param: HTTP_PROXY ''
+    fastcgi_pass: '{{ fastcgi_pass }}'
+    include: /etc/nginx/fastcgi_params
+    url: = /{{ healthcheck_index }}
+  - access_log: 'off'
+    allow: '{{ nginx_status_access_ip }}'
+    deny: all
+    stub_status: 'on'
+    url: = /nginx_status
+  - fastcgi_params:
+    - fastcgi_param: HTTPS on
+    - fastcgi_param: SERVER_ADDR 127.0.0.1
+    - fastcgi_param: SCRIPT_FILENAME $realpath_root$fastcgi_script_name
+    - fastcgi_param: HTTP_PROXY ''
+    fastcgi_pass: '{{ fastcgi_pass }}'
+    include: /etc/nginx/fastcgi_params
+    url: ~* \.php$
+  resolver: 8.8.8.8 8.8.4.4 valid={{ ocsp_resolver_valid_time_and_unit }}
+  resolver_timeout: '{{ ocsp_resolver_timeout_and_unit }}'
+  root: '{{ root }}'
+  server_name: 'dev.wepay-inc.com '
+  ssl: 'on'
+  ssl_certificate: '{{ ssl_cert_directory }}/star.wepay-inc.com.crt'
+  ssl_certificate_key: '{{ ssl_cert_directory }}/star.wepay-inc.com.key'
+  ssl_ciphers: '{{ ssl_ciphers_list }}'
+  ssl_dhparam: '{{ ssl_cert_directory }}/dhparams.pem'
+  ssl_prefer_server_ciphers: '{{ ssl_prefer_server_ciphers_switch }}'
+  ssl_protocols: '{{ ssl_protocols_list }}'
+  ssl_session_cache: '{{ ssl_session_cache_info }}'
+  ssl_session_timeout: '{ ssl_session_timeout_and_unit }}'
+  ssl_stapling: 'on'
+  ssl_stapling_verify: 'on'
+- comment: Server Blocks for Checkout Proxy Site
+  listen: 80
+  location:
+    comment: Redirect all HTTP to HTTPS
+    rewrite: ^(.*) https://poc-checkout.wepay-inc.com$1 permanent
+    url: /
+  name: Checkout Proxy Site
+  server_name: 'poc-checkout.wepay-inc.com '
+- access_log: '{{ access_log_absolute_path }} main'
+  client_body_buffer_size: '{{ client_body_buffer_size_and_unit }}'
+  client_max_body_size: '{{ client_max_body_size_and_unit }}'
+  error_log: '{{ error_log_absolute_path }} info'
+  keepalive_requests: '{{ keepalive_requests_integer }}'
+  keepalive_timeout: '{{ keepalive_timeout_seconds }}'
+  listen: 443 ssl
+  locations:
+  - comment: deny access to Checkout Proxy Site's monitoring endpoints
+    deny: all
+    url: ~ /(buildinfo|healthcheck|ping
+  - proxy_pass: https://poc-phoenix.devops.wepay-inc.com
+    proxy_set_header: Host $http_host
+    url: /
+  resolver: 8.8.8.8 8.8.4.4 valid={{ ocsp_resolver_valid_time_and_unit }}
+  resolver_timeout: '{{ ocsp_resolver_timeout_and_unit }}'
+  server_name: 'poc-checkout.wepay-inc.com '
+  ssl: 'on'
+  ssl_certificate: '{{ ssl_cert_directory }}/star.wepay-inc.com.crt'
+  ssl_certificate_key: '{{ ssl_cert_directory }}/star.wepay-inc.com.key'
+  ssl_ciphers: '{{ ssl_ciphers_list }}'
+  ssl_dhparam: '{{ ssl_cert_directory }}/dhparams.pem'
+  ssl_prefer_server_ciphers: '{{ ssl_prefer_server_ciphers_switch }}'
+  ssl_protocols: '{{ ssl_protocols_list }}'
+  ssl_session_cache: '{{ ssl_session_cache_info }}'
+  ssl_session_timeout: '{ ssl_session_timeout_and_unit }}'
+  ssl_stapling: 'on'
+  ssl_stapling_verify: 'on'
+- comment: Server Blocks for Home Site
+  listen: 80
+  location:
+    comment: Redirect all HTTP to HTTPS
+    rewrite: ^(.*) https://poc-home.wepay-inc.com$1 permanent
+    url: /
+  name: Home Site
+  server_name: 'poc-home.wepay-inc.com '
+- access_log: '{{ access_log_absolute_path }} main'
+  client_body_buffer_size: '{{ client_body_buffer_size_and_unit }}'
+  client_max_body_size: '{{ client_max_body_size_and_unit }}'
+  error_log: '{{ error_log_absolute_path }} info'
+  keepalive_requests: '{{ keepalive_requests_integer }}'
+  keepalive_timeout: '{{ keepalive_timeout_seconds }}'
+  listen: 443 ssl
+  locations:
+  - comment: deny access to Home Site's monitoring endpoints
+    deny: all
+    url: ~ /(buildinfo|healthcheck|ping
+  - proxy_pass: https://poc-kangaroo.devops.wepay-inc.com
+    proxy_set_header: Host $http_host
+    url: /
+  resolver: 8.8.8.8 8.8.4.4 valid={{ ocsp_resolver_valid_time_and_unit }}
+  resolver_timeout: '{{ ocsp_resolver_timeout_and_unit }}'
+  server_name: 'poc-home.wepay-inc.com '
+  ssl: 'on'
+  ssl_certificate: '{{ ssl_cert_directory }}/star.wepay-inc.com.crt'
+  ssl_certificate_key: '{{ ssl_cert_directory }}/star.wepay-inc.com.key'
+  ssl_ciphers: '{{ ssl_ciphers_list }}'
+  ssl_dhparam: '{{ ssl_cert_directory }}/dhparams.pem'
+  ssl_prefer_server_ciphers: '{{ ssl_prefer_server_ciphers_switch }}'
+  ssl_protocols: '{{ ssl_protocols_list }}'
+  ssl_session_cache: '{{ ssl_session_cache_info }}'
+  ssl_session_timeout: '{ ssl_session_timeout_and_unit }}'
+  ssl_stapling: 'on'
+  ssl_stapling_verify: 'on'
+- comment: Server Blocks for KYC Upload Site
+  listen: 80
+  location:
+    comment: Redirect all HTTP to HTTPS
+    rewrite: ^(.*) https://poc-uploads.wepay-inc.com$1 permanent
+    url: /
+  name: KYC Upload Site
+  server_name: 'poc-uploads.wepay-inc.com '
+- access_log: '{{ access_log_absolute_path }} main'
+  client_body_buffer_size: '{{ client_body_buffer_size_and_unit }}'
+  client_max_body_size: '{{ client_max_body_size_and_unit }}'
+  error_log: '{{ error_log_absolute_path }} info'
+  keepalive_requests: '{{ keepalive_requests_integer }}'
+  keepalive_timeout: '{{ keepalive_timeout_seconds }}'
+  listen: 443 ssl
+  locations:
+  - comment: deny access to KYC Upload Site's monitoring endpoints
+    deny: all
+    url: ~ /(buildinfo|healthcheck|ping
+  - proxy_pass: https://poc-packrat.devops.wepay-inc.com
+    proxy_set_header: Host $http_host
+    url: /
+  resolver: 8.8.8.8 8.8.4.4 valid={{ ocsp_resolver_valid_time_and_unit }}
+  resolver_timeout: '{{ ocsp_resolver_timeout_and_unit }}'
+  server_name: 'poc-uploads.wepay-inc.com '
+  ssl: 'on'
+  ssl_certificate: '{{ ssl_cert_directory }}/star.wepay-inc.com.crt'
+  ssl_certificate_key: '{{ ssl_cert_directory }}/star.wepay-inc.com.key'
+  ssl_ciphers: '{{ ssl_ciphers_list }}'
+  ssl_dhparam: '{{ ssl_cert_directory }}/dhparams.pem'
+  ssl_prefer_server_ciphers: '{{ ssl_prefer_server_ciphers_switch }}'
+  ssl_protocols: '{{ ssl_protocols_list }}'
+  ssl_session_cache: '{{ ssl_session_cache_info }}'
+  ssl_session_timeout: '{ ssl_session_timeout_and_unit }}'
+  ssl_stapling: 'on'
+  ssl_stapling_verify: 'on'
+- comment: Server Blocks for Beaver
+  listen: 80
+  location:
+    comment: Redirect all HTTP to HTTPS
+    rewrite: ^(.*) https://poc-api-v3.wepay-inc.com$1 permanent
+    url: /
+  name: Beaver
+  server_name: 'poc-api-v3.wepay-inc.com '
+- access_log: '{{ access_log_absolute_path }} main'
+  client_body_buffer_size: '{{ client_body_buffer_size_and_unit }}'
+  client_max_body_size: '{{ client_max_body_size_and_unit }}'
+  error_log: '{{ error_log_absolute_path }} info'
+  keepalive_requests: '{{ keepalive_requests_integer }}'
+  keepalive_timeout: '{{ keepalive_timeout_seconds }}'
+  listen: 443 ssl
+  locations:
+  - comment: deny access to Beaver's monitoring endpoints
+    deny: all
+    url: ~ /(buildinfo|healthcheck|ping
+  - proxy_pass: https://poc-beaver.devops.wepay-inc.com
+    proxy_set_header: Host $http_host
+    url: /
+  resolver: 8.8.8.8 8.8.4.4 valid={{ ocsp_resolver_valid_time_and_unit }}
+  resolver_timeout: '{{ ocsp_resolver_timeout_and_unit }}'
+  server_name: 'poc-api-v3.wepay-inc.com '
+  ssl: 'on'
+  ssl_certificate: '{{ ssl_cert_directory }}/star.wepay-inc.com.crt'
+  ssl_certificate_key: '{{ ssl_cert_directory }}/star.wepay-inc.com.key'
+  ssl_ciphers: '{{ ssl_ciphers_list }}'
+  ssl_dhparam: '{{ ssl_cert_directory }}/dhparams.pem'
+  ssl_prefer_server_ciphers: '{{ ssl_prefer_server_ciphers_switch }}'
+  ssl_protocols: '{{ ssl_protocols_list }}'
+  ssl_session_cache: '{{ ssl_session_cache_info }}'
+  ssl_session_timeout: '{ ssl_session_timeout_and_unit }}'
+  ssl_stapling: 'on'
+  ssl_stapling_verify: 'on'
+- comment: Server Blocks for Risk Analytics Panel
+  listen: 80
+  location:
+    comment: Redirect all HTTP to HTTPS
+    rewrite: ^(.*) https://jarvis.wepay-inc.com$1 permanent
+    url: /
+  name: Risk Analytics Panel
+  server_name: 'jarvis.wepay-inc.com '
+- access_log: '{{ access_log_absolute_path }} main'
+  client_body_buffer_size: '{{ client_body_buffer_size_and_unit }}'
+  client_max_body_size: '{{ client_max_body_size_and_unit }}'
+  error_log: '{{ error_log_absolute_path }} info'
+  keepalive_requests: '{{ keepalive_requests_integer }}'
+  keepalive_timeout: '{{ keepalive_timeout_seconds }}'
+  listen: 443 ssl
+  locations:
+  - comment: deny access to Risk Analytics Panel's monitoring endpoints
+    deny: all
+    url: ~ /(buildinfo|healthcheck|ping
+  - allows:
+    - allow: 12.37.161.213/32;
+    - allow: 54.153.78.102/32;
+    - allow: 64.238.140.174/32;
+    deny: all
+    proxy_pass: https://poc-jarvis.devops.wepay-inc.com
+    url: /
+  resolver: 8.8.8.8 8.8.4.4 valid={{ ocsp_resolver_valid_time_and_unit }}
+  resolver_timeout: '{{ ocsp_resolver_timeout_and_unit }}'
+  server_name: 'jarvis.wepay-inc.com '
+  ssl: 'on'
+  ssl_certificate: '{{ ssl_cert_directory }}/star.wepay-inc.com.crt'
+  ssl_certificate_key: '{{ ssl_cert_directory }}/star.wepay-inc.com.key'
+  ssl_ciphers: '{{ ssl_ciphers_list }}'
+  ssl_dhparam: '{{ ssl_cert_directory }}/dhparams.pem'
+  ssl_prefer_server_ciphers: '{{ ssl_prefer_server_ciphers_switch }}'
+  ssl_protocols: '{{ ssl_protocols_list }}'
+  ssl_session_cache: '{{ ssl_session_cache_info }}'
+  ssl_session_timeout: '{ ssl_session_timeout_and_unit }}'
+  ssl_stapling: 'on'
+  ssl_stapling_verify: 'on'

@@ -1,0 +1,63 @@
+#{{ ansible_managed }}
+events {
+    #Accept as many connections as possible, after nginx gets notification about a new connection. May flood worker_connections, if that option is set too low.
+    multi_accept       on;
+    #essential for linux, optmized to serve many clients with each thread
+    use                epoll;
+    worker_connections 4096;
+}
+http {
+    include mime.types;
+    include /etc/nginx/conf.d/*.conf;
+    client_body_timeout       15;
+    client_header_timeout     15;
+    client_max_body_size      {{ client_max_body_size_and_unit }};
+    default_type              application/octet-stream;
+    gzip                      on;
+    gzip_buffers              16 8k;
+    gzip_comp_level           4;
+    gzip_disable              MSIE [1-6].(?!.*SV1);
+    gzip_min_length           256;
+    gzip_proxied              any;
+    gzip_types                text/plain text/css application/x-javascript text/xml application/xml text/javascript application/rss+xml;
+    gzip_vary                 on;
+    keepalive_requests        20;
+    keepalive_timeout         15;
+    log_format                main  "'$remote_addr - $remote_user [$time_local] $ssl_protocol/$ssl_cipher "$request" '\n'$status $body_bytes_sent $request_time "$http_referer" '\n'\"$http_user_agent\" \"$http_proxy\"'";
+    open_file_cache           max=10000 inactive=10s;
+    open_file_cache_errors    on;
+    open_file_cache_min_uses  2;
+    open_file_cache_valid     30s;
+    proxy_set_header          Proxy '';
+    real_ip_header            X-Forwarded-For;
+    reset_timedout_connection on;
+    send_timeout              30;
+    sendfile                  on;
+    server_tokens             off;
+    set_real_ip_from 209.200.128.0/18;
+    set_real_ip_from 23.235.32.0/20;
+    set_real_ip_from 43.249.72.0/22;
+    set_real_ip_from 103.244.50.0/24;
+    set_real_ip_from 103.245.222.0/23;
+    set_real_ip_from 103.245.224.0/24;
+    set_real_ip_from 104.156.80.0/20;
+    set_real_ip_from 151.101.0.0/16;
+    set_real_ip_from 157.52.64.0/18;
+    set_real_ip_from 172.111.64.0/18;
+    set_real_ip_from 185.31.16.0/22;
+    set_real_ip_from 199.27.72.0/21;
+    set_real_ip_from 199.232.0.0/16;
+    set_real_ip_from 202.21.128.11/32;
+    set_real_ip_from 202.21.128.12/32;
+    set_real_ip_from 203.57.145.11/32;
+    set_real_ip_from 203.57.145.12/32;
+    tcp_nodelay               on;
+    tcp_nopush                on;
+    #FOR FB HACK ONLY
+    upstream secure {
+        server 127.0.0.1:443 max_fails=1 fail_timeout=2s weight=1;
+    }
+}
+user                 {{ www_user }} {{ www_group }};
+worker_processes     6;
+worker_rlimit_nofile 50000;

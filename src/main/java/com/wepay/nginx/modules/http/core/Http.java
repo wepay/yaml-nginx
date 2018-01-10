@@ -97,6 +97,9 @@ public class Http extends BlockAbstractContext {
 	@JsonProperty("allow")
 	private Allow allow;
 
+	@JsonProperty("allows") 
+	private Allows allows;
+
 	@JsonProperty("ancient_browser")
 	private AncientBrowser ancientBrowser;
 
@@ -183,7 +186,8 @@ public class Http extends BlockAbstractContext {
 
 	@JsonProperty("deny")
 	private Deny deny;
-
+	@JsonProperty("denys") 
+	private Denys denys;
 	@JsonProperty("directio")
 	private Directio directio;
 
@@ -1035,6 +1039,9 @@ public class Http extends BlockAbstractContext {
 
 	@JsonProperty("set_real_ip_from")
 	private SetRealIpFrom setRealIpFrom;
+	
+	@JsonProperty("set_real_ip_froms")
+	private SetRealIpFroms setRealIpFroms;
 
 	@JsonProperty("slice")
 	private Slice slice;
@@ -1410,6 +1417,7 @@ public class Http extends BlockAbstractContext {
 		mapLocal.put("aio", aio);
 		mapLocal.put("aio_write", aioWrite);
 		mapLocal.put("allow", allow);
+		mapLocal.put("allows", allows);
 		mapLocal.put("ancient_browser", ancientBrowser);
 		mapLocal.put("ancient_browser_value", ancientBrowserValue);
 		mapLocal.put("auth_basic", authBasic);
@@ -1439,6 +1447,7 @@ public class Http extends BlockAbstractContext {
 		mapLocal.put("dav_methods", davMethods);
 		mapLocal.put("default_type", defaultType);
 		mapLocal.put("deny", deny);
+		mapLocal.put("denys", deny);
 		mapLocal.put("directio", directio);
 		mapLocal.put("directio_alignment", directioAlignment);
 		mapLocal.put("disable_symlinks", disableSymlinks);
@@ -1722,6 +1731,7 @@ public class Http extends BlockAbstractContext {
 		mapLocal.put("session_log_format", sessionLogFormat);
 		mapLocal.put("session_log_zone", sessionLogZone);
 		mapLocal.put("set_real_ip_from", setRealIpFrom);
+		mapLocal.put("set_real_ip_froms", setRealIpFroms);
 		mapLocal.put("slice", slice);
 		mapLocal.put("spdy_chunk_size", spdyChunkSize);
 		mapLocal.put("spdy_headers_comp", spdyHeadersComp);

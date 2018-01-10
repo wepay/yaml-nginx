@@ -33,6 +33,9 @@ public class LimitExcept extends NamedAbstractContext {
 
 	@JsonProperty("allow") 
 	private Allow allow;
+	
+	@JsonProperty("allows") 
+	private Allows allows;
 
 	@JsonProperty("auth_basic") 
 	private AuthBasic authBasic;
@@ -42,6 +45,9 @@ public class LimitExcept extends NamedAbstractContext {
 
 	@JsonProperty("deny") 
 	private Deny deny;
+	
+	@JsonProperty("denys") 
+	private Denys denys;
 
 	@JsonProperty("js_content") 
 	private JsContent jsContent;
@@ -64,9 +70,11 @@ public class LimitExcept extends NamedAbstractContext {
 		//map.clear();
 		map.put("access_log", accessLog);
 		map.put("allow", allow);
+		map.put("allows", allows);
 		map.put("auth_basic", authBasic);
 		map.put("auth_basic_user_file", authBasicUserFile);
 		map.put("deny", deny);
+		map.put("denys", denys);
 		map.put("js_content", jsContent);
 		map.put("perl", perl);
 		map.put("proxy_pass", proxyPass);

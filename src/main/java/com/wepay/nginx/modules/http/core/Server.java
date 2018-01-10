@@ -67,7 +67,6 @@ public class Server extends BlockAbstractContext {
 		super(contexts, null, "server");
 	}
 
-	
 
 	@JsonProperty("if")
 	private If ifO;
@@ -104,6 +103,9 @@ public class Server extends BlockAbstractContext {
 
 	@JsonProperty("allow")
 	private Allow allow;
+	
+	@JsonProperty("allows")
+	private Allows allows;
 
 	@JsonProperty("ancient_browser")
 	private AncientBrowser ancientBrowser;
@@ -188,6 +190,9 @@ public class Server extends BlockAbstractContext {
 
 	@JsonProperty("deny")
 	private Deny deny;
+	
+	@JsonProperty("denys")
+	private Denys denys;
 
 	@JsonProperty("directio")
 	private Directio directio;
@@ -974,7 +979,10 @@ public class Server extends BlockAbstractContext {
 
 	@JsonProperty("set_real_ip_from")
 	private SetRealIpFrom setRealIpFrom;
-
+	
+	@JsonProperty("set_real_ip_froms")
+	private SetRealIpFroms setRealIpFroms;
+	
 	@JsonProperty("slice")
 	private Slice slice;
 
@@ -1347,6 +1355,7 @@ public class Server extends BlockAbstractContext {
 		map.put("aio", aio);
 		map.put("aio_write", aioWrite);
 		map.put("allow", allow);
+		map.put("allows", allows);
 		map.put("ancient_browser", ancientBrowser);
 		map.put("ancient_browser_value", ancientBrowserValue);
 		map.put("auth_basic", authBasic);
@@ -1375,6 +1384,7 @@ public class Server extends BlockAbstractContext {
 		map.put("dav_methods", davMethods);
 		map.put("default_type", defaultType);
 		map.put("deny", deny);
+		map.put("denys", denys);
 		map.put("directio", directio);
 		map.put("directio_alignment", directioAlignment);
 		map.put("disable_symlinks", disableSymlinks);
@@ -1638,6 +1648,7 @@ public class Server extends BlockAbstractContext {
 		map.put("session_log", sessionLog);
 		map.put("set", set);
 		map.put("set_real_ip_from", setRealIpFrom);
+		map.put("set_real_ip_froms", setRealIpFroms);
 		map.put("slice", slice);
 		map.put("spdy_chunk_size", spdyChunkSize);
 		map.put("spdy_headers_comp", spdyHeadersComp);

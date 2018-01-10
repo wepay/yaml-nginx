@@ -60,7 +60,7 @@ public class Geo extends NamedAbstractContext {
 	private Ip ip;
 
 	@JsonProperty("ips")
-	private Ip ips;
+	private Ips ips;
 
 	
 	public Default getDefaultObj() {
